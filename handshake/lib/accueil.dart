@@ -38,14 +38,14 @@ class Page1InteractionState extends State<Page1Interactive> {
         centerTitle: true,
       ),
       body: Container(
-        padding: const EdgeInsets.only(top: 80),
+        padding: const EdgeInsets.only(top: 0),
         width: size.width,
         height: size.height,
         decoration: fondDecoration(),
         child: Column(children: [
           Container(
             key: const Key("iconContainer"),
-            margin: const EdgeInsets.only(top:0),
+            // margin: const EdgeInsets.only(top:0),
             child: logo(size),
           ),
           Container (
