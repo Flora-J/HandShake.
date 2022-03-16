@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handshake/accueil.dart';
+import 'package:handshake/tchat.dart';
 
 Future<void> main() async {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: Page1Interactive(),
+      home: Chat(),
     );
   }
 }
