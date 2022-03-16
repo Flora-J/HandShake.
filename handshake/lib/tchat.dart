@@ -62,31 +62,44 @@ class ChatState extends State<Chat> {
                           ),
                         ],
                       ),
-                    )
+                    ),
+
                   ],
                 ),
+
               ),
             ),
           Container(
+            height: 40,
+            width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(top: 20),
             child:TextField(
-          decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20)
-          ),
-          hintText: "Recherche",
-            hintStyle: TextStyle(
-              color: Colors.grey.shade300
-            ),
 
-            icon: const Icon(
-                Icons.search_rounded
-            ),
+              textAlignVertical: TextAlignVertical.center,
+              autocorrect: true,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search_rounded
+                ),
+              contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20)
+          ),
+              hintText: "Recherche",
+
+              hintStyle: TextStyle(
+
+              color: Colors.grey.shade300
+              ),
+
+
 
     ),
+    onTap: (){
 
+    },
           ),
           ),
+     
           ],
         ),
       ),
