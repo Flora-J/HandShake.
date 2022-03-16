@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:handshake/models/chatusersModel.dart';
+import 'package:handshake/widget/conversationList.dart';
 
 class Chat extends StatefulWidget {
   @override
@@ -6,6 +8,11 @@ class Chat extends StatefulWidget {
 }
 
 class ChatState extends State<Chat> {
+  List<ChatUsers> chatUsers = [
+    ChatUsers(name: "Matthieu", messagetext: "Bah alors Matthieu", imageUrl: "handshake/images/logo-handshake.png" , time: "now")
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,7 +106,16 @@ class ChatState extends State<Chat> {
     },
           ),
           ),
-     
+            ListView.builder(itemCount: chatUsers.length,
+            shrinkWrap: true,
+              padding: const EdgeInsets.only(top: 16),
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index){
+              return ConversationList(name: chatUsers[index].name, messageText: chatUsers[index].messagetext, imageUrl: chatUsers[index].imageUrl, time: chatUsers[index].time, isMessageRead: (index==0 || index==3)?true:false);
+              },
+
+            )
+
           ],
         ),
       ),
