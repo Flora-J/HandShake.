@@ -112,7 +112,7 @@ class ChatState extends State<Chat> {
               padding: const EdgeInsets.only(top: 16),
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index){
-              return ConversationList(name: chatUsers[index].name, messageText: chatUsers[index].messagetext, imageUrl: chatUsers[index].imageUrl, time: chatUsers[index].time, isMessageRead: (index==0 || index==1)?true:false);
+              return ConversationList(name: chatUsers[index].name, messageText: chatUsers[index].messagetext, imageUrl: chatUsers[index].imageUrl, time: chatUsers[index].time, isMessageRead: (index==0 || index==3)?true:false);
               },
 
             )

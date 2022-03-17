@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handshake/chatDetailsPage.dart';
 
 class ConversationList extends StatefulWidget{
   String name;
@@ -18,6 +19,9 @@ class _ConversationListState extends State<ConversationList>{
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return ChatDetailsPage();
+        }));
 
       },
       child: Container(
