@@ -59,11 +59,13 @@ class Accueil extends State<Welcome> {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    child: elevatedButton("S'inscrire", size),
+                  SizedBox(
+                    width: 130,
+                    child: elevatedButton("S'inscrire"),
                   ),
-                  Container(
-                    child: elevatedButton("Se connecter", size),
+                  SizedBox(
+                    width: 130,
+                    child: elevatedButton("Se connecter"),
                   ),
                 ]),
           ),
@@ -106,7 +108,7 @@ class Accueil extends State<Welcome> {
     );
   }
 
-  ElevatedButton elevatedButton(String text, var size) {
+  ElevatedButton elevatedButton(String text) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
