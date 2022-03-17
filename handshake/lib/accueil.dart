@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 //import 'package:animated_text_kit/animated_text_kit.dart';
-//import 'package:flutter_application_1/Page2Interactive.dart';
+import 'connexion.dart';
 
-class Page1Interactive extends StatefulWidget {
+class Welcome extends StatefulWidget {
   @override
   //State<StatefulWidget> createState() {
   //return Page1InteractionState();
   //}
-  Page1InteractionState createState() => Page1InteractionState();
+  Accueil createState() => Accueil();
 }
 
-class Page1InteractionState extends State<Page1Interactive> {
+class Accueil extends State<Welcome> {
   @override
   void initState() {
     super.initState();
@@ -25,6 +25,7 @@ class Page1InteractionState extends State<Page1Interactive> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    Connexion pageConnect = Connexion();
     //Page2Interactive page2 = Page2Interactive();
 
 
@@ -58,11 +59,13 @@ class Page1InteractionState extends State<Page1Interactive> {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    child: elevatedButton("S'inscrire", size),
+                  SizedBox(
+                    width: 130,
+                    child: elevatedButton("S'inscrire"),
                   ),
-                  Container(
-                    child: elevatedButton("Se connecter", size),
+                  SizedBox(
+                    width: 130,
+                    child: elevatedButton("Se connecter"),
                   ),
                 ]),
           ),
@@ -101,17 +104,16 @@ class Page1InteractionState extends State<Page1Interactive> {
         fontSize: 20,
         color: Colors.blueGrey,
         fontStyle: FontStyle.italic,
-
       ),
     );
   }
 
-  ElevatedButton elevatedButton(String text, var size) {
+  ElevatedButton elevatedButton(String text) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
       onPressed: () {
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => page2));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Connexion()));
       },
       child: Text(
         text,
