@@ -31,13 +31,13 @@ class _ConversationListState extends State<ConversationList>{
                       backgroundImage: AssetImage(widget.imageUrl),
                       maxRadius: 30
                     ),
-                    SizedBox(width: 16),
+                    const SizedBox(width: 16),
                     Expanded(
                       child: Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(widget.name, style: TextStyle(
+                          Text(widget.name, style: const TextStyle(
                             fontSize: 16
                           ),
                           ),

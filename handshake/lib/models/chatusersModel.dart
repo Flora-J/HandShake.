@@ -8,4 +8,6 @@ class ChatUsers{
 
   ChatUsers ({required this.name, required this.messagetext, required this.imageUrl, required this.time});
 
+
+
 }

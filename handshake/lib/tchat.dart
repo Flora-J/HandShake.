@@ -9,7 +9,8 @@ class Chat extends StatefulWidget {
 
 class ChatState extends State<Chat> {
   List<ChatUsers> chatUsers = [
-    ChatUsers(name: "Matthieu", messagetext: "Bah alors Matthieu", imageUrl: "handshake/images/logo-handshake.png" , time: "now")
+    ChatUsers(name: "Matthieu", messagetext: "Bah alors Matthieu", imageUrl: "images/logo-handshake.png" , time: "now"),
+    ChatUsers(name: "Matthieu", messagetext: "Pourquoi?", imageUrl: "images/logo-handshake.png", time: "Yesterday")
   ];
 
 
@@ -87,7 +88,7 @@ class ChatState extends State<Chat> {
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search_rounded
                 ),
-              contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              contentPadding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
               border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20)
           ),
@@ -109,9 +110,9 @@ class ChatState extends State<Chat> {
             ListView.builder(itemCount: chatUsers.length,
             shrinkWrap: true,
               padding: const EdgeInsets.only(top: 16),
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index){
-              return ConversationList(name: chatUsers[index].name, messageText: chatUsers[index].messagetext, imageUrl: chatUsers[index].imageUrl, time: chatUsers[index].time, isMessageRead: (index==0 || index==3)?true:false);
+              return ConversationList(name: chatUsers[index].name, messageText: chatUsers[index].messagetext, imageUrl: chatUsers[index].imageUrl, time: chatUsers[index].time, isMessageRead: (index==0 || index==1)?true:false);
               },
 
             )
