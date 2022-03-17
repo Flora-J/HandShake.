@@ -25,7 +25,7 @@ class Accueil extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    Connexion pageConnect = Connexion();
+    //Connexion pageConnect = Connexion();
     //Page2Interactive page2 = Page2Interactive();
 
 
@@ -61,11 +61,11 @@ class Accueil extends State<Welcome> {
                 children: [
                   SizedBox(
                     width: 130,
-                    child: elevatedButton("S'inscrire"),
+                    child: elevatedButton(context, "S'inscrire", ()=>Connexion()),
                   ),
                   SizedBox(
                     width: 130,
-                    child: elevatedButton("Se connecter"),
+                    child: elevatedButton(context, "Se connecter", ()=>Connexion()),
                   ),
                 ]),
           ),
@@ -108,12 +108,12 @@ class Accueil extends State<Welcome> {
     );
   }
 
-  ElevatedButton elevatedButton(String text) {
+  ElevatedButton elevatedButton(BuildContext context, String text, Widget Function() createPage) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Connexion()));
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => createPage()));
       },
       child: Text(
         text,
