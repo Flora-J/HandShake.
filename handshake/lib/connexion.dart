@@ -9,23 +9,8 @@ class Connexion extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Widget signInWith(IconData icon) {
-    return Container(
-      height: 50,
-      width: 115,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 24),
-          TextButton(onPressed: () {}, child: Text('Sign in')),
-        ],
-      ),
-    );
-  }
-
   Widget userInput(TextEditingController userInput, String hintTitle, TextInputType keyboardType) {
     return Container(
-      //margin: const EdgeInsets.only(bottom: 15),
       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
       child: Padding(
         padding: const EdgeInsets.only(left: 25.0, right: 25),
@@ -52,7 +37,7 @@ class Connexion extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(
-            Icons.close,
+            Icons.arrow_back,
             color: Colors.white,
             size: 30,
           ),
@@ -87,7 +72,6 @@ class Connexion extends StatelessWidget {
                       - Un minimun de 8 caractères
                       ''',
                       hintText: 'Mot de passe',
-
                       inputDecoration: PasswordDecoration(
                         hintStyle: TextStyle(
                           color: Colors.blueAccent,
