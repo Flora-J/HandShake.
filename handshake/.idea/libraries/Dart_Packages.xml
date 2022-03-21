@@ -733,7 +733,7 @@
         <entry key="share_plus">
           <value>
             <list>
-              <option value="/usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus-4.0.1/lib" />
+              <option value="/usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus-4.0.2/lib" />
             </list>
           </value>
         </entry>
@@ -754,7 +754,7 @@
         <entry key="share_plus_platform_interface">
           <value>
             <list>
-              <option value="/usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus_platform_interface-3.0.0/lib" />
+              <option value="/usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus_platform_interface-3.0.1/lib" />
             </list>
           </value>
         </entry>
@@ -1198,10 +1198,10 @@
       <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-3.0.1+1/lib" />
       <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/rate_limiter-0.1.1/lib" />
       <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.3/lib" />
-      <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus-4.0.1/lib" />
+      <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus-4.0.2/lib" />
       <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus_linux-3.0.0/lib" />
       <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus_macos-3.0.0/lib" />
-      <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus_platform_interface-3.0.0/lib" />
+      <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus_platform_interface-3.0.1/lib" />
       <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus_web-3.0.0/lib" />
       <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/share_plus_windows-3.0.0/lib" />
       <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/shimmer-2.0.0/lib" />
