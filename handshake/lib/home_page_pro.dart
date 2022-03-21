@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
       style: ElevatedButton.styleFrom(
           primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Connexion()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Connection()));
       },
       child: Text(
         text,

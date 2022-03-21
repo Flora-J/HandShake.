@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:handshake/widgets/logo.dart';
+import '../widgets/background_decoration.dart';
 import 'connections.dart';
+import 'package:handshake/widgets/button.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -41,11 +43,11 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   SizedBox(
                     width: 130,
-                    child: _elevatedButton("S'inscrire"),
+                    child: elevatedButton(context, "S'inscrire", ()=>Connection()),
                   ),
                   SizedBox(
                     width: 130,
-                    child: _elevatedButton("Se connecter"),
+                    child: elevatedButton(context, "Se connecter", ()=>Connection()),
                   ),
                 ]),
           ),
@@ -67,16 +69,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _elevatedButton(String text) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-          primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Connexion()));
-      },
-      child: Text(
-        text,
-      ),
-    );
-  }
 }

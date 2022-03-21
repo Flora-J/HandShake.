@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/background_decoration.dart';
 
-class ProfilAccompagne extends StatelessWidget {
+
+class ProfileAccompanied extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -88,15 +90,4 @@ class ProfilAccompagne extends StatelessWidget {
   }
 }
 
-BoxDecoration fondDecoration() {
-  return const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Colors.blueAccent,
-          Colors.white,
-        ],
-      ));
-}
 

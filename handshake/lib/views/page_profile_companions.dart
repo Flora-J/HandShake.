@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../widgets/background_decoration.dart';
 
 
-class ProfilAccompagnant extends StatelessWidget {
+class ProfileCompanion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +10,7 @@ class ProfilAccompagnant extends StatelessWidget {
         appBar: AppBar(
           elevation: 30,
           title: const Text(
-            "Connexion",
+            "Profil",
           ),
           centerTitle: true,
           leading: IconButton(
@@ -28,16 +29,4 @@ class ProfilAccompagnant extends StatelessWidget {
         )
     );
   }
-}
-
-BoxDecoration fondDecoration() {
-  return const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Colors.blueAccent,
-          Colors.white,
-        ],
-      ));
 }
