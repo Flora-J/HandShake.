@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handshake/views/pre-registration.dart';
 import 'package:handshake/widgets/logo.dart';
 import '../widgets/background_decoration.dart';
 import 'connections.dart';
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   SizedBox(
                     width: 130,
-                    child: elevatedButton(context, "S'inscrire", ()=>Connection()),
+                    child: elevatedButton(context, "S'inscrire", ()=>PreRegistration()),
                   ),
                   SizedBox(
                     width: 130,

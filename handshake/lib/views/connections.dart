@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:handshake/views/page_profile_companions.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:handshake/widgets/button.dart';
 import 'package:passwordfield/passwordfield.dart';
-import 'page_profile_accompanied.dart';
 
 class Connection extends StatelessWidget {
 
@@ -97,12 +97,11 @@ class Connection extends StatelessWidget {
                         ),
                       ),
                     ),
-                    //userInput(passwordController, 'Password', TextInputType.visiblePassword),
                     Container(
                       height: 40,
-                      child: elevatedButton(context, "Connexion", ()=>ProfileAccompanied()),
+                      child: elevatedButton(context, "Connexion",  ()=>ProfileCompanion()),
                     ),
-                    Center(child: Text('Mot de passe oublié ?'),),
+                    Center(child: Text('Mot de passe oublié ?')),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Row(

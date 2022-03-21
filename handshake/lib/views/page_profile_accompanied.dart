@@ -11,7 +11,7 @@ class ProfileAccompanied extends StatelessWidget {
         appBar: AppBar(
           elevation: 30,
           title: const Text(
-            "Profil",
+            "Profil Accompagné(e)",
           ),
           centerTitle: true,
           leading: IconButton(
@@ -47,14 +47,6 @@ class ProfileAccompanied extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                Text(
-                  "@vert",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                  ),
-                ),
                 SizedBox(
                   height: 12,
                 ),
@@ -67,14 +59,8 @@ class ProfileAccompanied extends StatelessWidget {
                           children: [
                             Text("Followers",
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w400,
                                 fontSize: 18,
-                            ),
-                            ),
-                            Text(
-                              "255K",
-                              style: TextStyle(
-                              fontSize: 16,
                             ),
                             ),
                           ],
