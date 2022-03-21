@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:passwordfield/passwordfield.dart';
-import 'profilAccompagne.dart';
-
+import 'page_profile_accompanied.dart';
 
 class Connexion extends StatelessWidget {
 
@@ -107,7 +104,7 @@ class Connexion extends StatelessWidget {
                         onPressed: () {
                           print(emailController);
                           print(passwordController);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Connexion()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilAccompagne()));
                         },
                         child: Text('Connexion', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white,)),
                       ),

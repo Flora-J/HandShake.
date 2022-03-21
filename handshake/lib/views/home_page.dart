@@ -1,36 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-//import 'package:animated_text_kit/animated_text_kit.dart';
-import 'connexion.dart';
+import 'package:handshake/widgets/logo.dart';
+import 'connections.dart';
 
-class Welcome extends StatefulWidget {
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
+
   @override
-  //State<StatefulWidget> createState() {
-  //return Page1InteractionState();
-  //}
-  Accueil createState() => Accueil();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class Accueil extends State<Welcome> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    Connexion pageConnect = Connexion();
-    //Page2Interactive page2 = Page2Interactive();
-
 
     return Scaffold(
-      key: const Key("Scaffoll"),
       appBar: AppBar(
         elevation: 30,
         title: const Text(
@@ -45,27 +29,23 @@ class Accueil extends State<Welcome> {
         decoration: fondDecoration(),
         child: Column(children: [
           Container(
-            key: const Key("iconContainer"),
-            // margin: const EdgeInsets.only(top:0),
             child: logo(size),
           ),
           Container (
-            key: const Key("TextContainer"),
-            child: TitleDecoration("La fleur bleue de l'épanouissement \n des autistes"),
+            child: _titleDecoration("La fleur bleue de l'épanouissement \n des autistes"),
           ),
           Container(
             margin: EdgeInsets.only(top: 120),
-            key: const Key("selectionContainer"),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   SizedBox(
                     width: 130,
-                    child: elevatedButton("S'inscrire"),
+                    child: _elevatedButton("S'inscrire"),
                   ),
                   SizedBox(
                     width: 130,
-                    child: elevatedButton("Se connecter"),
+                    child: _elevatedButton("Se connecter"),
                   ),
                 ]),
           ),
@@ -74,29 +54,8 @@ class Accueil extends State<Welcome> {
     );
   }
 
-  BoxDecoration fondDecoration() {
-    return const BoxDecoration(
-        gradient: LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: [
-        Colors.blueAccent,
-        Colors.white,
-      ],
-    ));
-  }
 
-  Image logo(Size size) {
-    return Image.asset (
-      "images/logo-handshake.png",
-      fit: BoxFit.contain,
-      height: size.shortestSide,
-      width: size.shortestSide,
-      alignment: Alignment.center,
-    );
-  }
-
-  Text TitleDecoration(String text) {
+  Widget _titleDecoration(String text) {
     return Text(
       text,
       textAlign: TextAlign.center,
@@ -108,7 +67,7 @@ class Accueil extends State<Welcome> {
     );
   }
 
-  ElevatedButton elevatedButton(String text) {
+  Widget _elevatedButton(String text) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
