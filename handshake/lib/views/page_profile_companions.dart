@@ -69,9 +69,38 @@ class ProfileCompanion extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 12,
+                ),
                 Container(
-                      height: 40,
-                      child: elevatedButton(context, "Voir les offres",  ()=>HomePage()),
+                    width: 160,
+                    child: elevatedButton2(context, "Voir les offres",  ()=>HomePage()),
+                  ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    child: elevatedButton2(context, "Modifier mon profil",  ()=>HomePage()),
+                    ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    child: elevatedButton2(context, "Actions effectuées",  ()=>HomePage()),
+                    ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    width: 160,
+                    child: elevatedButton2(context, "Chat",  ()=>HomePage()),
+                    ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    width: 160,
+                    child: elevatedButton2(context, "Déconnexion",  ()=>HomePage()),
                     ),
               ],
             ),

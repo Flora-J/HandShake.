@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:handshake/views/home_page.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/views/page_profile_companions.dart';
 import 'package:handshake/widgets/button.dart';
@@ -48,12 +47,12 @@ class PreRegistration extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   SizedBox(
-                    width: 140,
+                    width: 160,
                     child: elevatedButton(context, "Accompagné(e)", ()=>ProfileAccompanied()),
                   ),
                   SizedBox(
-                    width: 140,
-                    child: elevatedButton(context, "Accompagnant", ()=>ProfileCompanion()),
+                    width: 160,
+                    child: elevatedButton(context, "Accompagnant(e)", ()=>ProfileCompanion()),
                   ),
                 ]),
           ),
