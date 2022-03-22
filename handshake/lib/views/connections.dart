@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:handshake/views/page_profile_companions.dart';
+import 'package:handshake/widgets/background_decoration.dart';
+import 'package:handshake/widgets/button.dart';
 import 'package:passwordfield/passwordfield.dart';
 
-
-class Connexion extends StatelessWidget {
+class Connection extends StatelessWidget {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -97,20 +97,11 @@ class Connexion extends StatelessWidget {
                         ),
                       ),
                     ),
-                    //userInput(passwordController, 'Password', TextInputType.visiblePassword),
                     Container(
                       height: 40,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-                        color: Colors.indigo.shade800,
-                        onPressed: () {
-                          print(emailController);
-                          print(passwordController);
-                        },
-                        child: Text('Connexion', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white,),),
-                      ),
+                      child: elevatedButton(context, "Connexion",  ()=>ProfileCompanion()),
                     ),
-                    Center(child: Text('Mot de passe oublié ?'),),
+                    Center(child: Text('Mot de passe oublié ?')),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Row(
@@ -141,16 +132,5 @@ class Connexion extends StatelessWidget {
   }
 }
 
-BoxDecoration fondDecoration() {
-  return const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Colors.blueAccent,
-          Colors.white,
-        ],
-      ));
-}
 
 
