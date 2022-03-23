@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:handshake/views/page_profile_companions.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:handshake/widgets/button.dart';
-import 'package:passwordfield/passwordfield.dart';
+
+
 
 class Connection extends StatelessWidget {
 
@@ -62,44 +63,50 @@ class Connection extends StatelessWidget {
                   children: [
                     SizedBox(height: 30),
                     userInput(emailController, 'Email', TextInputType.emailAddress),
-                    PasswordField(
-                      backgroundColor: Colors.white,
-                      errorMessage: '''
-                      - Une majuscule
-                      - Une minuscule
-                      - Un chiffre
-                      - Un caractère spécial
-                      - Un minimun de 8 caractères
-                      ''',
-                      hintText: 'Mot de passe',
-                      inputDecoration: PasswordDecoration(
-                        hintStyle: TextStyle(
-                          color: Colors.blueAccent,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 18,
-                        ),
-                        inputPadding: const EdgeInsets.symmetric(horizontal: 20),
-                      ),
-                      border: PasswordBorder(
-                        border: OutlineInputBorder(
-                            borderSide:
-                            const BorderSide(width: 0, color: Colors.white),
-                            borderRadius: BorderRadius.circular(25.7)),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                          const BorderSide(width: 0, color: Colors.white),
-                          borderRadius: BorderRadius.circular(25.7),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                          const BorderSide(width: 0, color: Colors.white),
-                          borderRadius: BorderRadius.circular(25.7),
-                        ),
+                Container(
+                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25.0, right: 25),
+                    child: TextField(
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
                       ),
                     ),
+                  ),
+                ),
                     Container(
                       height: 40,
-                      child: elevatedButton(context, "Connexion",  ()=>ProfileCompanion()),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(255, 250, 250, 250),
+                          elevation: 10,
+                          shadowColor: Color.fromARGB(255, 14, 118, 223),
+                        ),
+                        onPressed: () async {
+
+                          print(emailController.text);
+                          print(passwordController.text);
+
+                          try{
+                            UserCredential userCredential = await auth.signInWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => DbTest()));
+
+
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'user-not-found') {
+                              print('No user found for that email.');
+                            } else if (e.code == 'wrong-password') {
+                              print('Wrong password provided for that user.');
+                            }
+                          }},
+                        child: Text(
+                          "connexion",
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
                     ),
                     Center(child: Text('Mot de passe oublié ?')),
                     Padding(
