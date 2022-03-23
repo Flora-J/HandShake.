@@ -294,7 +294,7 @@ class _RegistreCompanion extends State<RegistreCompanion> {
           stepIdentifier: StepIdentifier(id: '321'),
           text: 'Merci davoir compléter ton profil ',
           title: 'Terminé !',
-          //buttonText: 'SUIVANT',
+          buttonText: 'SUIVANT',
         ),
       ],
     );
