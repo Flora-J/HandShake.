@@ -93,7 +93,6 @@ class _connectionState extends State<Connection>{
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             primary: Color.fromARGB(255, 14, 118, 223),
-                            onPrimary: Colors.white,
                             elevation: 10,
                         ),
                         onPressed: () async {
@@ -117,7 +116,7 @@ class _connectionState extends State<Connection>{
                           }},
                         child: Text(
                           "connexion",
-                          style: TextStyle(color: Colors.blue),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     ),
