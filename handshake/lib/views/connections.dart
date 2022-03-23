@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:handshake/views/page_profile_companions.dart';
 import 'package:handshake/widgets/background_decoration.dart';
-import 'package:handshake/widgets/button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
-class Connection extends StatelessWidget {
+class Connection extends StatefulWidget {
+
+  @override
+  _connectionState createState() => _connectionState();
+  }
+
+
+class _connectionState extends State<Connection>{
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  FirebaseAuth auth = FirebaseAuth.instance;
+
 
   Widget userInput(TextEditingController userInput, String hintTitle, TextInputType keyboardType) {
     return Container(
@@ -29,6 +38,7 @@ class Connection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         elevation: 30,
@@ -68,8 +78,11 @@ class Connection extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 25.0, right: 25),
                     child: TextField(
+
                       controller: passwordController,
+                      obscureText: true,
                       decoration: InputDecoration(
+                        hintText: "password",
                         hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
                       ),
                     ),
@@ -79,20 +92,20 @@ class Connection extends StatelessWidget {
                       height: 40,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(255, 250, 250, 250),
-                          elevation: 10,
-                          shadowColor: Color.fromARGB(255, 14, 118, 223),
+                            primary: Color.fromARGB(255, 14, 118, 223),
+                            onPrimary: Colors.white,
+                            elevation: 10,
                         ),
                         onPressed: () async {
 
-                          print(emailController.text);
-                          print(passwordController.text);
+                          //print(emailController.text);
+                          //print(passwordController.text);
 
                           try{
                             UserCredential userCredential = await auth.signInWithEmailAndPassword(
                                 email: emailController.text,
                                 password: passwordController.text);
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => DbTest()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileCompanion()));
 
 
                           } on FirebaseAuthException catch (e) {
@@ -138,6 +151,8 @@ class Connection extends StatelessWidget {
     );
   }
 }
+
+
 
 
 
