@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 
 class Connection extends StatefulWidget {
+  static const routeName = '/connections';
 
   @override
   _connectionState createState() => _connectionState();
