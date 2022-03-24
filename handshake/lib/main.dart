@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:handshake/views/connections.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:handshake/views/page_profile_companions.dart';
-
 
 
 Future<void> main() async {
