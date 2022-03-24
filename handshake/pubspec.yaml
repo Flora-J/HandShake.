@@ -38,6 +38,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   survey_kit: ^0.0.21
+  intl: ^0.17.0
+  time_pickerr: ^1.0.6
+  flutter_time_picker_spinner: ^2.0.0
+  is_24_hour_format: ^1.0.0
 
 dev_dependencies:
   flutter_test:

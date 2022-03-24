@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import io.flutter.Log;
 
 import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 
 /**
  * Generated file. Do not edit.
@@ -15,6 +16,12 @@ import io.flutter.embedding.engine.FlutterEngine;
 public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
+    ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
+    try {
+      tuev.konstantin.respect24hour.Respect24HourPlugin.registerWith(shimPluginRegistry.registrarFor("tuev.konstantin.respect24hour.Respect24HourPlugin"));
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin is_24_hour_format, tuev.konstantin.respect24hour.Respect24HourPlugin", e);
+    }
     try {
       flutterEngine.getPlugins().add(new com.tekartik.sqflite.SqflitePlugin());
     } catch(Exception e) {

@@ -1,0 +1,6 @@
+framework module is_24_hour_format {
+  umbrella header "is_24_hour_format-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,309 +1,147 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:survey_kit/survey_kit.dart';
 
-class Hobbies extends StatefulWidget {
-  Hobbies({ Key? key }) : super(key: key);
-  @override
 
-  @override
-  State<Hobbies> createState() => _HobbiesState();
-}
-
-class _HobbiesState extends State<Hobbies> {
+class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          color: Colors.white,
-          child: Align(
-            alignment: Alignment.center,
-            child: FutureBuilder<Task>(
-              future: getSampleTask(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done &&
-                    snapshot.hasData &&
-                    snapshot.data != null) {
-                  final task = snapshot.data!;
-                  return SurveyKit(
-                    onResult: (SurveyResult result) {
-                      print(result.finishReason);
-                    },
-                    task: task,
-                    showProgress: true,
-                    localizations: {
-                      'annuler': 'Annuler',
-                      'suivant': 'Suivant',
-                    },
-                    themeData: Theme.of(context).copyWith(
-                      colorScheme: ColorScheme.fromSwatch(
-                        primarySwatch: Colors.cyan,
-                      ).copyWith(
-                        onPrimary: Colors.white,
+      resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomPadding: false,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        brightness: Brightness.light,
+        backgroundColor: Colors.white,
+        leading:
+        IconButton( onPressed: (){
+          Navigator.pop(context);
+        },icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.black,)),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children:[
+                        Text  (
+                          'Inscirption accompagnant', 
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),),
+                        SizedBox(height: 5,)
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 40
                       ),
-                      primaryColor: Colors.cyan,
-                      backgroundColor: Colors.white,
-                      appBarTheme: const AppBarTheme(
-                        color: Colors.white,
-                        iconTheme: IconThemeData(
-                          color: Colors.cyan,
+                      child: Column(
+                        children: [
+                          makeInput(label: "Nom"),
+                          makeInput(label: "Prenom"),
+                          makeInput(label: "Adresse"),
+                          makeInput(label: "Ville"),
+                           makeInput(label: "Code Postale"),
+                          makeInput(label: "Email"),
+                          makeInput(label: "Mot de passe",obsureText: true),
+                          makeInput(label: "Confirmation du mot de passe",obsureText: true)
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      child: Container(
+                        padding: EdgeInsets.only(top: 3,left: 3),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            border: Border(
+                                bottom: BorderSide(color: Colors.black),
+                                top: BorderSide(color: Colors.black),
+                                right: BorderSide(color: Colors.black),
+                                left: BorderSide(color: Colors.black)
+                            )
                         ),
-                        titleTextStyle: TextStyle(
-                          color: Colors.cyan,
-                        ),
-                      ),
-                      iconTheme: const IconThemeData(
-                        color: Colors.cyan,
-                      ),
-                      textSelectionTheme: TextSelectionThemeData(
-                        cursorColor: Colors.cyan,
-                        selectionColor: Colors.cyan,
-                        selectionHandleColor: Colors.cyan,
-                      ),
-                      cupertinoOverrideTheme: CupertinoThemeData(
-                        primaryColor: Colors.cyan,
-                      ),
-                      outlinedButtonTheme: OutlinedButtonThemeData(
-                        style: ButtonStyle(
-                          minimumSize: MaterialStateProperty.all(
-                            Size(150.0, 60.0),
+                        child: MaterialButton(
+                          minWidth: double.infinity,
+                          height:60,
+                          onPressed: (){},
+                          color: Colors.blueAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)
                           ),
-                          side: MaterialStateProperty.resolveWith(
-                            (Set<MaterialState> state) {
-                              if (state.contains(MaterialState.disabled)) {
-                                return BorderSide(
-                                  color: Colors.grey,
-                                );
-                              }
-                              return BorderSide(
-                                color: Colors.cyan,
-                              );
-                            },
-                          ),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          textStyle: MaterialStateProperty.resolveWith(
-                            (Set<MaterialState> state) {
-                              if (state.contains(MaterialState.disabled)) {
-                                return Theme.of(context)
-                                    .textTheme
-                                    .button
-                                    ?.copyWith(
-                                      color: Colors.grey,
-                                    );
-                              }
-                              return Theme.of(context)
-                                  .textTheme
-                                  .button
-                                  ?.copyWith(
-                                    color: Colors.cyan,
-                                  );
-                            },
-                          ),
-                        ),
-                      ),
-                      textButtonTheme: TextButtonThemeData(
-                        style: ButtonStyle(
-                          textStyle: MaterialStateProperty.all(
-                            Theme.of(context).textTheme.button?.copyWith(
-                                  color: Colors.cyan,
-                                ),
-                          ),
-                        ),
-                      ),
-                      textTheme: TextTheme(
-                        headline2: TextStyle(
-                          fontSize: 28.0,
-                          color: Colors.black,
-                        ),
-                        headline5: TextStyle(
-                          fontSize: 24.0,
-                          color: Colors.black,
-                        ),
-                        bodyText2: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.black,
-                        ),
-                        subtitle1: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                      inputDecorationTheme: InputDecorationTheme(
-                        labelStyle: TextStyle(
-                          color: Colors.black,
+                          child: Text("Sign Up",style: TextStyle(
+                            fontWeight: FontWeight.w600,fontSize: 16,
+
+                          ),),
                         ),
                       ),
                     ),
-                    surveyProgressbarConfiguration: SurveyProgressConfiguration(
-                      backgroundColor: Colors.white,
-                    ),
-                  );
-                }
-                return CircularProgressIndicator.adaptive();
-              },
+                    SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Already have an account? "),
+                        Text("Login",style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18
+                        ),),
+                      ],
+                    )
+                  ],
+
+                ),
+              ],
             ),
           ),
         ),
-      );
-  }
-
-  Future<Task> getSampleTask() {
-    var task = NavigableTask(
-      id: TaskIdentifier(),
-      steps: [
-        InstructionStep(
-          title: 'Bienvenue à HandShake',
-          text: 'Inscris toi en quelques clics !',
-          buttonText: 'Suivant',
-        ),
-        QuestionStep(
-          title: 'Quel est ton nom ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton nom',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quel est ton prenom ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton prenom',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quelle est votre date de naissance?',
-          answerFormat: DateAnswerFormat(
-            minDate: DateTime.utc(1970),
-            defaultDate: DateTime.now(),
-            maxDate: DateTime.now(),
-          ),
-        ),
-        QuestionStep(
-          title: 'Quelle est ton adresse postale ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton adresse postale',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quel est ton code postale ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton code postale',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Dans quelle ville vis-tu?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre le nom de ta ville',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quel est ton numéro de téléphone ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton numéro de téléphone',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'De quelle organisation viens-tu ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre le nom de ton organisation',
-          ),
-          isOptional: true,
-        ),
-             QuestionStep(
-          title: 'Quelle est ton adresse e-mail ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton adresse e-mail',
-          ),
-          isOptional: true,
-        ),
-              QuestionStep(
-          title: 'Choisis un mot de passe', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre un mot de passe',
-          ),
-          isOptional: true,
-        ),
-             QuestionStep(
-          title: 'Confirme ton mot de passe', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Confirmation de ton mot de passe', //Il faut checker le mot de passe 
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quels sont tes loisirs ?',
-          text: 'Les loisirs pourront créer un lien fort avec la ou les personnes que tu accompagnera',
-          isOptional: false,
-          answerFormat: MultipleChoiceAnswerFormat(
-            textChoices: [
-              TextChoice(text: 'Musique', value: 'Musique'),
-              TextChoice(text: 'Lecture', value: 'Lecture'),
-              TextChoice(text: 'Jeu vidéos', value: 'Jeu vidéos'),
-              TextChoice(text: 'Sport', value: 'Sport'),
-              TextChoice(text: 'Séries / Films', value: 'Séries / Films'),
-              TextChoice(text: 'Documentaire', value: 'Documentaire'),
-            ],
-          ),
-        ),
-         QuestionStep(
-          title: 'Davantage de loisir ?', //Si non, on n'affiche pas la suivante 
-          text: 'As-tu davantage de loisir ?',
-          answerFormat: BooleanAnswerFormat(
-            positiveAnswer: 'Oui',
-            negativeAnswer: 'Non',
-            result: BooleanResult.POSITIVE,
-          ),
-         ),
-        QuestionStep(
-          title: 'Quel est ton autre loisir ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entres un autre loisir',
-          ),
-          isOptional: true,
-        ),
-        CompletionStep(
-          stepIdentifier: StepIdentifier(id: '321'),
-          text: 'Merci davoir compléter ton profil ',
-          title: 'Terminé !',
-          buttonText: 'SUIVANT',
-        ),
-      ],
-    );
-    task.addNavigationRule(
-      forTriggerStepIdentifier: task.steps[12].stepIdentifier,
-      navigationRule: ConditionalNavigationRule(
-        resultToStepIdentifierMapper: (input) {
-          switch (input) {
-            case "Yes":
-              return task.steps[0].stepIdentifier;
-            case "No":
-              return task.steps[7].stepIdentifier;
-            default:
-              return null;
-          }
-        },
       ),
     );
-    return Future.value(task);
-  }
-
-
-  Future<Task> getJsonTask() async {
-    final taskJson = await rootBundle.loadString('/Users/amel/flutter_application_1/lib/example_json.json');
-    final taskMap = json.decode(taskJson);
-
-    return Task.fromJson(taskMap);
-    
   }
 }
+
+class Children {
+}
+
+Widget makeInput({label,obsureText = false}){
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(label,style:TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w400,
+          color: Colors.black87
+      ),),
+      SizedBox(height: 5,),
+      TextField(
+        obscureText: obsureText,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey,
+            ),
+          ),
+          border: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey)
+          ),
+        ),
+      ),
+      SizedBox(height: 30,)
+
+    ],
+  );
+}
+
+
+
+
+
