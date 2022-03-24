@@ -16,3 +16,24 @@ Widget elevatedButton(BuildContext context, String text, Widget Function() creat
       ),
     );
   }
+
+Widget elevatedButton2(BuildContext context, String text, Widget Function() createPage) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          primary: Color.fromARGB(255, 250, 250, 250),
+          elevation: 10,
+          shadowColor: Color.fromARGB(255, 14, 118, 223),
+          ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (BuildContext) => createPage()
+        )
+        );
+      },
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.blue),
+      ),
+    );
+  }
