@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:handshake/views/home_page.dart';
+import 'package:handshake/widgets/button.dart';
 
 import '../widgets/background_decoration.dart';
 
@@ -68,6 +70,41 @@ class ProfileAccompanied extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    width: 180,
+                    child: elevatedButton2(context, "Déposer une annonce",  ()=>HomePage()),
+                  ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    width: 180,
+                    child: elevatedButton2(context, "Modifier mon profil",  ()=>HomePage()),
+                    ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    width: 180,
+                    child: elevatedButton2(context, "Annonces effectuées",  ()=>HomePage()),
+                    ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    width: 180,
+                    child: elevatedButton2(context, "Chat",  ()=>HomePage()),
+                    ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    width: 180,
+                    child: elevatedButton2(context, "Déconnexion",  ()=>HomePage()),
+                    ),
               ],
             ),
           ),
