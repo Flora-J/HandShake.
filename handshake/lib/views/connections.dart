@@ -83,7 +83,7 @@ class _connectionState extends State<Connection>{
                       controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                        hintText: "password",
+                        hintText: "Mot de passe",
                         hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
                       ),
                     ),
