@@ -130,8 +130,8 @@ class _FormAnnounce extends State<FormAnnounce> {
                 ),
                 SizedBox(height: 40,),
                 SizedBox(
-                  width: 140,
-                  child: elevatedButton(context, "Valider", ()=>ProfileAccompanied()),
+                  width: 120,
+                  child: elevatedButton(context, "Valider", ()=> ProfileAccompanied()),
                 ),
               ],
             ),

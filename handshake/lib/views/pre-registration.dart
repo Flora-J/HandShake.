@@ -52,7 +52,7 @@ class PreRegistration extends StatelessWidget {
                   SizedBox(
 
                     width: 140,
-                    child: elevatedButton(context, "Accompagné(e)", ()=>RegistreAccompanied()),
+                    child: elevatedButton(context, "Accompagné(e)", ()=>ProfileAccompanied()),
                   ),
                   SizedBox(
                     width: 140,

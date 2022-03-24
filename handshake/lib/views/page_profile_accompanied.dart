@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handshake/views/announcement_form.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/button.dart';
 
@@ -75,7 +76,7 @@ class ProfileAccompanied extends StatelessWidget {
                 ),
                 Container(
                     width: 180,
-                    child: elevatedButton2(context, "Déposer une annonce",  ()=>HomePage()),
+                    child: elevatedButton2(context, "Déposer une annonce",  ()=>FormAnnounce()),
                   ),
                 SizedBox(
                   height: 12,
