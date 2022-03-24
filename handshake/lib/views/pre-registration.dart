@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:handshake/views/registration_of_accompanying_persons.dart';
+import 'package:handshake/views/registration_of_companions.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/views/page_profile_companions.dart';
 import 'package:handshake/widgets/button.dart';
@@ -35,9 +38,9 @@ class PreRegistration extends StatelessWidget {
         width: size.width,
         height: size.height,
             decoration: fondDecoration(),
-             child: Container(
-               alignment: Alignment.center,
-               child: Column(children: [
+            child: Container(
+              alignment: Alignment.center,
+              child: Column(children: [
           Container(
             child: logo(size),
           ),
@@ -47,18 +50,20 @@ class PreRegistration extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   SizedBox(
-                    width: 160,
+
+                    width: 140,
                     child: elevatedButton(context, "Accompagné(e)", ()=>ProfileAccompanied()),
                   ),
                   SizedBox(
-                    width: 160,
-                    child: elevatedButton(context, "Accompagnant(e)", ()=>ProfileCompanion()),
+                    width: 140,
+                    child: elevatedButton(context, "Accompagnant", ()=>RegistreCompanion()),
+
                   ),
                 ]),
           ),
         ]),
       ),
-     ),
+    ),
     );
   }
 }
