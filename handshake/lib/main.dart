@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handshake/views/announcement_form.dart';
 import 'package:handshake/views/home_page.dart';
 
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: HomePage(),
+      home: FormAnnounce(),
     );
   }
 

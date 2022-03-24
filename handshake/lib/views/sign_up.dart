@@ -304,6 +304,5 @@ class _HobbiesState extends State<Hobbies> {
     final taskMap = json.decode(taskJson);
 
     return Task.fromJson(taskMap);
-    
   }
 }
