@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:handshake/accueil.dart';
 import 'package:handshake/connexion.dart';
 import 'package:handshake/tchat.dart';
+import 'package:handshake/widget/DbTest.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +14,6 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-  DatabaseReference ref = FirebaseDatabase.instance.ref();
 
   // This widget is the root of your application.
   @override

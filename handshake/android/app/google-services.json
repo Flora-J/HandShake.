@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "758902924249",
+    "firebase_url": "https://handshakefirebase-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "handshakefirebase",
     "storage_bucket": "handshakefirebase.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "758902924249-ph88dbgnadit0d8pv7i94isirs18d0ka.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "758902924249-4kb3e30bsnna5f5ruhotgbjslfjujevu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.handshake"
+              }
             }
           ]
         }
