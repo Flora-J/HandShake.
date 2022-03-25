@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/textfield_widget.dart';
+import 'package:handshake/widgets/background_decoration.dart';
+
+import 'connections.dart';
 
 class SignupPage extends StatelessWidget {
 
@@ -19,19 +21,27 @@ class SignupPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       //resizeToAvoidBottomPadding: false,
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        brightness: Brightness.light,
-        backgroundColor: Colors.white,
-        leading:
-        IconButton( onPressed: (){
-          Navigator.pop(context);
-        },icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.black,)),
+     appBar: AppBar(
+        elevation: 30,
+        title: const Text(
+          "Inscription",
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            size: 30,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
+             decoration: fondDecoration(),
             height: MediaQuery.of(context).size.height,
             width: double.infinity,
             child: Column(
@@ -42,14 +52,7 @@ class SignupPage extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children:[
-                        Text  (
-                          'Inscirption accompagnant', 
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),),
-                        SizedBox(height: 5,)
+                        SizedBox(height: 20,)
                       ],
                     ),
                     Padding(
@@ -59,9 +62,9 @@ class SignupPage extends StatelessWidget {
                       child: Column(
                         children: [
                           textFieldBasic(nameController,"nom"),
-                         textFieldBasic(lastnameController,"prénom"),
+                          textFieldBasic(lastnameController,"prénom"),
                           textFieldBasic(addressController,"adresse"),
-                         textFieldBasic(cityController,"ville"),
+                          textFieldBasic(cityController,"ville"),
                           textFieldBasic(cpController,"code postal"),
                           textFieldBasic(emailController,"e-mail"),
                           textFieldPassword(passwordController,"mot de passe"),
@@ -91,7 +94,7 @@ class SignupPage extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40)
                           ),
-                          child: Text("Sign Up",style: TextStyle(
+                          child: Text("Inscription",style: TextStyle(
                             fontWeight: FontWeight.w600,fontSize: 16,
 
                           ),),
@@ -103,10 +106,17 @@ class SignupPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Avez-vous déjà un compte ?"),
-                        Text("Connexion",style: TextStyle(
+                        TextButton(
+                          onPressed: () { 
+                             Navigator.push(context, 
+          MaterialPageRoute(builder: (BuildContext) => Connection()));
+                           },
+                          child: Text(
+                          "Connexion",style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18
-                        ),),
+                        )
+                        ,),),
                       ],
                     )
                   ],
