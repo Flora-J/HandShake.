@@ -1,6 +1,15 @@
 <component name="libraryTable">
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
+<<<<<<< Updated upstream
     <CLASSES />
+=======
+    <CLASSES>
+      <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.6.1" />
+      <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.3.11" />
+      <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.13.1" />
+      <root url="file:///usr/local/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.3.9" />
+    </CLASSES>
+>>>>>>> Stashed changes
     <JAVADOC />
     <SOURCES />
   </library>

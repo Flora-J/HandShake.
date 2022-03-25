@@ -16,12 +16,15 @@
 #import <firebase_core/FLTFirebaseCorePlugin.h>
 #else
 @import firebase_core;
+<<<<<<< Updated upstream
 #endif
 
 #if __has_include(<firebase_database/FLTFirebaseDatabasePlugin.h>)
 #import <firebase_database/FLTFirebaseDatabasePlugin.h>
 #else
 @import firebase_database;
+=======
+>>>>>>> Stashed changes
 #endif
 
 @implementation GeneratedPluginRegistrant
@@ -29,7 +32,10 @@
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [FLTFirebaseAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseAuthPlugin"]];
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
+<<<<<<< Updated upstream
   [FLTFirebaseDatabasePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseDatabasePlugin"]];
+=======
+>>>>>>> Stashed changes
 }
 
 @end
