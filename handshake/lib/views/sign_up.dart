@@ -125,7 +125,7 @@ class _SignupPageState extends State<SignupPage>{
                               }catch(error){
                                 print('Entry has not been added : $error' );
                               };
-                            Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
+                            Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
 
 
                           },
