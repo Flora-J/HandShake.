@@ -24,6 +24,7 @@ class _FormAnnounce extends State<FormAnnounce> {
   //String _var = '';
 
   TextEditingController timeinput = TextEditingController();
+  TextEditingController dateinput = TextEditingController();
 
   @override
   void initState() {
@@ -68,16 +69,59 @@ class _FormAnnounce extends State<FormAnnounce> {
                   ),
                 ),
                 Column(
+                  children: [
+                    TextField(
+                      controller: dateinput,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.today_sharp), //icon of text field
+                          labelText: "Mettez le jour", //label text of field
+                          labelStyle: TextStyle(color: Colors.blueGrey)
+                      ),
+                      readOnly: true,  //set it true, so that user will not able to edit text
+                      onTap: () async {
+                        DateTime currentDate = DateTime.now();
+                        DateTime? date = await showDatePicker(
+                          context: context,
+                          initialDate: currentDate,
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2050),
+                          currentDate: DateTime.now(),
+                          initialEntryMode: DatePickerEntryMode.calendar,
+                          initialDatePickerMode: DatePickerMode.day,
+                          builder: (context, child) {
+                            return Theme(
+                                data: Theme.of(context).copyWith(
+                                    colorScheme: ColorScheme.fromSwatch(
+                                      primarySwatch: Colors.blue,
+                                      backgroundColor: Colors.lightBlue,
+                                      cardColor: Colors.white,
+                                    )
+                                ),
+                                child: child!
+                            );
+                          },
+                        );
+                        if (date != null && date != currentDate) {
+                          String formattedDate = DateFormat('dd/MM/yyy').format(
+                              currentDate);
+                          setState(() {
+                            dateinput.text = formattedDate.toString(); //set the value of text field.
+                          });
+                        }
+                      },
+                    ),
+                  ],
+                 ),
+                Column(
                     children: [
                         TextField(
                           controller: timeinput, //editing controller of this TextField
                           decoration: InputDecoration(
-                            icon: Icon(Icons.timelapse_rounded), //icon of text field
+                            icon: Icon(Icons.access_time_rounded), //icon of text field
                                   labelText: "Mettez l'heure", //label text of field
                                   labelStyle: TextStyle(color: Colors.blueGrey)
                           ),
                           readOnly: true,  //set it true, so that user will not able to edit text
-                          //Text( child: ElevatedButton()),
                           onTap: () async {
                             TimeOfDay? pickedTime =  await showTimePicker(
                               initialTime: TimeOfDay.now(),
@@ -85,23 +129,18 @@ class _FormAnnounce extends State<FormAnnounce> {
                               builder: (BuildContext context, Widget? child) {
                                 return MediaQuery(
                                     data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-                                    child: child!)
-                              },
-                              );
+                                    child: child!
+                                    )
+                                  },
+                                );
 
                               if(pickedTime != null ){
-                                //print(pickedTime.format(context));   //output 10:51 PM
                                 DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
                                 //converting to DateTime so that we can further format on different pattern.
-                                //print(parsedTime); //output 1970-01-01 22:53:00.000
                                 String formattedTime = DateFormat('HH:mm').format(parsedTime);
-                                //print(formattedTime); //output 14:59:00
-                                //DateFormat() is from intl package, you can format the time on any pattern you need.
                                 setState(() {
                                   timeinput.text = formattedTime; //set the value of text field.
                                   });
-                                /*}else{
-                                print("Time is not selected");*/
                                 }
                               },
                         ),
