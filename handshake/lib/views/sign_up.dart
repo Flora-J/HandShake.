@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
@@ -11,6 +12,8 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage>{
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -24,6 +27,9 @@ class _SignupPageState extends State<SignupPage>{
     final confirmationPasswordController = TextEditingController();
 
     FirebaseAuth auth = FirebaseAuth.instance;
+    DatabaseReference ref = FirebaseDatabase.instance.ref();
+    final handShakeRef = ref.child('/handShakeDb');
+    
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -84,46 +90,58 @@ class _SignupPageState extends State<SignupPage>{
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Container(
                         padding: EdgeInsets.only(top: 3,left: 3),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
-                            border: Border(
-                                bottom: BorderSide(color: Colors.black),
-                                top: BorderSide(color: Colors.black),
-                                right: BorderSide(color: Colors.black),
-                                left: BorderSide(color: Colors.black)
-                            )
-                        ),
-                        child: MaterialButton(
-                          minWidth: double.infinity,
-                          height:60,
-                          onPressed: (){},
-                          color: Colors.blueAccent,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40)
-                          ),
-                          child: Text("Inscription",style: TextStyle(
-                            fontWeight: FontWeight.w600,fontSize: 16,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
+                          onPressed: () async{
+
+                            try {
+                              UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passwordController.text
+                              );
+
+                            } on FirebaseAuthException catch (e) {
+                              if (e.code == 'weak-password') {
+                                print('The password provided is too weak.');
+                              } else if (e.code == 'email-already-in-use') {
+                                print('The account already exists for that email.');
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
+
+                            // Get information in the data base
+                            try {
+                                await handShakeRef.set({
+                                  'FirstName': nameController.text,
+                                  'LastName': lastnameController.text,
+                                  'Address': addressController.text,
+                                  'City': cityController.text,
+                                  'CP': cpController.text,
+
+                                  });
+                                print("entry has been added");
+                              }catch(error){
+                                print('Entry has not been added : $error' );
+                              };
+                            Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
+
+
+                          },
+                          child: Text("Inscription")
 
                           ),),
                         ),
-                      ),
-                    ),
+
                     SizedBox(height: 20,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Avez-vous déjà un compte ?"),
                         TextButton(
-                          onPressed: () async{
-                              /*try {
-                                await handShakeRef.set({
-                                  'Email': 'bbbb@bbbb.fr',
-                                  'Password': '6789'
-                                });
-                                print("entry has been added");
-                              }catch(error){
-                                print('Entry has not been added : $error' );
-                              };*/
+                          onPressed: () {
+
                             },
 
                           child: Text(
@@ -147,38 +165,7 @@ class _SignupPageState extends State<SignupPage>{
   }
 }
 
-class Children {
-}
 
-Widget makeInput({label,obsureText = false}){
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(label,style:TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.w400,
-          color: Colors.black87
-      ),),
-      SizedBox(height: 5,),
-      TextField(
-        obscureText: obsureText,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey,
-            ),
-          ),
-          border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey)
-          ),
-        ),
-      ),
-      SizedBox(height: 30,)
-
-    ],
-  );
-}
 
 
 
