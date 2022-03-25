@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/views/page_profile_companions.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -105,7 +106,7 @@ class _connectionState extends State<Connection>{
                             UserCredential userCredential = await auth.signInWithEmailAndPassword(
                                 email: emailController.text,
                                 password: passwordController.text);
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileCompanion()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileAccompanied()));
 
 
                           } on FirebaseAuthException catch (e) {
