@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../widgets/textfield_widget.dart';
+import '../../../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
-import 'connections.dart';
+
 
 class SignupPage extends StatefulWidget {
 
