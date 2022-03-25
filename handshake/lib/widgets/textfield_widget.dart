@@ -30,8 +30,9 @@ Widget textFieldPassword (TextEditingController userInput, String hintTitle){
         controller: userInput,
         obscureText: true,
         decoration: InputDecoration(
+          //prefixIcon: icon,
           hintText: hintTitle,
-          hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
+          hintStyle: TextStyle( fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
         ),
         //keyboardType: keyboardType,
       ),

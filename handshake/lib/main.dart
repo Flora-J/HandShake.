@@ -3,6 +3,7 @@ import 'package:handshake/views/connections.dart';
 import 'package:handshake/views/announcement_form.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:handshake/views/sign_up.dart';
 
 
 Future<void> main() async {
@@ -22,13 +23,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: '/',
       routes: {
+        '/HomePage' : (context) => HomePage(),
         '/connections': (context) => Connection()
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: HomePage(),
+      home: SignupPage(),
     );
   }
 

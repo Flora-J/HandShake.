@@ -93,7 +93,7 @@ class ProfileCompanion extends StatelessWidget {
                 ),
                 Container(
                     width: 160,
-                    child: logoutButton(context, '/', 'Déconnection')
+                    child: logoutButton(context, '/HomePage', 'Déconnection')
                     ),
               ],
             ),
