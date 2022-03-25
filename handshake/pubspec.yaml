@@ -32,6 +32,8 @@ dependencies:
   passwordfield: ^0.1.0
   sqflite: any
   path: any
+  intl: ^0.17.0
+
 
 
   # The following adds the Cupertino Icons font to your application.

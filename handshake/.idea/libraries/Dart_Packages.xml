@@ -149,6 +149,13 @@
             </list>
           </value>
         </entry>
+        <entry key="handshake">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="html">
           <value>
             <list>
@@ -418,6 +425,7 @@
       </option>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/../lib" />
       <root url="file:///opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.2.2/lib" />
       <root url="file:///opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.3.0/lib" />
       <root url="file:///opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.8.2/lib" />
