@@ -17,12 +17,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        routes: {
+        Hobbies.routeName: (ctx) => Hobbies(),
+      },
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: Hobbies(),
+      home: SignupPage(),
     );
   }
 

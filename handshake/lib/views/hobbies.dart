@@ -3,6 +3,8 @@ import 'package:handshake/widgets/background_decoration.dart';
 
 
 class Hobbies extends StatefulWidget {
+    static const routeName = '/hobbies';
+
 
   @override
   _HobbiesState createState()=> _HobbiesState();
