@@ -6,37 +6,30 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<is_24_hour_format/Respect24HourPlugin.h>)
-#import <is_24_hour_format/Respect24HourPlugin.h>
+#if __has_include(<firebase_auth/FLTFirebaseAuthPlugin.h>)
+#import <firebase_auth/FLTFirebaseAuthPlugin.h>
 #else
-@import is_24_hour_format;
+@import firebase_auth;
 #endif
 
-#if __has_include(<sqflite/SqflitePlugin.h>)
-#import <sqflite/SqflitePlugin.h>
+#if __has_include(<firebase_core/FLTFirebaseCorePlugin.h>)
+#import <firebase_core/FLTFirebaseCorePlugin.h>
 #else
-@import sqflite;
+@import firebase_core;
 #endif
 
-#if __has_include(<survey_kit/SurveyKitPlugin.h>)
-#import <survey_kit/SurveyKitPlugin.h>
+#if __has_include(<firebase_database/FLTFirebaseDatabasePlugin.h>)
+#import <firebase_database/FLTFirebaseDatabasePlugin.h>
 #else
-@import survey_kit;
-#endif
-
-#if __has_include(<video_player_avfoundation/FLTVideoPlayerPlugin.h>)
-#import <video_player_avfoundation/FLTVideoPlayerPlugin.h>
-#else
-@import video_player_avfoundation;
+@import firebase_database;
 #endif
 
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  [Respect24HourPlugin registerWithRegistrar:[registry registrarForPlugin:@"Respect24HourPlugin"]];
-  [SqflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"SqflitePlugin"]];
-  [SurveyKitPlugin registerWithRegistrar:[registry registrarForPlugin:@"SurveyKitPlugin"]];
-  [FLTVideoPlayerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTVideoPlayerPlugin"]];
+  [FLTFirebaseAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseAuthPlugin"]];
+  [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
+  [FLTFirebaseDatabasePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseDatabasePlugin"]];
 }
 
 @end

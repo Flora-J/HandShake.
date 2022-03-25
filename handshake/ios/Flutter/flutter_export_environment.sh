@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Applications/flutter"
-export "FLUTTER_APPLICATION_PATH=/Applications/MAMP/htdocs/HandShake./handshake"
+export "FLUTTER_ROOT=/usr/local/Caskroom/flutter/2.10.3/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/thibault/Desktop/Projet/HandShake./handshake"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
