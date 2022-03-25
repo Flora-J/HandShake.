@@ -24,6 +24,7 @@ class _SignupPageState extends State<SignupPage>{
     final confirmationPasswordController = TextEditingController();
 
     FirebaseAuth auth = FirebaseAuth.instance;
+    
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -96,7 +97,19 @@ class _SignupPageState extends State<SignupPage>{
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height:60,
-                          onPressed: (){},
+                          onPressed: () async{
+                            try {
+                                await handShakeRef.set({
+                                  'Email': 'bbbb@bbbb.fr',
+                                  'Password': '6789'
+                                });
+                                print("entry has been added");
+                              }catch(error){
+                                print('Entry has not been added : $error' );
+                              };
+
+
+                          },
                           color: Colors.blueAccent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40)
@@ -114,16 +127,8 @@ class _SignupPageState extends State<SignupPage>{
                       children: [
                         Text("Avez-vous déjà un compte ?"),
                         TextButton(
-                          onPressed: () async{
-                              /*try {
-                                await handShakeRef.set({
-                                  'Email': 'bbbb@bbbb.fr',
-                                  'Password': '6789'
-                                });
-                                print("entry has been added");
-                              }catch(error){
-                                print('Entry has not been added : $error' );
-                              };*/
+                          onPressed: () {
+
                             },
 
                           child: Text(
