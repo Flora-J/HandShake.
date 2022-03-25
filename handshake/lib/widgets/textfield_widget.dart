@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 Widget textFieldBasic (TextEditingController userInput, String hintTitle){
+
+  bool _isEmpty=true;
+
   return(Container(
     margin: EdgeInsets.only(bottom: 10),
     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
@@ -11,6 +14,7 @@ Widget textFieldBasic (TextEditingController userInput, String hintTitle){
         controller: userInput,
         decoration: InputDecoration(
           hintText: hintTitle,
+
           hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
         ),
         //keyboardType: keyboardType,

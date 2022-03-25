@@ -28,7 +28,7 @@ class _SignupPageState extends State<SignupPage>{
 
     FirebaseAuth auth = FirebaseAuth.instance;
     DatabaseReference ref = FirebaseDatabase.instance.ref();
-    final handShakeRef = ref.child('/handShakeDb');
+    final handShakeRef = ref.child('/handShakeDb/Users');
     
 
     return Scaffold(
@@ -96,7 +96,8 @@ class _SignupPageState extends State<SignupPage>{
                           onPressed: () async{
 
                             try {
-                              UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+
+                              UserCredential userCredential = await auth.createUserWithEmailAndPassword(
                                   email: emailController.text,
                                   password: passwordController.text
                               );
@@ -109,8 +110,8 @@ class _SignupPageState extends State<SignupPage>{
                               }
                             } catch (e) {
                               print(e);
-                            }
 
+}
                             // Get information in the data base
                             try {
                                 await handShakeRef.set({
@@ -125,7 +126,11 @@ class _SignupPageState extends State<SignupPage>{
                               }catch(error){
                                 print('Entry has not been added : $error' );
                               };
-                            Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
+
+
+                            
+                            //Navigator.push(context, route)
+                        Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
 
 
                           },
