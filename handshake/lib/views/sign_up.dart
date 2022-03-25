@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/textfield_widget.dart';
+
 class SignupPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
+    final nameController = TextEditingController();
+    final lastnameController = TextEditingController();
+    final addressController = TextEditingController();
+    final cityController = TextEditingController();
+    final cpController = TextEditingController();
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+    final confirmationPasswordController = TextEditingController();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       //resizeToAvoidBottomPadding: false,
@@ -45,14 +58,15 @@ class SignupPage extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          makeInput(label: "Nom"),
-                          makeInput(label: "Prenom"),
-                          makeInput(label: "Adresse"),
-                          makeInput(label: "Ville"),
-                           makeInput(label: "Code Postale"),
-                          makeInput(label: "Email"),
-                          makeInput(label: "Mot de passe",obsureText: true),
-                          makeInput(label: "Confirmation du mot de passe",obsureText: true)
+                          textFieldBasic(nameController,"nom"),
+                         textFieldBasic(lastnameController,"prénom"),
+                          textFieldBasic(addressController,"adresse"),
+                         textFieldBasic(cityController,"ville"),
+                          textFieldBasic(cpController,"code postal"),
+                          textFieldBasic(emailController,"e-mail"),
+                          textFieldPassword(passwordController,"mot de passe"),
+                          textFieldPassword(confirmationPasswordController,"confirmation de votre mot de passe"),
+                          
                         ],
                       ),
                     ),
@@ -88,8 +102,8 @@ class SignupPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Already have an account? "),
-                        Text("Login",style: TextStyle(
+                        Text("Avez-vous déjà un compte ?"),
+                        Text("Connexion",style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18
                         ),),

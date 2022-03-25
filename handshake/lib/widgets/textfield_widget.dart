@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-Widget textFieldBasic (TextEditingController userInput, String hintTitle, TextInputType keyboardType){
+Widget textFieldBasic (TextEditingController userInput, String hintTitle){
   return(Container(
+    margin: EdgeInsets.only(bottom: 10),
     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
     child: Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25),
@@ -12,15 +13,16 @@ Widget textFieldBasic (TextEditingController userInput, String hintTitle, TextIn
           hintText: hintTitle,
           hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
         ),
-        keyboardType: keyboardType,
+        //keyboardType: keyboardType,
       ),
     ),
   )
   );
 }
 
-Widget textFieldPassword (TextEditingController userInput, String hintTitle, TextInputType keyboardType){
+Widget textFieldPassword (TextEditingController userInput, String hintTitle){
   return(Container(
+    margin: EdgeInsets.only(bottom: 10),
     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
     child: Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25),
@@ -31,7 +33,7 @@ Widget textFieldPassword (TextEditingController userInput, String hintTitle, Tex
           hintText: hintTitle,
           hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
         ),
-        keyboardType: keyboardType,
+        //keyboardType: keyboardType,
       ),
     ),
   )
