@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 
@@ -14,9 +15,12 @@ class Hobbies extends StatefulWidget {
 class _HobbiesState extends State<Hobbies> {
 
   String dropdownValue = 'Musique';
+   final organisationController = TextEditingController();
+   final otherHobbieController = TextEditingController();
+
+  get decoration => null;
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -44,22 +48,12 @@ class _HobbiesState extends State<Hobbies> {
                           fontWeight: FontWeight.bold,
                         ),),
                         SizedBox(height: 20),
-                          TextField(
-                            decoration: InputDecoration(
-                              hintText: "De quelle organisation viens-tu ?",
-                              hintStyle: TextStyle(fontSize: 18, color: Colors.white)
-                            ),
-                          ),
+                           textFieldBasic(organisationController,"De quelle organisation viens-tu ?"),
                           marginColumn(),
                        SizedBox(height: 20,),
                        _buildRowHobbies(),
                           SizedBox(height: 20,),
-                           TextField(
-                            decoration: InputDecoration(
-                              hintText: "As-tu d'autre loisir ? Si oui nommes les.",
-                              hintStyle: TextStyle(fontSize: 18, color: Colors.white, fontStyle: FontStyle.italic),
-                            ),
-                      ),
+                       textFieldBasic(otherHobbieController,"As-tu d'autre loisir ? Si oui, nommes-les"),
                       SizedBox(height: 20,),
                     
                     Padding(

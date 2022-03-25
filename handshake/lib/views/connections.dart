@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:handshake/views/page_profile_companions.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:handshake/widgets/button.dart';
-import 'package:passwordfield/passwordfield.dart';
 
 class Connection extends StatelessWidget {
 

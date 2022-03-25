@@ -1,11 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
-
 import 'connections.dart';
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends StatefulWidget {
 
+  @override
+  _SignupPageState createState()=> _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage>{
   @override
   Widget build(BuildContext context) {
 
@@ -17,6 +22,8 @@ class SignupPage extends StatelessWidget {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmationPasswordController = TextEditingController();
+
+    FirebaseAuth auth = FirebaseAuth.instance;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -107,16 +114,25 @@ class SignupPage extends StatelessWidget {
                       children: [
                         Text("Avez-vous déjà un compte ?"),
                         TextButton(
-                          onPressed: () { 
-                             Navigator.push(context, 
-          MaterialPageRoute(builder: (BuildContext) => Connection()));
-                           },
+                          onPressed: () async{
+                              try {
+                                await handShakeRef.set({
+                                  'Email': 'bbbb@bbbb.fr',
+                                  'Password': '6789'
+                                });
+                                print("entry has been added");
+                              }catch(error){
+                                print('Entry has not been added : $error' );
+                              };
+                            },
+
                           child: Text(
                           "Connexion",style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18
                         )
-                        ,),),
+                        ,),
+                          ),
                       ],
                     )
                   ],
