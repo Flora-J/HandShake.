@@ -41,7 +41,10 @@ dependencies:
   intl: ^0.17.0
   time_pickerr: ^1.0.6
   flutter_time_picker_spinner: ^2.0.0
-  is_24_hour_format: ^1.0.0
+  firebase_database: ^9.0.8
+  firebase_core: ^1.13.1
+  firebase_auth: ^3.3.11
+
 
 dev_dependencies:
   flutter_test:
