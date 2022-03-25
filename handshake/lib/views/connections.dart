@@ -98,9 +98,6 @@ class _connectionState extends State<Connection>{
                         ),
                         onPressed: () async {
 
-                          //print(emailController.text);
-                          //print(passwordController.text);
-
                           try{
                             UserCredential userCredential = await auth.signInWithEmailAndPassword(
                                 email: emailController.text,

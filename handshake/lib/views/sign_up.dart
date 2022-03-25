@@ -114,6 +114,7 @@ class _SignupPageState extends State<SignupPage>{
                             // Get information in the data base
                             try {
                                 await handShakeRef.set({
+                                  'Email': emailController,
                                   'FirstName': nameController.text,
                                   'LastName': lastnameController.text,
                                   'Address': addressController.text,
