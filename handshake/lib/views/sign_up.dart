@@ -115,7 +115,7 @@ class _SignupPageState extends State<SignupPage>{
                         Text("Avez-vous déjà un compte ?"),
                         TextButton(
                           onPressed: () async{
-                              try {
+                              /*try {
                                 await handShakeRef.set({
                                   'Email': 'bbbb@bbbb.fr',
                                   'Password': '6789'
@@ -123,7 +123,7 @@ class _SignupPageState extends State<SignupPage>{
                                 print("entry has been added");
                               }catch(error){
                                 print('Entry has not been added : $error' );
-                              };
+                              };*/
                             },
 
                           child: Text(

@@ -61,41 +61,7 @@ class Connection extends StatelessWidget {
                   children: [
                     SizedBox(height: 30),
                     userInput(emailController, 'Email', TextInputType.emailAddress),
-                    PasswordField(
-                      backgroundColor: Colors.white,
-                      errorMessage: '''
-                      - Une majuscule
-                      - Une minuscule
-                      - Un chiffre
-                      - Un caractère spécial
-                      - Un minimun de 8 caractères
-                      ''',
-                      hintText: 'Mot de passe',
-                      inputDecoration: PasswordDecoration(
-                        hintStyle: TextStyle(
-                          color: Colors.blueAccent,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 18,
-                        ),
-                        inputPadding: const EdgeInsets.symmetric(horizontal: 20),
-                      ),
-                      border: PasswordBorder(
-                        border: OutlineInputBorder(
-                            borderSide:
-                            const BorderSide(width: 0, color: Colors.white),
-                            borderRadius: BorderRadius.circular(25.7)),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                          const BorderSide(width: 0, color: Colors.white),
-                          borderRadius: BorderRadius.circular(25.7),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                          const BorderSide(width: 0, color: Colors.white),
-                          borderRadius: BorderRadius.circular(25.7),
-                        ),
-                      ),
-                    ),
+
                     Container(
                       height: 40,
                       child: elevatedButton(context, "Connexion",  ()=>ProfileCompanion()),
