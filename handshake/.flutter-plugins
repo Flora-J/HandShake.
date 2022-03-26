@@ -1,6 +1,7 @@
 # This is a generated file; do not edit or check into version control.
+firebase_auth=/opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.3.11/
+firebase_auth_web=/opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.3.9/
 firebase_core=/opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.13.1/
 firebase_core_web=/opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.6.1/
 firebase_database=/opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database-9.0.8/
 firebase_database_web=/opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database_web-0.2.0+7/
-sqflite=/opt/homebrew/Caskroom/flutter/2.10.3/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-2.0.2/

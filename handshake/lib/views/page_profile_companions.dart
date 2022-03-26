@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/views/connections.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/button.dart';
 import '../widgets/background_decoration.dart';
+import '../widgets/logout_button.dart';
 
 
 class ProfileCompanion extends StatelessWidget {
@@ -27,6 +30,7 @@ class ProfileCompanion extends StatelessWidget {
           ),
         ),
         body: Container(
+          padding: EdgeInsets.only(top: 10, bottom: 50),
           decoration: fondDecoration(),
           child: Center(
             child: Column(
@@ -51,27 +55,45 @@ class ProfileCompanion extends StatelessWidget {
                 SizedBox(
                   height: 12,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        child: Column(
-                          children: [
-                            Text("Followers",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18,
-                            ),
-                            ),
-                          ],
-                        ),
-                    ),
-                  ],
+                Text("Followers",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                  ),
+                ),
+
+                SizedBox(
+                  height: 12,
                 ),
                 Container(
-                      height: 40,
-                      child: elevatedButton(context, "Voir les offres",  ()=>HomePage()),
+                    width: 160,
+                    child: elevatedButton2(context, "Voir les offres",  ()=>HomePage()),
+                  ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    child: elevatedButton2(context, "Modifier mon profil",  ()=>HomePage()),
+                    ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    child: elevatedButton2(context, "Actions effectuées",  ()=>HomePage()),
+                    ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    width: 160,
+                    child: elevatedButton2(context, "Chat",  ()=>HomePage()),
+                    ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                    width: 160,
+                    child: logoutButton(context, '/', 'Déconnection')
                     ),
               ],
             ),
@@ -80,3 +102,5 @@ class ProfileCompanion extends StatelessWidget {
     );
   }
 }
+
+
