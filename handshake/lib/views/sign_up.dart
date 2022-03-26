@@ -1,308 +1,174 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:survey_kit/survey_kit.dart';
+import '../../../widgets/textfield_widget.dart';
+import 'package:handshake/widgets/background_decoration.dart';
 
-class Hobbies extends StatefulWidget {
-  Hobbies({ Key? key }) : super(key: key);
-  @override
+
+class SignupPage extends StatefulWidget {
 
   @override
-  State<Hobbies> createState() => _HobbiesState();
+  _SignupPageState createState()=> _SignupPageState();
 }
 
-class _HobbiesState extends State<Hobbies> {
+class _SignupPageState extends State<SignupPage>{
+
+
   @override
   Widget build(BuildContext context) {
+
+    final nameController = TextEditingController();
+    final lastnameController = TextEditingController();
+    final addressController = TextEditingController();
+    final cityController = TextEditingController();
+    final cpController = TextEditingController();
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+    final confirmationPasswordController = TextEditingController();
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+    DatabaseReference ref = FirebaseDatabase.instance.ref();
+    final handShakeRef = ref.child('/handShakeDb');
+    
+
     return Scaffold(
-        body: Container(
-          color: Colors.white,
-          child: Align(
-            alignment: Alignment.center,
-            child: FutureBuilder<Task>(
-              future: getSampleTask(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done &&
-                    snapshot.hasData &&
-                    snapshot.data != null) {
-                  final task = snapshot.data!;
-                  return SurveyKit(
-                    onResult: (SurveyResult result) {
-                      print(result.finishReason);
-                    },
-                    task: task,
-                    showProgress: true,
-                    localizations: {
-                      'annuler': 'Annuler',
-                      'suivant': 'Suivant',
-                    },
-                    themeData: Theme.of(context).copyWith(
-                      colorScheme: ColorScheme.fromSwatch(
-                        primarySwatch: Colors.cyan,
-                      ).copyWith(
-                        onPrimary: Colors.white,
+      resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomPadding: false,
+     appBar: AppBar(
+        elevation: 30,
+        title: const Text(
+          "Inscription",
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            size: 30,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+             decoration: fondDecoration(),
+            height: MediaQuery.of(context).size.height,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children:[
+                        SizedBox(height: 20,)
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 40
                       ),
-                      primaryColor: Colors.cyan,
-                      backgroundColor: Colors.white,
-                      appBarTheme: const AppBarTheme(
-                        color: Colors.white,
-                        iconTheme: IconThemeData(
-                          color: Colors.cyan,
-                        ),
-                        titleTextStyle: TextStyle(
-                          color: Colors.cyan,
-                        ),
+                      child: Column(
+                        children: [
+                          textFieldBasic(nameController,"nom"),
+                          textFieldBasic(lastnameController,"prénom"),
+                          textFieldBasic(addressController,"adresse"),
+                          textFieldBasic(cityController,"ville"),
+                          textFieldBasic(cpController,"code postal"),
+                          textFieldBasic(emailController,"e-mail"),
+                          textFieldPassword(passwordController,"mot de passe"),
+                          textFieldPassword(confirmationPasswordController,"confirmation de votre mot de passe"),
+                          
+                        ],
                       ),
-                      iconTheme: const IconThemeData(
-                        color: Colors.cyan,
-                      ),
-                      textSelectionTheme: TextSelectionThemeData(
-                        cursorColor: Colors.cyan,
-                        selectionColor: Colors.cyan,
-                        selectionHandleColor: Colors.cyan,
-                      ),
-                      cupertinoOverrideTheme: CupertinoThemeData(
-                        primaryColor: Colors.cyan,
-                      ),
-                      outlinedButtonTheme: OutlinedButtonThemeData(
-                        style: ButtonStyle(
-                          minimumSize: MaterialStateProperty.all(
-                            Size(150.0, 60.0),
-                          ),
-                          side: MaterialStateProperty.resolveWith(
-                            (Set<MaterialState> state) {
-                              if (state.contains(MaterialState.disabled)) {
-                                return BorderSide(
-                                  color: Colors.grey,
-                                );
-                              }
-                              return BorderSide(
-                                color: Colors.cyan,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      child: Container(
+                        padding: EdgeInsets.only(top: 3,left: 3),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
+                          onPressed: () async{
+
+                            try {
+                              UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passwordController.text
                               );
-                            },
-                          ),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          textStyle: MaterialStateProperty.resolveWith(
-                            (Set<MaterialState> state) {
-                              if (state.contains(MaterialState.disabled)) {
-                                return Theme.of(context)
-                                    .textTheme
-                                    .button
-                                    ?.copyWith(
-                                      color: Colors.grey,
-                                    );
+
+                            } on FirebaseAuthException catch (e) {
+                              if (e.code == 'weak-password') {
+                                print('The password provided is too weak.');
+                              } else if (e.code == 'email-already-in-use') {
+                                print('The account already exists for that email.');
                               }
-                              return Theme.of(context)
-                                  .textTheme
-                                  .button
-                                  ?.copyWith(
-                                    color: Colors.cyan,
-                                  );
+                            } catch (e) {
+                              print(e);
+                            }
+
+                            // Get information in the data base
+                            try {
+                                await handShakeRef.set({
+                                  'Email': emailController,
+                                  'FirstName': nameController.text,
+                                  'LastName': lastnameController.text,
+                                  'Address': addressController.text,
+                                  'City': cityController.text,
+                                  'CP': cpController.text,
+
+                                  });
+                                print("entry has been added");
+                              }catch(error){
+                                print('Entry has not been added : $error' );
+                              };
+                            Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+
+
+                          },
+                          child: Text("Inscription")
+
+                          ),),
+                        ),
+
+                    SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Avez-vous déjà un compte ?"),
+                        TextButton(
+                          onPressed: () {
+
                             },
+
+                          child: Text(
+                          "Connexion",style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18
+                        )
+                        ,),
                           ),
-                        ),
-                      ),
-                      textButtonTheme: TextButtonThemeData(
-                        style: ButtonStyle(
-                          textStyle: MaterialStateProperty.all(
-                            Theme.of(context).textTheme.button?.copyWith(
-                                  color: Colors.cyan,
-                                ),
-                          ),
-                        ),
-                      ),
-                      textTheme: TextTheme(
-                        headline2: TextStyle(
-                          fontSize: 28.0,
-                          color: Colors.black,
-                        ),
-                        headline5: TextStyle(
-                          fontSize: 24.0,
-                          color: Colors.black,
-                        ),
-                        bodyText2: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.black,
-                        ),
-                        subtitle1: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                      inputDecorationTheme: InputDecorationTheme(
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    surveyProgressbarConfiguration: SurveyProgressConfiguration(
-                      backgroundColor: Colors.white,
-                    ),
-                  );
-                }
-                return CircularProgressIndicator.adaptive();
-              },
+                      ],
+                    )
+                  ],
+
+                ),
+              ],
             ),
           ),
         ),
-      );
-  }
-
-  Future<Task> getSampleTask() {
-    var task = NavigableTask(
-      id: TaskIdentifier(),
-      steps: [
-        InstructionStep(
-          title: 'Bienvenue à HandShake',
-          text: 'Inscris toi en quelques clics !',
-          buttonText: 'Suivant',
-        ),
-        QuestionStep(
-          title: 'Quel est ton nom ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton nom',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quel est ton prenom ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton prenom',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quelle est votre date de naissance?',
-          answerFormat: DateAnswerFormat(
-            minDate: DateTime.utc(1970),
-            defaultDate: DateTime.now(),
-            maxDate: DateTime.now(),
-          ),
-        ),
-        QuestionStep(
-          title: 'Quelle est ton adresse postale ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton adresse postale',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quel est ton code postale ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton code postale',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Dans quelle ville vis-tu?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre le nom de ta ville',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quel est ton numéro de téléphone ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton numéro de téléphone',
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'De quelle organisation viens-tu ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre le nom de ton organisation',
-          ),
-          isOptional: true,
-        ),
-             QuestionStep(
-          title: 'Quelle est ton adresse e-mail ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre ton adresse e-mail',
-          ),
-          isOptional: true,
-        ),
-              QuestionStep(
-          title: 'Choisis un mot de passe', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entre un mot de passe',
-          ),
-          isOptional: true,
-        ),
-             QuestionStep(
-          title: 'Confirme ton mot de passe', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Confirmation de ton mot de passe', //Il faut checker le mot de passe 
-          ),
-          isOptional: true,
-        ),
-        QuestionStep(
-          title: 'Quels sont tes loisirs ?',
-          text: 'Les loisirs pourront créer un lien fort avec la ou les personnes que tu accompagnera',
-          isOptional: false,
-          answerFormat: MultipleChoiceAnswerFormat(
-            textChoices: [
-              TextChoice(text: 'Musique', value: 'Musique'),
-              TextChoice(text: 'Lecture', value: 'Lecture'),
-              TextChoice(text: 'Jeu vidéos', value: 'Jeu vidéos'),
-              TextChoice(text: 'Sport', value: 'Sport'),
-              TextChoice(text: 'Séries / Films', value: 'Séries / Films'),
-              TextChoice(text: 'Documentaire', value: 'Documentaire'),
-            ],
-          ),
-        ),
-         QuestionStep(
-          title: 'Davantage de loisir ?', //Si non, on n'affiche pas la suivante 
-          text: 'As-tu davantage de loisir ?',
-          answerFormat: BooleanAnswerFormat(
-            positiveAnswer: 'Oui',
-            negativeAnswer: 'Non',
-            result: BooleanResult.POSITIVE,
-          ),
-         ),
-        QuestionStep(
-          title: 'Quel est ton autre loisir ?', 
-          answerFormat: IntegerAnswerFormat(
-            hint: 'Entres un autre loisir',
-          ),
-          isOptional: true,
-        ),
-        CompletionStep(
-          stepIdentifier: StepIdentifier(id: '321'),
-          text: 'Merci davoir compléter ton profil ',
-          title: 'Terminé !',
-          buttonText: 'SUIVANT',
-        ),
-      ],
-    );
-    task.addNavigationRule(
-      forTriggerStepIdentifier: task.steps[12].stepIdentifier,
-      navigationRule: ConditionalNavigationRule(
-        resultToStepIdentifierMapper: (input) {
-          switch (input) {
-            case "Yes":
-              return task.steps[0].stepIdentifier;
-            case "No":
-              return task.steps[7].stepIdentifier;
-            default:
-              return null;
-          }
-        },
       ),
     );
-    return Future.value(task);
-  }
-
-
-  Future<Task> getJsonTask() async {
-    final taskJson = await rootBundle.loadString('/Users/amel/flutter_application_1/lib/example_json.json');
-    final taskMap = json.decode(taskJson);
-
-    return Task.fromJson(taskMap);
   }
 }
+
+
+
+
+
+
+
