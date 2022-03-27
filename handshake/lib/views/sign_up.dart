@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
+import '../widgets/textFormField_widget.dart';
+
 
 class SignupPage extends StatefulWidget {
 
@@ -74,14 +76,14 @@ class _SignupPageState extends State<SignupPage>{
                       ),
                       child: Column(
                         children: [
-                          textFieldBasic(nameController,"nom"),
-                          textFieldBasic(lastnameController,"prénom"),
-                          textFieldBasic(addressController,"adresse"),
-                          textFieldBasic(cityController,"ville"),
-                          textFieldBasic(cpController,"code postal"),
-                          textFieldBasic(emailController,"e-mail"),
-                          textFieldPassword(passwordController,"mot de passe"),
-                          textFieldPassword(confirmationPasswordController,"confirmation de votre mot de passe"),
+                          textFormdBasic(nameController,"nom"),
+                          textFormdBasic(lastnameController,"prénom"),
+                          textFormdBasic(addressController,"adresse"),
+                          textFormdBasic(cityController,"ville"),
+                          textFormdBasic(cpController,"code postal"),
+                          textFormdBasic(emailController,"e-mail"),
+                          textFormPassword(passwordController,"mot de passe"),
+                          textFormPassword(confirmationPasswordController,"confirmation de votre mot de passe"),
                           
                         ],
                       ),
