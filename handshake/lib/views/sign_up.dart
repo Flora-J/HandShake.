@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
+import 'package:handshake/widgets/snackBar.dart';
 
 
 class SignupPage extends StatefulWidget {
@@ -13,9 +14,10 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage>{
 
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+
 
     final nameController = TextEditingController();
     final lastnameController = TextEditingController();
@@ -72,18 +74,26 @@ class _SignupPageState extends State<SignupPage>{
                       padding: EdgeInsets.symmetric(
                           horizontal: 40
                       ),
-                      child: Column(
+                      child:
+                      Form(key: _formKey,
+                          child: Column(
                         children: [
+
                           textFieldBasic(nameController,"nom"),
+                          textFieldBasic (lastnameController,"prénom"),
+                          textFieldBasic(addressController,"adresse"),
+                          textFieldBasic(cityController,"ville")
+
+                         /* textFieldBasic(nameController,"nom"),
                           textFieldBasic(lastnameController,"prénom"),
                           textFieldBasic(addressController,"adresse"),
                           textFieldBasic(cityController,"ville"),
                           textFieldBasic(cpController,"code postal"),
                           textFieldBasic(emailController,"e-mail"),
                           textFieldPassword(passwordController,"mot de passe"),
-                          textFieldPassword(confirmationPasswordController,"confirmation de votre mot de passe"),
-                          
-                        ],
+                          textFieldPassword(confirmationPasswordController,"confirmation de votre mot de passe")*/,
+
+                        ]),
                       ),
                     ),
                     Padding(
@@ -94,6 +104,11 @@ class _SignupPageState extends State<SignupPage>{
                           style: ElevatedButton.styleFrom(
                               primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
                           onPressed: () async{
+                            if (_formKey.currentState!.validate())
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              snackBarBetter("Validé")
+                            );
 
                             try {
 
