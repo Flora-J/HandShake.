@@ -30,7 +30,7 @@ class _SignupPageState extends State<SignupPage>{
 
     FirebaseAuth auth = FirebaseAuth.instance;
     DatabaseReference ref = FirebaseDatabase.instance.ref();
-    final handShakeRef = ref.child('/handShakeDb');
+    final handShakeRef = ref.child('/handShakeDb/user');
     final _formKey = GlobalKey<FormState>();
     
 
