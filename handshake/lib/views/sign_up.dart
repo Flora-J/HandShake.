@@ -125,20 +125,22 @@ class _SignupPageState extends State<SignupPage>{
 
                               }
                               // Get information in the data base
-                              try {
-                                await handShakeRef.set({
-                                  'FirstName': nameController.text,
-                                  'LastName': lastnameController.text,
-                                  'Address': addressController.text,
-                                  'City': cityController.text,
-                                  'CP': cpController.text,
 
-                                });
-                                print("entry has been added");
-                              }catch(error){
-                                print('Entry has not been added : $error' );
+                              final newEntry = <String, dynamic>{
+                                'FirstName': nameController.text,
+                                'LastName': lastnameController.text,
+                                'Address': addressController.text,
+                                'City': cityController.text,
+                                'CP': cpController.text,
+                                'Email' : emailController.text,
+                                //'Photo' :
                               };
-                              
+                                try {
+                                  handShakeRef.push().set(newEntry);
+                                  print("entry has been added");
+                                }catch(error){
+                                  print('Entry has not been added : $error');
+                                }
                               Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
 
                               ScaffoldMessenger.of(context).showSnackBar(
