@@ -31,6 +31,7 @@ class _SignupPageState extends State<SignupPage>{
     FirebaseAuth auth = FirebaseAuth.instance;
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb');
+    final _formKey = GlobalKey<FormState>();
     
 
     return Scaffold(
@@ -74,7 +75,10 @@ class _SignupPageState extends State<SignupPage>{
                       padding: EdgeInsets.symmetric(
                           horizontal: 40
                       ),
+                      child: Form(
+                        key: _formKey,
                       child: Column(
+
                         children: [
                           textFormdBasic(nameController,"nom"),
                           textFormdBasic(lastnameController,"prénom"),
@@ -87,6 +91,7 @@ class _SignupPageState extends State<SignupPage>{
                           
                         ],
                       ),
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -96,41 +101,42 @@ class _SignupPageState extends State<SignupPage>{
                           style: ElevatedButton.styleFrom(
                               primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
                           onPressed: () async{
-
-                            try {
-                              UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                                  email: emailController.text,
-                                  password: passwordController.text
-                              );
-
-                            } on FirebaseAuthException catch (e) {
-                              if (e.code == 'weak-password') {
-                                print('The password provided is too weak.');
-                              } else if (e.code == 'email-already-in-use') {
-                                print('The account already exists for that email.');
+                            if (_formKey.currentState!.validate()) {
+                              try {
+                                UserCredential userCredential = await FirebaseAuth
+                                    .instance.createUserWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text
+                                );
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'weak-password') {
+                                  print('The password provided is too weak.');
+                                } else if (e.code == 'email-already-in-use') {
+                                  print(
+                                      'The account already exists for that email.');
+                                }
+                              } catch (e) {
+                                print(e);
                               }
-                            } catch (e) {
-                              print(e);
-                            }
-
-                            // Get information in the data base
-                            try {
-                                await handShakeRef.set({
-                                  'Email': emailController,
-                                  'FirstName': nameController.text,
-                                  'LastName': lastnameController.text,
-                                  'Address': addressController.text,
-                                  'City': cityController.text,
-                                  'CP': cpController.text,
-
-                                  });
-                                print("entry has been added");
-                              }catch(error){
-                                print('Entry has not been added : $error' );
+                              final newEntry = <String, dynamic>{
+                                'FirstName': nameController.text,
+                                'LastName': lastnameController.text,
+                                'Address': addressController.text,
+                                'City': cityController.text,
+                                'CP': cpController.text,
+                                'Email': emailController.text,
+                                //'Photo' :
                               };
-                            Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-
-
+                              try {
+                                // Get information in the data base
+                                handShakeRef.push().set(newEntry);
+                                print("entry has been added");
+                              } catch (error) {
+                                print('Entry has not been added : $error');
+                              }
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/connections', (route) => false);
+                            }
                           },
                           child: Text("Inscription")
 
