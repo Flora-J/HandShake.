@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/widgets/bottom_navigation_bar_edit.dart';
+import 'package:handshake/widgets/text_Form_Field.dart';
 import '../../../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:handshake/widgets/snackBar.dart';
+
 
 
 class SignupPage extends StatefulWidget {
@@ -14,7 +17,7 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage>{
 
-  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 
@@ -31,7 +34,7 @@ class _SignupPageState extends State<SignupPage>{
     FirebaseAuth auth = FirebaseAuth.instance;
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/Users');
-    
+    final _formKey = GlobalKey<FormState>();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -53,7 +56,8 @@ class _SignupPageState extends State<SignupPage>{
           },
         ),
       ),
-      body: SafeArea(
+      body:
+      SafeArea(
         child: SingleChildScrollView(
           child: Container(
              decoration: fondDecoration(),
@@ -78,11 +82,8 @@ class _SignupPageState extends State<SignupPage>{
                       Form(key: _formKey,
                           child: Column(
                         children: [
-
-                          textFieldBasic(nameController,"nom"),
-                          textFieldBasic (lastnameController,"prénom"),
-                          textFieldBasic(addressController,"adresse"),
-                          textFieldBasic(cityController,"ville")
+                          textFormdBasic(nameController, "nom"),
+                          textFormdBasic(nameController, "prénom"),
 
                          /* textFieldBasic(nameController,"nom"),
                           textFieldBasic(lastnameController,"prénom"),
@@ -91,7 +92,7 @@ class _SignupPageState extends State<SignupPage>{
                           textFieldBasic(cpController,"code postal"),
                           textFieldBasic(emailController,"e-mail"),
                           textFieldPassword(passwordController,"mot de passe"),
-                          textFieldPassword(confirmationPasswordController,"confirmation de votre mot de passe")*/,
+                          textFieldPassword(confirmationPasswordController,"confirmation de votre mot de passe")*/
 
                         ]),
                       ),
@@ -104,11 +105,12 @@ class _SignupPageState extends State<SignupPage>{
                           style: ElevatedButton.styleFrom(
                               primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
                           onPressed: () async{
-                            if (_formKey.currentState!.validate())
 
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              snackBarBetter("Validé")
-                            );
+                            if (_formKey.currentState!.validate()) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  snackBarBetter("Validé")
+                              );
+                            }
 
                             try {
 
@@ -141,13 +143,7 @@ class _SignupPageState extends State<SignupPage>{
                               }catch(error){
                                 print('Entry has not been added : $error' );
                               };
-
-
-                            
-                            //Navigator.push(context, route)
-                        Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
-
-
+                        //Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
                           },
                           child: Text("Inscription")
 
@@ -181,6 +177,7 @@ class _SignupPageState extends State<SignupPage>{
           ),
         ),
       ),
+      bottomNavigationBar: myBottomBar(context),
     );
   }
 }

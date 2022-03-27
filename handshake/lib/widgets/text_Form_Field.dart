@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-Widget textFieldBasic (TextEditingController userInput, String hintTitle){
+Widget textFormdBasic (TextEditingController userInput, String hintTitle){
 
   bool _isEmpty=true;
 
@@ -11,8 +11,8 @@ Widget textFieldBasic (TextEditingController userInput, String hintTitle){
     child: Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25),
       child: TextFormField(
-        validator: (value) {
-          if (value == null || value.isEmpty){
+        validator: (userInput) {
+          if (userInput == null || userInput.isEmpty){
               return 'Texte obligatoire';
           }
           return null;
