@@ -83,7 +83,7 @@ class _SignupPageState extends State<SignupPage>{
                           child: Column(
                         children: [
                           textFormdBasic(nameController, "nom"),
-                          textFormdBasic(nameController, "prénom"),
+                          textFormdBasic(lastnameController, "prénom"),
 
                          /* textFieldBasic(nameController,"nom"),
                           textFieldBasic(lastnameController,"prénom"),
@@ -107,30 +107,25 @@ class _SignupPageState extends State<SignupPage>{
                           onPressed: () async{
 
                             if (_formKey.currentState!.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  snackBarBetter("Validé")
-                              );
-                            }
+                              try {
 
-                            try {
+                                UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text
+                                );
 
-                              UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-                                  email: emailController.text,
-                                  password: passwordController.text
-                              );
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'weak-password') {
+                                  print('The password provided is too weak.');
+                                } else if (e.code == 'email-already-in-use') {
+                                  print('The account already exists for that email.');
+                                }
+                              } catch (e) {
+                                print(e);
 
-                            } on FirebaseAuthException catch (e) {
-                              if (e.code == 'weak-password') {
-                                print('The password provided is too weak.');
-                              } else if (e.code == 'email-already-in-use') {
-                                print('The account already exists for that email.');
                               }
-                            } catch (e) {
-                              print(e);
-
-}
-                            // Get information in the data base
-                            try {
+                              // Get information in the data base
+                              try {
                                 await handShakeRef.set({
                                   'FirstName': nameController.text,
                                   'LastName': lastnameController.text,
@@ -138,12 +133,22 @@ class _SignupPageState extends State<SignupPage>{
                                   'City': cityController.text,
                                   'CP': cpController.text,
 
-                                  });
+                                });
                                 print("entry has been added");
                               }catch(error){
                                 print('Entry has not been added : $error' );
                               };
-                        //Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
+                              
+                              Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  snackBarBetter("Validé")
+
+                              );
+                            }
+
+
+
                           },
                           child: Text("Inscription")
 
