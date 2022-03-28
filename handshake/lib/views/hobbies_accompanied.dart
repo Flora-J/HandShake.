@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
@@ -16,9 +17,16 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
   final organisationController = TextEditingController();
   final otherHobbieController = TextEditingController();
 
+
   get decoration => null;
   @override
   Widget build(BuildContext context) {
+
+    DatabaseReference ref = FirebaseDatabase.instance.ref();
+    final handShakeRef = ref.child('/handShakeDb/user');
+    final hobbies= handShakeRef.child('/key/hobbies');
+    List<String> activite = [];
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -39,7 +47,7 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Bienvuenue à HandShake, dis-nous en plus sur toi !',
+                'dis-nous en plus sur toi !',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30,
@@ -67,12 +75,34 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
                   child: MaterialButton(
                     minWidth: double.infinity,
                     height:60,
-                    onPressed: (){},
+                    onPressed: ()async{
+
+                      activite.add(dropdownValue);
+                      activite.add(otherHobbieController.text);
+
+                      try {
+                        await hobbies.set({
+                          'Organisation': organisationController.text,
+                          'Activité 1': activite[0],
+                          'Activité 2': activite[1]
+
+                        },
+
+                        );
+                        print("entry has been added");
+                      }catch(error){
+                        print('Entry has not been added : $error' );
+                      };
+                      Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
+
+
+
+                    },
                     color: Colors.blueAccent,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40)
                     ),
-                    child: Text("Suivant",style: TextStyle(
+                    child: Text("Inscription",style: TextStyle(
                       fontWeight: FontWeight.w600,fontSize: 16,
                     ),),
                   ),
@@ -93,7 +123,7 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
       children: [
         Text("As-tu des loisirs ?", style: TextStyle(fontSize: 18,color: Colors.white)),
         SizedBox(
-          width: 500,
+          width: 30,
         ),
         DropdownButton<String>(
           value: dropdownValue,

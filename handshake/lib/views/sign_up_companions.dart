@@ -15,6 +15,8 @@ class SignupPageCompanions extends StatefulWidget {
 
 class _SignupPageCompanionsState extends State<SignupPageCompanions>{
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
     final passwordController = TextEditingController();
     final confirmationPasswordController = TextEditingController();
 
-    FirebaseAuth auth = FirebaseAuth.instance;
+
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
     final _formKey = GlobalKey<FormState>();
@@ -103,8 +105,7 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
                           onPressed: () async{
                             if (_formKey.currentState!.validate()) {
                               try {
-                                UserCredential userCredential = await FirebaseAuth
-                                    .instance.createUserWithEmailAndPassword(
+                                UserCredential userCredential = await auth.createUserWithEmailAndPassword(
                                     email: emailController.text,
                                     password: passwordController.text
                                 );
@@ -129,14 +130,12 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
                               };
                               try {
                                 // Get information in the data base
-                                handShakeRef.push().set(newEntry);
+                                await handShakeRef.push().set(newEntry);
                                 print("entry has been added");
                               } catch (error) {
                                 print('Entry has not been added : $error');
                               }
-                              Navigator.push(context,MaterialPageRoute(builder: (BuildContext) => HobbiesCompanions()
-                            ));
-                              //Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
+                              Navigator.push(context,MaterialPageRoute(builder: (BuildContext) => HobbiesCompanions()));
                             }
                           },
                           child: Text("Suivant")

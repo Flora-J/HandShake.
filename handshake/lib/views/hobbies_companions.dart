@@ -23,7 +23,8 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
   @override
   Widget build(BuildContext context) {
     DatabaseReference ref = FirebaseDatabase.instance.ref();
-    final handShakeRef = ref.child('/handShakeDb/loisirs');
+    final handShakeRef = ref.child('/handShakeDb/user');
+    final hobbies= handShakeRef.child('/key/hobbies');
     List<String> activite = [];
 
     return Scaffold(
@@ -83,7 +84,7 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                       activite.add(otherHobbieController.text);
 
                       try {
-                        await handShakeRef.set({
+                        await hobbies.set({
                           'Organisation': organisationController.text,
                           'Activité 1': activite[0],
                           'Activité 2': activite[1]
@@ -95,9 +96,7 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                       }catch(error){
                         print('Entry has not been added : $error' );
                       };
-
-
-
+                      Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
                     },
                     color: Colors.blueAccent,
                     shape: RoundedRectangleBorder(

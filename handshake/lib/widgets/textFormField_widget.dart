@@ -39,8 +39,9 @@ Widget textFormPassword (TextEditingController userInput, String hintTitle){
         validator: (userInput) {
           if (userInput == null || userInput.isEmpty){
             return 'Champs obligatoire';
-          }
-          return null;
+          }else if(userInput.length <= 5) {
+            return 'Mot de passe trop court';
+          }return null;
         },
         controller: userInput,
         decoration: InputDecoration(

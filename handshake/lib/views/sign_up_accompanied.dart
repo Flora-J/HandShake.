@@ -21,9 +21,9 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
 
     final nameController = TextEditingController();
     final lastnameController = TextEditingController();
-    final addressController = TextEditingController();
-    final cityController = TextEditingController();
-    final cpController = TextEditingController();
+    //final addressController = TextEditingController();
+    //final cityController = TextEditingController();
+    //final cpController = TextEditingController();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmationPasswordController = TextEditingController();
@@ -100,8 +100,7 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                             onPressed: () async{
                               if (_formKey.currentState!.validate()) {
                                 try {
-                                  UserCredential userCredential = await FirebaseAuth
-                                      .instance.createUserWithEmailAndPassword(
+                                  UserCredential userCredential = await auth.createUserWithEmailAndPassword(
                                       email: emailController.text,
                                       password: passwordController.text
                                   );
