@@ -1,10 +1,15 @@
+<<<<<<< Updated upstream:handshake/lib/views/sign_up_accompanied.dart
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+=======
+>>>>>>> Stashed changes:handshake/lib/views/sign_up.dart
 import 'package:flutter/material.dart';
-import '../../../widgets/textfield_widget.dart';
+import '../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
+import 'connections.dart';
 
+<<<<<<< Updated upstream:handshake/lib/views/sign_up_accompanied.dart
 class SignupPageAccompanied extends StatefulWidget {
 
   @override
@@ -16,6 +21,11 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
 
 
   @override
+=======
+class SignupPage extends StatelessWidget {
+
+  @override
+>>>>>>> Stashed changes:handshake/lib/views/sign_up.dart
   Widget build(BuildContext context) {
 
     final nameController = TextEditingController();
@@ -24,11 +34,14 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
     final passwordController = TextEditingController();
     final confirmationPasswordController = TextEditingController();
 
+<<<<<<< Updated upstream:handshake/lib/views/sign_up_accompanied.dart
     FirebaseAuth auth = FirebaseAuth.instance;
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb');
     
 
+=======
+>>>>>>> Stashed changes:handshake/lib/views/sign_up.dart
     return Scaffold(
       resizeToAvoidBottomInset: false,
       //resizeToAvoidBottomPadding: false,
@@ -84,6 +97,7 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Container(
                         padding: EdgeInsets.only(top: 3,left: 3),
+<<<<<<< Updated upstream:handshake/lib/views/sign_up_accompanied.dart
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
@@ -121,6 +135,27 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
 
                           },
                           child: Text("Inscription")
+=======
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            border: Border(
+                                bottom: BorderSide(color: Colors.black),
+                                top: BorderSide(color: Colors.black),
+                                right: BorderSide(color: Colors.black),
+                                left: BorderSide(color: Colors.black)
+                            )
+                        ),
+                        child: MaterialButton(
+                          minWidth: double.infinity,
+                          height:60,
+                          onPressed: (){},
+                          color: Colors.blueAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)
+                          ),
+                          child: Text("Inscription",style: TextStyle(
+                            fontWeight: FontWeight.w600,fontSize: 16,
+>>>>>>> Stashed changes:handshake/lib/views/sign_up.dart
 
                           ),),
                         ),
@@ -131,17 +166,16 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                       children: [
                         Text("Avez-vous déjà un compte ?"),
                         TextButton(
-                          onPressed: () {
-
-                            },
-
+                          onPressed: () { 
+                             Navigator.push(context, 
+                            MaterialPageRoute(builder: (BuildContext) => Connection()));
+                           },
                           child: Text(
                           "Connexion",style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18
                         )
-                        ,),
-                          ),
+                        ,),),
                       ],
                     )
                   ],
