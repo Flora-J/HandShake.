@@ -4,6 +4,7 @@ import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/button.dart';
 
 import '../widgets/background_decoration.dart';
+import 'announcements.dart';
 
 
 class ProfileAccompanied extends StatelessWidget {
@@ -90,7 +91,7 @@ class ProfileAccompanied extends StatelessWidget {
                 ),
                 Container(
                     width: 180,
-                    child: elevatedButton2(context, "Annonces effectuées",  ()=>HomePage()),
+                    child: elevatedButton2(context, "Annonces effectuées",  ()=>AnnoucementDisplay()),
                     ),
                 SizedBox(
                   height: 12,
