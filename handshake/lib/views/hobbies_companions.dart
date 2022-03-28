@@ -5,14 +5,14 @@ import '../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 
-class Hobbies extends StatefulWidget {
+class HobbiesCompanions extends StatefulWidget {
 
   @override
-  _HobbiesState createState()=> _HobbiesState();
+  _HobbiesCompanionsState createState()=> _HobbiesCompanionsState();
 
 }
 
-class _HobbiesState extends State<Hobbies> {
+class _HobbiesCompanionsState extends State<HobbiesCompanions> {
 
   String dropdownValue = 'Musique';
   final organisationController = TextEditingController();

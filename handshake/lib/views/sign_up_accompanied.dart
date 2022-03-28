@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/views/hobbies_accompanied.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 import '../widgets/textFormField_widget.dart';
@@ -127,11 +128,14 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                                 } catch (error) {
                                   print('Entry has not been added : $error');
                                 }
-                                Navigator.pushNamedAndRemoveUntil(
-                                    context, '/connections', (route) => false);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (BuildContext) => hobbies_accompagned()
+                              ));
+                                //Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
                               }
                             },
-                            child: Text("Inscription")
+                            child: Text("Suivant")
 
                         ),),
                     ),

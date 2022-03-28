@@ -4,15 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 import '../widgets/textFormField_widget.dart';
+import 'hobbies_companions.dart';
 
 
-class SignupPage extends StatefulWidget {
+class SignupPageCompanions extends StatefulWidget {
 
   @override
-  _SignupPageState createState()=> _SignupPageState();
+  _SignupPageCompanionsState createState()=> _SignupPageCompanionsState();
 }
 
-class _SignupPageState extends State<SignupPage>{
+class _SignupPageCompanionsState extends State<SignupPageCompanions>{
 
 
   @override
@@ -133,11 +134,12 @@ class _SignupPageState extends State<SignupPage>{
                               } catch (error) {
                                 print('Entry has not been added : $error');
                               }
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, '/connections', (route) => false);
+                              Navigator.push(context,MaterialPageRoute(builder: (BuildContext) => HobbiesCompanions()
+                            ));
+                              //Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
                             }
                           },
-                          child: Text("Inscription")
+                          child: Text("Suivant")
 
                           ),),
                         ),
