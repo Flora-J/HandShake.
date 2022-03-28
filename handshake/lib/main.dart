@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:handshake/views/sign_up_companions.dart';
 import 'package:handshake/views/hobbies.dart';
 import 'package:handshake/views/sign_up_accompanied.dart';
+import 'package:handshake/views/hobbies_accompagnied.dart';
 
 
 Future<void> main() async {
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: SignupPageAccompanied(),
+      home: hobbies_accompagned(),
     );
   }
 
