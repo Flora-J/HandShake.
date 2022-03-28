@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:handshake/widgets/button.dart';
+import 'package:intl/intl.dart';
 
 enum SingingCharacter {
   courses,
@@ -19,6 +20,9 @@ class FormAnnounce extends StatefulWidget {
 //final controller = GroupButtonController();
 class _FormAnnounce extends State<FormAnnounce> {
   SingingCharacter? _character = SingingCharacter.courses;
+
+  TextEditingController timeinput = TextEditingController();
+  TextEditingController dateinput = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +56,85 @@ class _FormAnnounce extends State<FormAnnounce> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
-                    //floatingLabelAlignment: FloatingLabelAlignment.center,
                     labelText: 'Titre',
-                    //helperStyle: TextStyle()
                   ),
                 ),
+                Column(
+                  children: [
+                    TextField(
+                      controller: dateinput,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.today_sharp), //icon of text field
+                          labelText: "Mettez le jour", //label text of field
+                          labelStyle: TextStyle(color: Colors.blueGrey)
+                      ),
+                      readOnly: true,  //set it true, so that user will not able to edit text
+                      onTap: () async {
+                        DateTime currentDate = DateTime.now();
+                        DateTime? date = await showDatePicker(
+                          context: context,
+                          initialDate: currentDate,
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2050),
+                          currentDate: DateTime.now(),
+                          initialEntryMode: DatePickerEntryMode.calendar,
+                          initialDatePickerMode: DatePickerMode.day,
+                          builder: (context, child) {
+                            return Theme(
+                                data: Theme.of(context).copyWith(
+                                    colorScheme: ColorScheme.fromSwatch(
+                                      primarySwatch: Colors.blue,
+                                      backgroundColor: Colors.lightBlue,
+                                      cardColor: Colors.white,
+                                    )
+                                ),
+                                child: child!
+                            );
+                          },
+                        );
+                        if (date != null && date != currentDate) {
+                          String formattedDate = DateFormat('dd/MM/yyy').format(
+                              currentDate);
+                          setState(() {
+                            dateinput.text = formattedDate.toString(); //set the value of text field.
+                          });
+                        }
+                      },
+                    ),
+                  ],
+                 ),
+                Column(
+                    children: [
+                        TextField(
+                          controller: timeinput, //editing controller of this TextField
+                          decoration: InputDecoration(
+                            icon: Icon(Icons.access_time_rounded), //icon of text field
+                                  labelText: "Mettez l'heure", //label text of field
+                                  labelStyle: TextStyle(color: Colors.blueGrey)
+                          ),
+                          readOnly: true,  //set it true, so that user will not able to edit text
+                          onTap: () async {
+                            TimeOfDay? pickedTime =  await showTimePicker(
+                              initialTime: TimeOfDay.now(),
+                              context: context,
+                              builder: (BuildContext context, Widget? child) {
+                                return MediaQuery(
+                                    data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+                                    child: child!
+                                    )
+                                  },
+                                );
+
+                              if(pickedTime != null ){
+                                DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
+                                //converting to DateTime so that we can further format on different pattern.
+                                String formattedTime = DateFormat('HH:mm').format(parsedTime);
+                                setState(() {
+                                  timeinput.text = formattedTime; //set the value of text field.
+                                  });
+                                }
+                              },
+                        ),
                 ListTile(
                   title: const Text('Courses'),
                   leading: Radio<SingingCharacter>(
@@ -135,9 +213,11 @@ class _FormAnnounce extends State<FormAnnounce> {
                 ),
               ],
             ),
+            ],
           ),
         ),
       ),
+    )
     );
   }
 }
