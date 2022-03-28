@@ -4,6 +4,7 @@ import 'package:handshake/views/announcement_form.dart';
 import 'package:handshake/views/hobbies.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:handshake/views/page_profile_companions.dart';
 import 'package:handshake/views/sign_up.dart';
 
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: SignupPage(),
+      home: HomePage(),
     );
   }
 

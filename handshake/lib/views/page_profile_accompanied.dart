@@ -1,4 +1,9 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/models/Users.dart';
 import 'package:handshake/views/announcement_form.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/button.dart';
@@ -6,10 +11,50 @@ import 'package:handshake/widgets/button.dart';
 import '../widgets/background_decoration.dart';
 
 
-class ProfileAccompanied extends StatelessWidget {
+class ProfileAccompanied extends StatefulWidget {
+
+
+
+  @override
+  _ProfileAccompaniedState createState() => _ProfileAccompaniedState();
+}
+class _ProfileAccompaniedState extends State<ProfileAccompanied>{
+
+  String _firstName="";
+  FirebaseAuth auth = FirebaseAuth.instance;
+  //DatabaseReference ref = FirebaseDatabase.instance.ref();
+  final handShakeRef = FirebaseDatabase.instance.ref().child('/handShakeDb');
+  late StreamSubscription _userInformationStream;
+
+/*  @override
+  void iniState(){
+      super.initState();
+      _activateListener();
+
+  }
+
+  void _activateListener() {
+    _userInformationStream = handShakeRef.onValue.listen((event) {
+          final data = new Map<String, dynamic>.from(event.snapshot.value);
+          final firstName = Users.fromRTBD(data);
+          //data['Firstname'] as String;
+
+          setState(() {
+            _firstName = '$firstName';
+          });
+
+        });
+  }*/
+
+
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
     return Scaffold(
         appBar: AppBar(
           elevation: 30,
@@ -43,7 +88,7 @@ class ProfileAccompanied extends StatelessWidget {
                     height: 8,
                 ),
                 Text(
-                    "Vert",
+                    _firstName,
                   style: TextStyle(
                     color: Colors.lightBlue,
                     fontWeight: FontWeight.bold,
@@ -112,6 +157,8 @@ class ProfileAccompanied extends StatelessWidget {
         )
     );
   }
+
+
 }
 
 
