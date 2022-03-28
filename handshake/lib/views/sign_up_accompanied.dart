@@ -31,6 +31,7 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
     FirebaseAuth auth = FirebaseAuth.instance;
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
+    final newKey = handShakeRef.push().key;
     final _formKey = GlobalKey<FormState>();
 
 
@@ -114,6 +115,7 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                                 } catch (e) {
                                   print(e);
                                 }
+
                                 final newEntry = <String, dynamic>{
                                   'FirstName': nameController.text,
                                   'LastName': lastnameController.text,

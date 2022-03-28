@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/widgets/background_decoration.dart';
@@ -23,9 +25,18 @@ class _FormAnnounce extends State<FormAnnounce> {
 
   TextEditingController timeinput = TextEditingController();
   TextEditingController dateinput = TextEditingController();
+  final title = TextEditingController();
+  final description = TextEditingController();
+
+
+
 
   @override
   Widget build(BuildContext context) {
+
+    DatabaseReference ref = FirebaseDatabase.instance.ref();
+    final handShakeRef = ref.child('/handShakeDb/announces');
+
     return Scaffold(
       appBar: AppBar(
         elevation: 30,
@@ -53,6 +64,7 @@ class _FormAnnounce extends State<FormAnnounce> {
                 mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 TextField(
+                  controller: title,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -196,6 +208,7 @@ class _FormAnnounce extends State<FormAnnounce> {
                   ),
                 ),
                 TextField(
+                  controller: description,
                   maxLines: null,
                   // maxLength: 1000,
                   decoration: InputDecoration(
@@ -209,7 +222,36 @@ class _FormAnnounce extends State<FormAnnounce> {
                 SizedBox(height: 40,),
                 SizedBox(
                   width: 120,
-                  child: elevatedButton(context, "Valider", ()=> ProfileAccompanied()),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 250, 250, 250),
+                      elevation: 10,
+                      shadowColor: Color.fromARGB(255, 14, 118, 223),
+                    ),
+                    onPressed: () async {
+                      final newAnnounce = <String, dynamic>{
+                        'Titre': title.text,
+                        'Date': dateinput.text,
+                        'Horaire': timeinput.text,
+                        'activité': _character.toString().split('.').last,
+                        'descriptif': description.text
+                      };
+                      try {
+                        // Get information in the data base
+                        await handShakeRef.push().set(newAnnounce);
+                        print("entry has been added");
+                      } catch (error) {
+                        print('Entry has not been added : $error');
+                      }
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => ProfileAccompanied()
+                          )
+                      );
+                    },
+                    child: Text(
+                      "valider",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
                 ),
               ],
             ),
