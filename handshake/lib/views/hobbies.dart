@@ -1,10 +1,12 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 
 class Hobbies extends StatefulWidget {
-  
+
   @override
   _HobbiesState createState()=> _HobbiesState();
 
@@ -16,18 +18,22 @@ class _HobbiesState extends State<Hobbies> {
   final organisationController = TextEditingController();
   final otherHobbieController = TextEditingController();
 
+
   get decoration => null;
   @override
   Widget build(BuildContext context) {
+    DatabaseReference ref = FirebaseDatabase.instance.ref();
+    final handShakeRef = ref.child('/handShakeDb/loisirs');
+    List<String> activite = [];
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading:
-        IconButton( onPressed: (){
-          Navigator.pop(context);
-        },icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.black,)),
+        elevation: 30,
+        title: const Text(
+          "Loisirs",
+        ),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Container(
@@ -36,10 +42,11 @@ class _HobbiesState extends State<Hobbies> {
           width: MediaQuery.of(context).size.width,
           child:
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
+            //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Bienvuenue à HandShake, dis-nous en plus sur toi !',
+                'Dis-nous en plus sur toi !',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30,
@@ -70,7 +77,28 @@ class _HobbiesState extends State<Hobbies> {
                   child: MaterialButton(
                     minWidth: double.infinity,
                     height:60,
-                    onPressed: (){},
+                    onPressed: () async{
+
+                        activite.add(dropdownValue);
+                        activite.add(otherHobbieController.text);
+
+                      try {
+                      await handShakeRef.set({
+                        'Organisation': organisationController.text,
+                        'Activité 1': activite[0],
+                        'Activité 2': activite[1]
+
+                        },
+
+                      );
+                      print("entry has been added");
+                    }catch(error){
+                      print('Entry has not been added : $error' );
+                    };
+
+
+
+                    },
                     color: Colors.blueAccent,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40)
@@ -82,6 +110,7 @@ class _HobbiesState extends State<Hobbies> {
                 ),
               ),
               SizedBox(height: 20,),
+              Text(dropdownValue)
             ],
           ),
         ), ),
@@ -93,10 +122,11 @@ class _HobbiesState extends State<Hobbies> {
   Widget _buildRowHobbies() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+
       children: [
         Text("As-tu des loisirs ?", style: TextStyle(fontSize: 18,color: Colors.white)),
         SizedBox(
-          width: 500,
+          width: 50,
         ),
         DropdownButton<String>(
           value: dropdownValue,
