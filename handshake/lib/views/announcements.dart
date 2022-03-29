@@ -21,11 +21,10 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
 
   void _activateListeners() {
     _database
-        .child('/handShakeDb/announces/-MzGZTld1x3iNfn_3NaO')
+        .child('/handShakeDb/announces')
         .onValue
         .listen((event) {
-      final announce =
-          new Map<String, dynamic>.from(event.snapshot.value as dynamic);
+      final announce = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       final title = announce['Titre'] as String;
       final date = announce['Date'];
       final hour = announce['Horaire'];
