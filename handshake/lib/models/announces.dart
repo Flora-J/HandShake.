@@ -16,4 +16,9 @@ class Announces{
       descrition: data['descriptif']
     );
   }
+
+  String missionDescription(){
+    return '$title';
+  }
+
 }
