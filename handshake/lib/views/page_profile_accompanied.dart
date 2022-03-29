@@ -54,12 +54,8 @@ class ProfileAccompanied extends StatelessWidget {
                 SizedBox(
                   height: 12,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        child: Column(
+                    //Expanded(//child:
+                  Column(
                           children: [
                             Text("Followers",
                               style: TextStyle(
@@ -69,9 +65,8 @@ class ProfileAccompanied extends StatelessWidget {
                             ),
                           ],
                         ),
-                    ),
-                  ],
-                ),
+                    //),
+
                 SizedBox(
                   height: 12,
                 ),
