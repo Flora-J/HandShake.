@@ -47,7 +47,7 @@ class _FormAnnounce extends State<FormAnnounce> {
       body: Container(
         decoration: fondDecoration(),
         child: Padding(
-          padding: const EdgeInsets.only(top: 30.0, left: 24, right: 24, bottom: 140),
+          padding: const EdgeInsets.only(top: 30, left: 24, right: 24, bottom: 0),
           child: SingleChildScrollView(
             child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -102,7 +102,7 @@ class _FormAnnounce extends State<FormAnnounce> {
                       },
                     ),
                   ],
-                 ),
+                ),
                 Column(
                     children: [
                         TextField(
