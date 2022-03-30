@@ -27,6 +27,7 @@ class _PresentationPageState extends State<PresentationPage> {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false ,
       appBar: AppBar(
         elevation: 30,
         title: const Text(
@@ -38,8 +39,11 @@ class _PresentationPageState extends State<PresentationPage> {
         decoration: fondDecoration(),
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 30, left: 24, right: 24, bottom: 0),
-          child: Column(children: [
+              const EdgeInsets.only(top: 30, left: 24, right: 24, bottom: 100),
+          //child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
             Container(
               padding: EdgeInsets.only(top: 0, bottom: 0),
               height: 80,
@@ -51,10 +55,13 @@ class _PresentationPageState extends State<PresentationPage> {
                 child: CarouselSlider(
                   options: CarouselOptions(
                       enlargeCenterPage: true,
-                      enableInfiniteScroll: false,
+                      enableInfiniteScroll: true,
                       autoPlay: true,
                       height: 300),
-                  items: ['images/icons8-charity-64.png', 'images/icons8-community-64.png', 'images/icons8-no-money-64.png'].map((i) {
+                      //aspectRatio: 2,
+                      //autoPlayCurve: Curves.fastOutSlowIn,
+                  items: ['images/solidarite.png', 'images/community.png', 'images/no-money.png'].map((i) {
+                    BoxFit.fitHeight;
                     return Builder(
                       builder : (BuildContext context) {
                         return Container(
@@ -64,11 +71,11 @@ class _PresentationPageState extends State<PresentationPage> {
                             children: [
                               Image.asset(i),
                               SizedBox(height: 10),
-                              if(i == 'images/icons8-charity-64.png')
+                              if(i == 'images/solidarite.png')
                                 Text("${ImageList[0]}", style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal,), textAlign: TextAlign.center),
-                              if(i == 'images/icons8-community-64.png')
+                              if(i == 'images/community.png')
                                 Text("${ImageList[1]}", style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal), textAlign: TextAlign.center),
-                              if(i == 'images/icons8-no-money-64.png')
+                              if(i == 'images/no-money.png')
                                 Text("${ImageList[2]}", style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal), textAlign: TextAlign.center),
                             ],
                             ),
@@ -76,6 +83,7 @@ class _PresentationPageState extends State<PresentationPage> {
                       }
                     );
                   }).toList(),
+                //viewportFraction: 1.0,
                 ),
               ),
             ),
@@ -94,6 +102,7 @@ class _PresentationPageState extends State<PresentationPage> {
           ]),
         ),
       ),
+      //),
     );
   }
 }
