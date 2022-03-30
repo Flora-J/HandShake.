@@ -15,10 +15,11 @@ class PresentationPage extends StatefulWidget {
 }
 
 class _PresentationPageState extends State<PresentationPage> {
-  final List imageList = [
-    {"title": "Accompagnement personnalisé selon le rythme de vie des personnes atteintent de TSA.", "url": "images/icons8-charity-64.png"},
-    {"title": "Déveloopez votre réseau", "url": "images/icons8-community-64.png"},
-    {"title": "Service gratuit et acccesible en quelques clics", "url": "images/icons8-no-money-64.png"}
+
+  var ImageList = [
+    "Accompagnement personnalisé selon le rythme de vie des personnes atteintent de TSA.",
+    "Développez votre réseau",
+    "Service gratuit et acccesible en quelques clics"
   ];
 
   @override
@@ -53,30 +54,33 @@ class _PresentationPageState extends State<PresentationPage> {
                       enableInfiniteScroll: false,
                       autoPlay: true,
                       height: 300),
-                  items: imageList.map((item) {
-                    return GridTile(
-                      child: Image.asset(
-                        item["url"],
-                        width: 500,
-                        height: 400,
-                        fit: BoxFit.cover,
-                      ),
-                      footer: Container(
-                        padding: EdgeInsets.all(15),
-                        color: Colors.transparent,
-                        child: Text(
-                          item["title"],
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+                  items: ['images/icons8-charity-64.png', 'images/icons8-community-64.png', 'images/icons8-no-money-64.png'].map((i) {
+                    return Builder(
+                      builder : (BuildContext context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            children: [
+                              Image.asset(i),
+                              SizedBox(height: 10),
+                              if(i == 'images/icons8-charity-64.png')
+                                Text("${ImageList[0]}", style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal,), textAlign: TextAlign.center),
+                              if(i == 'images/icons8-community-64.png')
+                                Text("${ImageList[1]}", style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal), textAlign: TextAlign.center),
+                              if(i == 'images/icons8-no-money-64.png')
+                                Text("${ImageList[2]}", style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal), textAlign: TextAlign.center),
+                            ],
+                            ),
+                        );
+                      }
                     );
                   }).toList(),
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 50),
+              margin: EdgeInsets.only(top: 20),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
