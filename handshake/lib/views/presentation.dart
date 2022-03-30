@@ -1,10 +1,11 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'dart:core';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/button.dart';
 import 'package:handshake/widgets/logo.dart';
 
 import '../widgets/background_decoration.dart';
-import '../widgets/sizebox.dart';
 
 class PresentationPage extends StatefulWidget {
   PresentationPage({Key? key}) : super(key: key);
@@ -14,76 +15,81 @@ class PresentationPage extends StatefulWidget {
 }
 
 class _PresentationPageState extends State<PresentationPage> {
+  final List imageList = [
+    {"title": "Accompagnement personnalisé selon le rythme de vie des personnes atteintent de TSA.", "url": "images/icons8-charity-64.png"},
+    {"title": "Déveloopez votre réseau", "url": "images/icons8-community-64.png"},
+    {"title": "Service gratuit et acccesible en quelques clics", "url": "images/icons8-no-money-64.png"}
+  ];
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
-        appBar: AppBar(
-          elevation: 30,
-          title: const Text(
-            "Accueil",
-          ),
-          centerTitle: true,
+      appBar: AppBar(
+        elevation: 30,
+        title: const Text(
+          "Bienvenue",
         ),
-        body: Container(
-          //padding: const EdgeInsets.only(top: 0),
-          //width: size.width,
-          //height: size.height,
-          decoration: fondDecoration(),
-          child: Padding(
-            padding: const EdgeInsets.only(
-                top: 20.0, left: 24, right: 24, bottom: 10),
-                child: SingleChildScrollView(
-              child: Column(children: [
-                Container(
-                  padding: EdgeInsets.only(top: 0, bottom: 0),
-                  height: 80,
-                  child: logo(size),
-                ),
-                columnSize(),
-                Container(
-                  child: Image.asset("images/icons8-charity-64.png"),
-                    ),
-                    Text('Accompagnement adapté au rythme des personnes atteintes de TSA.', textAlign: TextAlign.left, style: TextStyle (fontStyle: FontStyle.italic)),
-                columnSize(),
-                Container(
-                  child: Image.asset("images/icons8-community-64.png"),
-                    ),
-                    Text('Restez en contact avec nos bénévoles dûement séléctionnés.', textAlign: TextAlign.right, style: TextStyle (fontStyle: FontStyle.italic)),
-                columnSize(),
-                Container(
-                  child: Image.asset("images/icons8-no-money-64.png"),
-                    ),
-                    Text('Service gratuit et accessible en quelques clics.',textAlign: TextAlign.left ,style: TextStyle (fontStyle: FontStyle.italic)),
-                Container(
-                  margin: EdgeInsets.only(top: 50),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          width: 130,
-                          child: elevatedButton(
-                              context, "Commencer", () => HomePage()),
-                        ),
-                      ]),
-                ),
-              ]),
+        centerTitle: true,
+      ),
+      body: Container(
+        decoration: fondDecoration(),
+        child: Padding(
+          padding:
+              const EdgeInsets.only(top: 30, left: 24, right: 24, bottom: 0),
+          child: Column(children: [
+            Container(
+              padding: EdgeInsets.only(top: 0, bottom: 0),
+              height: 80,
+              child: logo(size),
             ),
-          ),
-        ));
-  }
-
-  /* Widget _titleDecoration(String text) {
-    return Text(
-      text,
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: 20,
-        color: Colors.blueGrey,
-        fontStyle: FontStyle.italic,
+            SizedBox(height: 50),
+            Container(
+              child: Center(
+                child: CarouselSlider(
+                  options: CarouselOptions(
+                      enlargeCenterPage: true,
+                      enableInfiniteScroll: false,
+                      autoPlay: true,
+                      height: 300),
+                  items: imageList.map((item) {
+                    return GridTile(
+                      child: Image.asset(
+                        item["url"],
+                        width: 500,
+                        height: 400,
+                        fit: BoxFit.cover,
+                      ),
+                      footer: Container(
+                        padding: EdgeInsets.all(15),
+                        color: Colors.transparent,
+                        child: Text(
+                          item["title"],
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 50),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      width: 130,
+                      child: elevatedButton(
+                          context, "Commencer", () => HomePage()),
+                    ),
+                  ]),
+            ),
+          ]),
+        ),
       ),
     );
-  } */
-
+  }
 }
