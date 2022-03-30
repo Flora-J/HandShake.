@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 class Announces{
   String title;
   String date;
@@ -7,7 +10,9 @@ class Announces{
 
   Announces({required this.title, required this.date, required this.hour, required this.activity, required this.descrition });
 
-  factory Announces.fromRTBD(Map<String, dynamic> data){
+
+
+ factory Announces.fromRTBD(Map<String, dynamic> data){
     return Announces(
       title: data['Titre'],
       activity: data['activité'],
@@ -17,8 +22,16 @@ class Announces{
     );
   }
 
-  String missionDescription(){
-    return '$title';
+   String missionDescription(){
+    return '''
+    $title \n
+    $activity \n
+    $date \n
+    $hour \n
+    $descrition
+    ''';
   }
+
+
 
 }

@@ -1,13 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/models/announces.dart';
 
 class AnnoucementDisplay extends StatefulWidget {
   @override
   State<AnnoucementDisplay> createState() => _AnnoucementDisplayState();
-
-/* @override
-  _AnnoucementDisplayState createState() => _AnnoucementDisplayState();*/
 
 }
 
@@ -18,22 +18,28 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
   String dateMission = "date de la mission";
   String heureMission = "heure de la mission";
   String mission = "mission";
+  String fetch="annonce";
+  List<Announces> list =[];
+
 
   void _activateListeners() {
+
     _database
         .child('/handShakeDb/announces')
         .onValue
         .listen((event) {
-      final announce = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
-      final title = announce['Titre'] as String;
-      final date = announce['Date'];
-      final hour = announce['Horaire'];
-      final activity = announce['activité'];
+
+      final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
+      data.forEach((key, value) {
+        list.add(new Announces(title: value['Titre'], hour: value['Horaire'], descrition: value['descriptif'], activity: value['activité'], date: value['Date']));
+        print(value);
+        print(key);
+
+      });
       setState(() {
-        titleMission = 'titre de l\'annonce : $title';
-        dateMission = 'Date : $date';
-        mission = 'Activité : $activity';
-        heureMission = "Heure: $hour";
+        fetch= list.toString();
+
+
       });
     });
   }
@@ -42,6 +48,7 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
   void initState() {
     super.initState();
     _activateListeners();
+
   }
 
   @override
@@ -64,23 +71,16 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
             },
           ),
         ),
-        body: Center(
-            child: Column(children: [
-          Text('$titleMission'),
-          Text('$mission'),
-          Text('$dateMission'),
-          Text('$heureMission'),
-              /*FutureBuilder(future: _database.child('/handShakeDb/announces').get(),
-                  builder: (context, snapshot){
-                if (snapshot.hasData){
-
-                }
-
-                  }*/
-
-              //)
+        body: ListView(
+          shrinkWrap: true,
+            children: [
+              Text(list[2].descrition),
+             SizedBox(
+                 height: 20,),
         ]),
-        )
-    );
+        );
   }
 }
+
+
+
