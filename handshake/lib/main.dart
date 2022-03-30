@@ -1,14 +1,19 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:handshake/views/connections.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/views/presentation.dart';
-import 'package:handshake/widgets/background_decoration.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
+
   runApp(const MyApp());
 }
 
