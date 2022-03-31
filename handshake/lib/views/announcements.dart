@@ -32,7 +32,7 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
 
       final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
-        listAnnounces.add(new Announces(title: value['Titre'], hour: value['Horaire'], description: value['descriptif'], activity: value['activité'], date: value['Date']));
+        listAnnounces.add(new Announces(key: key, title: value['Titre'], hour: value['Horaire'], description: value['descriptif'], activity: value['activité'], date: value['Date']));
         
         print(value);
         print(key);
@@ -87,8 +87,10 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
                   itemCount: listAnnounces.length,
                   shrinkWrap: true,
                   itemBuilder: (context, value){
-                    return Announces(title: listAnnounces[value].title, hour: listAnnounces[value].hour, description: listAnnounces[value].description, activity: listAnnounces[value].activity, date: listAnnounces[value].date )
+                    return Announces(key: listAnnounces[value].key, title: listAnnounces[value].title, hour: listAnnounces[value].hour, description: listAnnounces[value].description, activity: listAnnounces[value].activity, date: listAnnounces[value].date )
                         .missionDescription(context);
+
+
               }),
         ]),
         )));

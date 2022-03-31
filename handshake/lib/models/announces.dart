@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 class Announces{
+  String? key;
   String title;
   String date;
   String hour;
   String activity;
   String description;
 
-  Announces({required this.title, required this.date, required this.hour, required this.activity, required this.description });
+  Announces({required this.key, required this.title, required this.date, required this.hour, required this.activity, required this.description });
 
 
 
  factory Announces.fromRTBD(Map<String, dynamic> data){
     return Announces(
+      key: data['key'],
       title: data['Titre'],
       activity: data['activité'],
       date: data['Date'],
@@ -43,6 +45,7 @@ class Announces{
           Padding(padding: EdgeInsets.only(top: 20),
           child:
     Text('''
+    $key \n
     $title \n
     $activity \n
     $date \n
