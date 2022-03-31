@@ -12,7 +12,13 @@ class SignupPageCompanions extends StatefulWidget {
   _SignupPageCompanionsState createState() => _SignupPageCompanionsState();
 }
 
+<<<<<<< HEAD
 class _SignupPageCompanionsState extends State<SignupPageCompanions> {
+=======
+class _SignupPageCompanionsState extends State<SignupPageCompanions>{
+
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+>>>>>>> link-announces
   FirebaseAuth auth = FirebaseAuth.instance;
 
   void initState(){

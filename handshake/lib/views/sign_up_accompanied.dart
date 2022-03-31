@@ -15,20 +15,21 @@ class SignupPageAccompanied extends StatefulWidget {
 
 class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
 
+<<<<<<< HEAD
   void initState(){
     super.initState();
     _formKey = GlobalKey<FormState>();
   }
     var _formKey;
+=======
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+>>>>>>> link-announces
 
   @override
   Widget build(BuildContext context) {
 
     final nameController = TextEditingController();
     final lastnameController = TextEditingController();
-    //final addressController = TextEditingController();
-    //final cityController = TextEditingController();
-    //final cpController = TextEditingController();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmationPasswordController = TextEditingController();
@@ -37,6 +38,11 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
     final newKey = handShakeRef.push().key;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> link-announces
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

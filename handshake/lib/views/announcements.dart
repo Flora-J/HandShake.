@@ -17,6 +17,7 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
   String dateMission = "date de la mission";
   String heureMission = "heure de la mission";
   String mission = "mission";
+<<<<<<< HEAD
   String fetch = "annonce";
   List<Announces> list = [];
 
@@ -31,11 +32,28 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
             descrition: value['descriptif'],
             activity: value['activité'],
             date: value['Date']));
+=======
+  String fetch="annonce";
+  List<Announces> listAnnounces =[];
+
+  void _activateListeners() {
+    _database
+        .child('/handShakeDb/announces')
+        .onValue
+        .listen((event) {
+
+      final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
+      data.forEach((key, value) {
+        listAnnounces.add(new Announces(title: value['Titre'], hour: value['Horaire'], description: value['descriptif'], activity: value['activité'], date: value['Date']));
+>>>>>>> link-announces
         print(value);
         print(key);
       });
       setState(() {
+<<<<<<< HEAD
         fetch = list.toString();
+=======
+>>>>>>> link-announces
       });
     });
   }
@@ -71,7 +89,47 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
         SizedBox(
           height: 20,
         ),
+<<<<<<< HEAD
       ]),
     );
   }
 }
+=======
+        body: ListView(
+          shrinkWrap: true,
+            children: [
+              ListView.builder(
+                  itemCount: listAnnounces.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, value){
+                    return Announces(title: listAnnounces[value].title, hour: listAnnounces[value].hour, description: listAnnounces[value].description, activity: listAnnounces[value].activity, date: listAnnounces[value].date )
+                        .missionDescription(context);
+              }),
+        ]),
+        );
+  }
+}
+
+/*Widget _announceList(List list){
+  return ListView.builder(
+    itemCount: list.length,
+    shrinkWrap: true,
+    padding: const EdgeInsets.only(top: 16, bottom: 350),
+    physics: const NeverScrollableScrollPhysics(),
+    itemBuilder: (context, index) {
+      return list(
+          : chatUsers[index].name,
+          messageText: chatUsers[index].messagetext,
+          imageUrl: chatUsers[index].imageUrl,
+          time: chatUsers[index].time,
+          isMessageRead: (index == 0 || index == 10) ? true : false);
+    },
+  )
+
+
+  }*/
+
+
+
+
+>>>>>>> link-announces

@@ -75,6 +75,7 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
                           left: BorderSide(color: Colors.black))),
                   child: MaterialButton(
                     minWidth: double.infinity,
+<<<<<<< HEAD
                     height: 60,
                     onPressed: () async {
                       activite.add(dropdownValue);
@@ -95,6 +96,28 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
                       ;
                       Navigator.pushNamedAndRemoveUntil(
                           context, '/connections', (route) => false);
+=======
+                    height:60,
+                    onPressed: ()async{
+                      final newEntry = <String, dynamic>{
+                        'Organisation': organisationController.text,
+                        'Activité 1': dropdownValue,
+                        'Activité 2': otherHobbieController,
+                        //'Photo' :
+                      };
+                      try {
+                        // Get information in the data base
+                        handShakeRef.push().set(newEntry);
+                        print("entry has been added");
+                      } catch (error) {
+                        print('Entry has not been added : $error');
+    }
+                      ;
+                      Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
+
+
+
+>>>>>>> link-announces
                     },
                     color: Colors.blueAccent,
                     shape: RoundedRectangleBorder(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:handshake/views/announcement_form.dart';
 import 'package:handshake/views/home_page.dart';
+import 'package:handshake/widgets/bottomNavigationBar.dart';
 import 'package:handshake/widgets/button.dart';
 
 import '../widgets/background_decoration.dart';

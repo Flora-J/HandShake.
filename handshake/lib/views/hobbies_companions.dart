@@ -15,6 +15,7 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
   final otherHobbieController = TextEditingController();
 
   get decoration => null;
+
   @override
   Widget build(BuildContext context) {
     DatabaseReference ref = FirebaseDatabase.instance.ref();
@@ -79,6 +80,7 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: () async {
+<<<<<<< HEAD
                       activite.add(dropdownValue);
                       activite.add(otherHobbieController.text);
 
@@ -90,6 +92,17 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                             'Activité 2': activite[1]
                           },
                         );
+=======
+                      final newEntry = <String, dynamic>{
+                        'Organisation': organisationController.text,
+                        'Activité 1': dropdownValue,
+                        'Activité 2': otherHobbieController,
+                        //'Photo' :
+                      };
+                      try {
+                        // Get information in the data base
+                        handShakeRef.push().set(newEntry);
+>>>>>>> link-announces
                         print("entry has been added");
                       } catch (error) {
                         print('Entry has not been added : $error');
