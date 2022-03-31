@@ -19,7 +19,6 @@ class _connectionState extends State<Connection>{
   final passwordController = TextEditingController();
   FirebaseAuth auth = FirebaseAuth.instance;
 
-
   Widget userInput(TextEditingController userInput, String hintTitle, TextInputType keyboardType) {
     return Container(
       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),

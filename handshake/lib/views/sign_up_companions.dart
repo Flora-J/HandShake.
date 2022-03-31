@@ -4,15 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 import '../widgets/textFormField_widget.dart';
+import 'hobbies_companions.dart';
 
 
-class SignupPage extends StatefulWidget {
+class SignupPageCompanions extends StatefulWidget {
 
   @override
-  _SignupPageState createState()=> _SignupPageState();
+  _SignupPageCompanionsState createState()=> _SignupPageCompanionsState();
 }
 
-class _SignupPageState extends State<SignupPage>{
+class _SignupPageCompanionsState extends State<SignupPageCompanions>{
+
+  FirebaseAuth auth = FirebaseAuth.instance;
 
 
   @override
@@ -27,7 +30,7 @@ class _SignupPageState extends State<SignupPage>{
     final passwordController = TextEditingController();
     final confirmationPasswordController = TextEditingController();
 
-    FirebaseAuth auth = FirebaseAuth.instance;
+
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
     final _formKey = GlobalKey<FormState>();
@@ -102,8 +105,7 @@ class _SignupPageState extends State<SignupPage>{
                           onPressed: () async{
                             if (_formKey.currentState!.validate()) {
                               try {
-                                UserCredential userCredential = await FirebaseAuth
-                                    .instance.createUserWithEmailAndPassword(
+                                UserCredential userCredential = await auth.createUserWithEmailAndPassword(
                                     email: emailController.text,
                                     password: passwordController.text
                                 );
@@ -128,16 +130,15 @@ class _SignupPageState extends State<SignupPage>{
                               };
                               try {
                                 // Get information in the data base
-                                handShakeRef.push().set(newEntry);
+                                await handShakeRef.push().set(newEntry);
                                 print("entry has been added");
                               } catch (error) {
                                 print('Entry has not been added : $error');
                               }
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, '/connections', (route) => false);
+                              Navigator.push(context,MaterialPageRoute(builder: (BuildContext) => HobbiesCompanions()));
                             }
                           },
-                          child: Text("Inscription")
+                          child: Text("Suivant")
 
                           ),),
                         ),
