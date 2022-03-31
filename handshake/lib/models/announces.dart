@@ -16,10 +16,10 @@ class Announces{
  factory Announces.fromRTBD(Map<String, dynamic> data){
     return Announces(
       title: data['Titre'],
-      activity: data['Activité'],
+      activity: data['activité'],
       date: data['Date'],
       hour: data['Horaire'],
-      description: data['Descriptif']
+      description: data['descriptif']
     );
   }
 

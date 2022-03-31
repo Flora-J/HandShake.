@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
 
-Widget generalBottomNavigationBar(){
+Widget generalBottomNavigationBar(BuildContext context){
   int index=0;
   List<dynamic> pages = [
     HomePage(),
@@ -25,6 +25,17 @@ Widget generalBottomNavigationBar(){
           icon: Icon(Icons.monitor),
           label: 'profil')
     ],onTap: (value){
+      switch(value){
+        case 0:
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => HomePage()));
+          break;
+        case 1:
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => HomePage()));
+          break;
+        case 2:
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => ProfileAccompanied()));
+          break;
+      }
 
   },
 

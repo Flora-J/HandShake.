@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:handshake/models/announces.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
+import '../widgets/bottomNavigationBar.dart';
+
 class AnnoucementDisplay extends StatefulWidget {
   @override
   State<AnnoucementDisplay> createState() => _AnnoucementDisplayState();
@@ -30,10 +32,14 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
 
       final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
-        listAnnounces.add(new Announces(title: value['Titre'], hour: value['Horaire'], description: value['Descriptif'], activity: value['Activité'], date: value['Date']));
+        listAnnounces.add(new Announces(title: value['Titre'], hour: value['Horaire'], description: value['descriptif'], activity: value['activité'], date: value['Date']));
         
         print(value);
         print(key);
+
+        setState(() {
+
+        });
 
       });
     });
@@ -61,11 +67,13 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
               color: Colors.white,
               size: 30,
             ),
+
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
+        bottomNavigationBar: generalBottomNavigationBar(context),
         body: SingleChildScrollView(
 
 

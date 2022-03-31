@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/button.dart';
 import '../widgets/background_decoration.dart';
+import '../widgets/bottomNavigationBar.dart';
 import '../widgets/logout_button.dart';
 
 
@@ -27,6 +28,7 @@ class ProfileCompanion extends StatelessWidget {
             },
           ),
         ),
+        bottomNavigationBar: generalBottomNavigationBar(context),
         body: Container(
           padding: EdgeInsets.only(top: 10, bottom: 50),
           decoration: fondDecoration(),
