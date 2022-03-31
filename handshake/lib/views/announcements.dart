@@ -17,22 +17,6 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
   String dateMission = "date de la mission";
   String heureMission = "heure de la mission";
   String mission = "mission";
-<<<<<<< HEAD
-  String fetch = "annonce";
-  List<Announces> list = [];
-
-  void _activateListeners() {
-    _database.child('/handShakeDb/announces').onValue.listen((event) {
-      final data =
-          new Map<String, dynamic>.from(event.snapshot.value as dynamic);
-      data.forEach((key, value) {
-        list.add(new Announces(
-            title: value['Titre'],
-            hour: value['Horaire'],
-            descrition: value['descriptif'],
-            activity: value['activité'],
-            date: value['Date']));
-=======
   String fetch="annonce";
   List<Announces> listAnnounces =[];
 
@@ -45,15 +29,10 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
       final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
         listAnnounces.add(new Announces(title: value['Titre'], hour: value['Horaire'], description: value['descriptif'], activity: value['activité'], date: value['Date']));
->>>>>>> link-announces
         print(value);
         print(key);
       });
       setState(() {
-<<<<<<< HEAD
-        fetch = list.toString();
-=======
->>>>>>> link-announces
       });
     });
   }
@@ -84,17 +63,6 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
           },
         ),
       ),
-      body: ListView(shrinkWrap: true, children: [
-        Text(list[2].descrition),
-        SizedBox(
-          height: 20,
-        ),
-<<<<<<< HEAD
-      ]),
-    );
-  }
-}
-=======
         body: ListView(
           shrinkWrap: true,
             children: [
@@ -132,4 +100,3 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
 
 
 
->>>>>>> link-announces

@@ -8,29 +8,12 @@ class Announces {
   String activity;
   String description;
 
-<<<<<<< HEAD
-  Announces(
-      {required this.title,
-      required this.date,
-      required this.hour,
-      required this.activity,
-      required this.descrition});
-=======
+
   Announces({required this.title, required this.date, required this.hour, required this.activity, required this.description });
->>>>>>> link-announces
+
 
   factory Announces.fromRTBD(Map<String, dynamic> data) {
     return Announces(
-<<<<<<< HEAD
-        title: data['Titre'],
-        activity: data['activité'],
-        date: data['Date'],
-        hour: data['Horaire'],
-        descrition: data['descriptif']);
-  }
-
-  String missionDescription() {
-=======
       title: data['Titre'],
       activity: data['activité'],
       date: data['Date'],

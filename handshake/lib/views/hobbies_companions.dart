@@ -80,19 +80,6 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: () async {
-<<<<<<< HEAD
-                      activite.add(dropdownValue);
-                      activite.add(otherHobbieController.text);
-
-                      try {
-                        await hobbies.set(
-                          {
-                            'Organisation': organisationController.text,
-                            'Activité 1': activite[0],
-                            'Activité 2': activite[1]
-                          },
-                        );
-=======
                       final newEntry = <String, dynamic>{
                         'Organisation': organisationController.text,
                         'Activité 1': dropdownValue,
@@ -102,7 +89,6 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                       try {
                         // Get information in the data base
                         handShakeRef.push().set(newEntry);
->>>>>>> link-announces
                         print("entry has been added");
                       } catch (error) {
                         print('Entry has not been added : $error');
