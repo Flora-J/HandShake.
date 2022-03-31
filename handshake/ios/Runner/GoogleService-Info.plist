@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:758902924249:ios:166a45bec2000fbf442fc8</string>
+	<key>DATABASE_URL</key>
+	<string>https://handshakefirebase-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>
