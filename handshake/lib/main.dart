@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:handshake/views/connections.dart';
 import 'package:handshake/views/home_page.dart';
+import 'package:handshake/views/page_chat.dart';
 import 'package:handshake/views/presentation.dart';
 
 Future<void> main() async {
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: PresentationPage(),
+      home: Chat(),
     );
   }
 }
