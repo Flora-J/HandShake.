@@ -19,7 +19,6 @@ class FormAnnounce extends StatefulWidget {
   State<FormAnnounce> createState() => _FormAnnounce();
 }
 
-//final controller = GroupButtonController();
 class _FormAnnounce extends State<FormAnnounce> {
   SingingCharacter? _character = SingingCharacter.courses;
 
@@ -27,9 +26,6 @@ class _FormAnnounce extends State<FormAnnounce> {
   TextEditingController dateinput = TextEditingController();
   final title = TextEditingController();
   final description = TextEditingController();
-
-
-
 
   @override
   Widget build(BuildContext context) {

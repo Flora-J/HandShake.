@@ -6,9 +6,7 @@ import 'package:handshake/widgets/button.dart';
 import '../widgets/background_decoration.dart';
 import 'announcements.dart';
 
-
 class ProfileAccompanied extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +28,7 @@ class ProfileAccompanied extends StatelessWidget {
           ),
         ),
         body: Container(
-        decoration: fondDecoration(),
+          decoration: fondDecoration(),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,13 +36,14 @@ class ProfileAccompanied extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 56,
-                  backgroundColor: Colors.teal,//backgroundImage: NetworkImage(),
+                  backgroundColor:
+                      Colors.teal, //backgroundImage: NetworkImage(),
                 ),
                 SizedBox(
-                    height: 8,
+                  height: 8,
                 ),
                 Text(
-                    "Vert",
+                  "Vert",
                   style: TextStyle(
                     color: Colors.lightBlue,
                     fontWeight: FontWeight.bold,
@@ -54,60 +53,62 @@ class ProfileAccompanied extends StatelessWidget {
                 SizedBox(
                   height: 12,
                 ),
-                    //Expanded(//child:
-                  Column(
-                          children: [
-                            Text("Followers",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18,
-                            ),
-                            ),
-                          ],
-                        ),
-                    //),
+                //Expanded(//child:
+                Column(
+                  children: [
+                    Text(
+                      "Followers",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                //),
 
                 SizedBox(
                   height: 12,
                 ),
                 Container(
-                    width: 180,
-                    child: elevatedButton2(context, "Déposer une annonce",  ()=>FormAnnounce()),
-                  ),
+                  width: 180,
+                  child: elevatedButton2(
+                      context, "Déposer une annonce", () => FormAnnounce()),
+                ),
                 SizedBox(
                   height: 12,
                 ),
                 Container(
-                    width: 180,
-                    child: elevatedButton2(context, "Modifier mon profil",  ()=>HomePage()),
-                    ),
+                  width: 180,
+                  child: elevatedButton2(
+                      context, "Modifier mon profil", () => HomePage()),
+                ),
                 SizedBox(
                   height: 12,
                 ),
                 Container(
-                    width: 180,
-                    child: elevatedButton2(context, "Annonces effectuées",  ()=>AnnoucementDisplay()),
-                    ),
+                  width: 180,
+                  child: elevatedButton2(context, "Annonces effectuées",
+                      () => AnnoucementDisplay()),
+                ),
                 SizedBox(
                   height: 12,
                 ),
                 Container(
-                    width: 180,
-                    child: elevatedButton2(context, "Chat",  ()=>HomePage()),
-                    ),
+                  width: 180,
+                  child: elevatedButton2(context, "Chat", () => HomePage()),
+                ),
                 SizedBox(
                   height: 12,
                 ),
                 Container(
-                    width: 180,
-                    child: elevatedButton2(context, "Déconnexion",  ()=>HomePage()),
-                    ),
+                  width: 180,
+                  child:
+                      elevatedButton2(context, "Déconnexion", () => HomePage()),
+                ),
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }
-
-

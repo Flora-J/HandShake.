@@ -66,9 +66,7 @@ class _PresentationPageState extends State<PresentationPage> {
                         return Container(
                           width: MediaQuery.of(context).size.width,
                           margin: EdgeInsets.symmetric(horizontal: 5),
-                          decoration: BoxDecoration(
-                            color: Colors.transparent
-                          ),
+                          decoration: BoxDecoration(color: Colors.transparent),
                           child: Column(
                             children: [
                               Image.asset(i),

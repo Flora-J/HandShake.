@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 Widget textFormdBasic (TextEditingController userInput, String hintTitle){
 
@@ -8,7 +8,7 @@ Widget textFormdBasic (TextEditingController userInput, String hintTitle){
     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
     child: Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25),
-      child: TextFormField(
+      child: Form(child: TextFormField(
         validator: (userInput) {
           if (userInput == null || userInput.isEmpty){
             return 'Texte obligatoire';
@@ -21,8 +21,9 @@ Widget textFormdBasic (TextEditingController userInput, String hintTitle){
 
           hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
         ),
-        //keyboardType: keyboardType,
-      ),
+        /* keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.done, */
+      ),),
     ),
   )
   );
@@ -48,7 +49,6 @@ Widget textFormPassword (TextEditingController userInput, String hintTitle){
           hintText: hintTitle,
           hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
         ),
-        //keyboardType: keyboardType,
       ),
     ),
   )

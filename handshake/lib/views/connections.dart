@@ -3,32 +3,33 @@ import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
-
 class Connection extends StatefulWidget {
   static const routeName = '/connections';
 
   @override
   _connectionState createState() => _connectionState();
-  }
+}
 
-
-class _connectionState extends State<Connection>{
-
+class _connectionState extends State<Connection> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  Widget userInput(TextEditingController userInput, String hintTitle, TextInputType keyboardType) {
+  Widget userInput(TextEditingController userInput, String hintTitle,
+      TextInputType keyboardType) {
     return Container(
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(30)),
       child: Padding(
         padding: const EdgeInsets.only(left: 25.0, right: 25),
         child: TextField(
           controller: userInput,
           decoration: InputDecoration(
             hintText: hintTitle,
-            hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
+            hintStyle: TextStyle(
+                fontSize: 18,
+                color: Colors.blueAccent,
+                fontStyle: FontStyle.italic),
           ),
           keyboardType: keyboardType,
         ),
@@ -38,7 +39,6 @@ class _connectionState extends State<Connection>{
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         elevation: 30,
@@ -72,45 +72,53 @@ class _connectionState extends State<Connection>{
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: 30),
-                    userInput(emailController, 'Email', TextInputType.emailAddress),
-                Container(
-                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 25.0, right: 25),
-                    child: TextField(
-
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "Mot de passe",
-                        hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
+                    userInput(
+                        emailController, 'Email', TextInputType.emailAddress),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 25.0, right: 25),
+                        child: TextField(
+                          controller: passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: "Mot de passe",
+                            hintStyle: TextStyle(
+                                fontSize: 18,
+                                color: Colors.blueAccent,
+                                fontStyle: FontStyle.italic),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
                     Container(
                       height: 40,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Color.fromARGB(255, 14, 118, 223),
-                            elevation: 10,
+                          primary: Color.fromARGB(255, 14, 118, 223),
+                          elevation: 10,
                         ),
                         onPressed: () async {
-
-                          try{
-                            UserCredential userCredential = await auth.signInWithEmailAndPassword(
-                                email: emailController.text,
-                                password: passwordController.text);
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileAccompanied()));
-
-
+                          try {
+                            UserCredential userCredential =
+                                await auth.signInWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ProfileAccompanied()));
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               print('No user found for that email.');
                             } else if (e.code == 'wrong-password') {
                               print('Wrong password provided for that user.');
                             }
-                          }},
+                          }
+                        },
                         child: Text(
                           "connexion",
                           style: TextStyle(color: Colors.white),
@@ -127,12 +135,18 @@ class _connectionState extends State<Connection>{
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Vous n\'avez pas encore de compte ? ', style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),),
+                        Text(
+                          'Vous n\'avez pas encore de compte ? ',
+                          style: TextStyle(
+                              color: Colors.grey, fontStyle: FontStyle.italic),
+                        ),
                         TextButton(
                           onPressed: () {},
                           child: Text(
                             'S\'enregistrer',
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                       ],
@@ -147,8 +161,3 @@ class _connectionState extends State<Connection>{
     );
   }
 }
-
-
-
-
-

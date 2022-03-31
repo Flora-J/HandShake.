@@ -4,9 +4,7 @@ import 'package:handshake/widgets/button.dart';
 import '../widgets/background_decoration.dart';
 import '../widgets/logout_button.dart';
 
-
 class ProfileCompanion extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +35,14 @@ class ProfileCompanion extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 56,
-                  backgroundColor: Colors.teal,//backgroundImage: NetworkImage(),
+                  backgroundColor:
+                      Colors.teal, //backgroundImage: NetworkImage(),
                 ),
                 SizedBox(
-                    height: 8,
+                  height: 8,
                 ),
                 Text(
-                    "Vert",
+                  "Vert",
                   style: TextStyle(
                     color: Colors.lightBlue,
                     fontWeight: FontWeight.bold,
@@ -53,52 +52,51 @@ class ProfileCompanion extends StatelessWidget {
                 SizedBox(
                   height: 12,
                 ),
-                Text("Followers",
+                Text(
+                  "Followers",
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 18,
                   ),
                 ),
-
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                  width: 160,
+                  child: elevatedButton2(
+                      context, "Voir les offres", () => HomePage()),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                  child: elevatedButton2(
+                      context, "Modifier mon profil", () => HomePage()),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                  child: elevatedButton2(
+                      context, "Actions effectuées", () => HomePage()),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Container(
+                  width: 160,
+                  child: elevatedButton2(context, "Chat", () => HomePage()),
+                ),
                 SizedBox(
                   height: 12,
                 ),
                 Container(
                     width: 160,
-                    child: elevatedButton2(context, "Voir les offres",  ()=>HomePage()),
-                  ),
-                SizedBox(
-                  height: 12,
-                ),
-                Container(
-                    child: elevatedButton2(context, "Modifier mon profil",  ()=>HomePage()),
-                    ),
-                SizedBox(
-                  height: 12,
-                ),
-                Container(
-                    child: elevatedButton2(context, "Actions effectuées",  ()=>HomePage()),
-                    ),
-                SizedBox(
-                  height: 12,
-                ),
-                Container(
-                    width: 160,
-                    child: elevatedButton2(context, "Chat",  ()=>HomePage()),
-                    ),
-                SizedBox(
-                  height: 12,
-                ),
-                Container(
-                    width: 160,
-                    child: logoutButton(context, '/', 'Déconnection')
-                    ),
+                    child: logoutButton(context, '/', 'Déconnection')),
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }
-
-

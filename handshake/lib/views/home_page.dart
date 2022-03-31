@@ -34,8 +34,9 @@ class _HomePageState extends State<HomePage> {
           Container(
             child: logo(size),
           ),
-          Container (
-            child: _titleDecoration("La fleur bleue de l'épanouissement \n des autistes"),
+          Container(
+            child: _titleDecoration(
+                "La fleur bleue de l'épanouissement \n des autistes"),
           ),
           Container(
             margin: EdgeInsets.only(top: 120),
@@ -44,11 +45,13 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   SizedBox(
                     width: 130,
-                    child: elevatedButton(context, "S'inscrire", ()=>PreRegistration()),
+                    child: elevatedButton(
+                        context, "S'inscrire", () => PreRegistration()),
                   ),
                   SizedBox(
                     width: 130,
-                    child: elevatedButton(context, "Se connecter", ()=>Connection()),
+                    child: elevatedButton(
+                        context, "Se connecter", () => Connection()),
                   ),
                 ]),
           ),
@@ -56,7 +59,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 
   Widget _titleDecoration(String text) {
     return Text(
@@ -69,5 +71,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }

@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/views/hobbies_accompanied.dart';
+import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 import '../widgets/textFormField_widget.dart';
-
 
 class SignupPageAccompanied extends StatefulWidget {
 
@@ -15,6 +15,11 @@ class SignupPageAccompanied extends StatefulWidget {
 
 class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
 
+  void initState(){
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+  }
+    var _formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +37,9 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
     final newKey = handShakeRef.push().key;
-    final _formKey = GlobalKey<FormState>();
-
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      //resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         elevation: 30,
         title: const Text(
@@ -79,7 +81,6 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                       child: Form(
                         key: _formKey,
                         child: Column(
-
                           children: [
                             textFormdBasic(nameController,"nom"),
                             textFormdBasic(lastnameController,"prénom"),
