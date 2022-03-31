@@ -6,9 +6,9 @@ class Announces{
   String date;
   String hour;
   String activity;
-  String descrition;
+  String description;
 
-  Announces({required this.title, required this.date, required this.hour, required this.activity, required this.descrition });
+  Announces({required this.title, required this.date, required this.hour, required this.activity, required this.description });
 
 
 
@@ -18,18 +18,27 @@ class Announces{
       activity: data['activité'],
       date: data['Date'],
       hour: data['Horaire'],
-      descrition: data['descriptif']
+      description: data['descriptif']
     );
   }
 
-   String missionDescription(){
+/*   String missionDescription(){
     return '''
     $title \n
     $activity \n
     $date \n
     $hour \n
-    $descrition
+    $description
     ''';
+  }*/
+  Widget missionDescription(){
+    return Text('''
+    $title \n
+    $activity \n
+    $date \n
+    $hour \n
+    $description
+    ''');
   }
 
 
