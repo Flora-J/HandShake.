@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:handshake/views/connections.dart';
 import 'package:handshake/views/home_page.dart';
+import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/views/presentation.dart';
 
 Future<void> main() async {
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
 
-      home: PresentationPage(),
+      home: ProfileAccompanied(),
 
 
     );

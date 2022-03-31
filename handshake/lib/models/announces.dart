@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/widgets/background_decoration.dart';
 
 class Announces{
   String title;
@@ -15,10 +16,10 @@ class Announces{
  factory Announces.fromRTBD(Map<String, dynamic> data){
     return Announces(
       title: data['Titre'],
-      activity: data['activité'],
+      activity: data['Activité'],
       date: data['Date'],
       hour: data['Horaire'],
-      description: data['descriptif']
+      description: data['Descriptif']
     );
   }
 
@@ -36,14 +37,31 @@ class Announces{
       child: Container(
       width: MediaQuery.of(context).size.width,
     child: Card(
-        child: Text('''
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(padding: EdgeInsets.only(top: 20),
+          child:
+    Text('''
     $title \n
     $activity \n
     $date \n
     $hour \n
     $description
     ''',
-        textAlign: TextAlign.center,))));
+    textAlign: TextAlign.center)),
+    TextButton.icon(
+    onPressed: (){
+      print("pressed");
+    },
+
+    label: Text("Accepter"),
+      icon: Icon(Icons.check_rounded),
+    )
+    ])
+    )
+      )
+    );
   }
 
 

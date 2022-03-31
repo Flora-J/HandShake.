@@ -4,6 +4,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/models/announces.dart';
+import 'package:handshake/widgets/background_decoration.dart';
 
 class AnnoucementDisplay extends StatefulWidget {
   @override
@@ -29,12 +30,11 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
 
       final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
-        listAnnounces.add(new Announces(title: value['Titre'], hour: value['Horaire'], description: value['descriptif'], activity: value['activité'], date: value['Date']));
+        listAnnounces.add(new Announces(title: value['Titre'], hour: value['Horaire'], description: value['Descriptif'], activity: value['Activité'], date: value['Date']));
+        
         print(value);
         print(key);
 
-      });
-      setState(() {
       });
     });
   }
@@ -66,7 +66,13 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
             },
           ),
         ),
-        body: ListView(
+        body: SingleChildScrollView(
+
+
+        child: Container(
+          decoration: fondDecoration(),
+
+        child: ListView(
           shrinkWrap: true,
             children: [
               ListView.builder(
@@ -77,28 +83,10 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
                         .missionDescription(context);
               }),
         ]),
-        );
+        )));
   }
 }
 
-/*Widget _announceList(List list){
-  return ListView.builder(
-    itemCount: list.length,
-    shrinkWrap: true,
-    padding: const EdgeInsets.only(top: 16, bottom: 350),
-    physics: const NeverScrollableScrollPhysics(),
-    itemBuilder: (context, index) {
-      return list(
-          : chatUsers[index].name,
-          messageText: chatUsers[index].messagetext,
-          imageUrl: chatUsers[index].imageUrl,
-          time: chatUsers[index].time,
-          isMessageRead: (index == 0 || index == 10) ? true : false);
-    },
-  )
-
-
-  }*/
 
 
 
