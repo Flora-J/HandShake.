@@ -76,23 +76,20 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
                     minWidth: double.infinity,
                     height:60,
                     onPressed: ()async{
-
-                      activite.add(dropdownValue);
-                      activite.add(otherHobbieController.text);
-
-                      try {
-                        await hobbies.set({
-                          'Organisation': organisationController.text,
-                          'Activité 1': activite[0],
-                          'Activité 2': activite[1]
-
-                        },
-
-                        );
-                        print("entry has been added");
-                      }catch(error){
-                        print('Entry has not been added : $error' );
+                      final newEntry = <String, dynamic>{
+                        'Organisation': organisationController.text,
+                        'Activité 1': dropdownValue,
+                        'Activité 2': otherHobbieController,
+                        //'Photo' :
                       };
+                      try {
+                        // Get information in the data base
+                        handShakeRef.push().set(newEntry);
+                        print("entry has been added");
+                      } catch (error) {
+                        print('Entry has not been added : $error');
+    }
+                      ;
                       Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
 
 

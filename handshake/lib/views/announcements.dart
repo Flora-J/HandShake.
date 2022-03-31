@@ -35,9 +35,6 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
 
       });
       setState(() {
-        fetch= listAnnounces.toString();
-
-
       });
     });
   }

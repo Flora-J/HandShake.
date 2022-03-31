@@ -16,14 +16,12 @@ class SignupPageAccompanied extends StatefulWidget {
 class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
 
   static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 
     final nameController = TextEditingController();
     final lastnameController = TextEditingController();
-    //final addressController = TextEditingController();
-    //final cityController = TextEditingController();
-    //final cpController = TextEditingController();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmationPasswordController = TextEditingController();
