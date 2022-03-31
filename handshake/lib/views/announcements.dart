@@ -72,24 +72,13 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
         body: ListView(
           shrinkWrap: true,
             children: [
-              Text(listAnnounces[2].date),
-             SizedBox(
-                 height: 20,),
               ListView.builder(
                   itemCount: listAnnounces.length,
                   shrinkWrap: true,
                   itemBuilder: (context, value){
                     return Announces(title: listAnnounces[value].title, hour: listAnnounces[value].hour, description: listAnnounces[value].description, activity: listAnnounces[value].activity, date: listAnnounces[value].date )
-                        .missionDescription();
-               /*       listAnnounces(
-                      Titre: listAnnounces[value].title,
-                      Activite: listAnnounces[value].activity,
-                      Date: listAnnounces[value].date,
-                      Horaire: listAnnounces[value].hour,
-                      Description: listAnnounces[value].description,*/
-
-
-              })
+                        .missionDescription(context);
+              }),
         ]),
         );
   }

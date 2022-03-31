@@ -31,14 +31,19 @@ class Announces{
     $description
     ''';
   }*/
-  Widget missionDescription(){
-    return Text('''
+  Widget missionDescription(BuildContext context){
+    return Center(
+      child: Container(
+      width: MediaQuery.of(context).size.width,
+    child: Card(
+        child: Text('''
     $title \n
     $activity \n
     $date \n
     $hour \n
     $description
-    ''');
+    ''',
+        textAlign: TextAlign.center,))));
   }
 
 
