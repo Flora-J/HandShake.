@@ -15,7 +15,7 @@ class SignupPageAccompanied extends StatefulWidget {
 
 class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
 
-
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
 
@@ -32,7 +32,7 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
     final newKey = handShakeRef.push().key;
-    final _formKey = GlobalKey<FormState>();
+
 
 
     return Scaffold(

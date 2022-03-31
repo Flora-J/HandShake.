@@ -11,7 +11,7 @@ Widget textFormdBasic (TextEditingController userInput, String hintTitle){
       child: TextFormField(
         validator: (userInput) {
           if (userInput == null || userInput.isEmpty){
-            return 'Texte obligatoire';
+            return 'Champs obligatoire';
           }
           return null;
         },

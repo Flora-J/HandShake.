@@ -15,6 +15,7 @@ class SignupPageCompanions extends StatefulWidget {
 
 class _SignupPageCompanionsState extends State<SignupPageCompanions>{
 
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   FirebaseAuth auth = FirebaseAuth.instance;
 
 
@@ -33,8 +34,6 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
 
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
-    final _formKey = GlobalKey<FormState>();
-    
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
