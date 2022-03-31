@@ -30,6 +30,7 @@ class ProfileAccompanied extends StatelessWidget {
             },
           ),
         ),
+        bottomNavigationBar: generalBottomNavigationBar(),
         body: Container(
         decoration: fondDecoration(),
           child: Center(

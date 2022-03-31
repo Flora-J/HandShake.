@@ -5,13 +5,14 @@ import 'package:handshake/views/page_profile_accompanied.dart';
 
 Widget generalBottomNavigationBar(){
   int index=0;
-  List<Widget> pages = [
+  List<dynamic> pages = [
     HomePage(),
-    ProfileAccompanied()
+
   ];
 
   return BottomNavigationBar(
     unselectedItemColor: Colors.blueAccent,
+    currentIndex: index,
     items: [
       BottomNavigationBarItem(
           icon: Icon(Icons.home),
@@ -23,7 +24,9 @@ Widget generalBottomNavigationBar(){
       BottomNavigationBarItem(
           icon: Icon(Icons.monitor),
           label: 'profil')
-    ],
+    ],onTap: (value){
+
+  },
 
 
   );

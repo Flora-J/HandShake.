@@ -118,6 +118,7 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                                   'FirstName': nameController.text,
                                   'LastName': lastnameController.text,
                                   'Email': emailController.text,
+                                  'Profil type': "Accompagné"
                                   //'Photo' :
                                 };
                                 try {
