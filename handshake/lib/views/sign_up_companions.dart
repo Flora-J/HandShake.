@@ -107,13 +107,27 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
                           style: ElevatedButton.styleFrom(
                               primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
                           onPressed: () async{
+
+
+                            final newEntry = <String, dynamic>{
+                              'FirstName': nameController.text,
+                              'LastName': lastnameController.text,
+                              'Address': addressController.text,
+                              'City': cityController.text,
+                              'CP': cpController.text,
+                              'Email': emailController.text,
+                              'Profil type': "Accompagnant"
+                              //'Photo' :
+                            };
                             if (_formKey.currentState!.validate()) {
                               try {
                                 UserCredential userCredential = await auth.createUserWithEmailAndPassword(
                                     email: emailController.text,
                                     password: passwordController.text
-
                                 );
+                                String? id = auth.currentUser?.uid;
+                                await handShakeRef.child('$id').set(newEntry);
+                                print("entry has been added");
 
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'weak-password') {
@@ -124,23 +138,6 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
                                 }
                               } catch (e) {
                                 print(e);
-                              }
-                              final newEntry = <String, dynamic>{
-                                'FirstName': nameController.text,
-                                'LastName': lastnameController.text,
-                                'Address': addressController.text,
-                                'City': cityController.text,
-                                'CP': cpController.text,
-                                'Email': emailController.text,
-                                'Profil type': "Accompagnant"
-                                //'Photo' :
-                              };
-                              try {
-                                // Get information in the data base
-                                await handShakeRef.set(newEntry);
-                                print("entry has been added");
-                              } catch (error) {
-                                print('Entry has not been added : $error');
                               }
                               Navigator.push(context,MaterialPageRoute(builder: (BuildContext) => HobbiesCompanions()));
                             }
