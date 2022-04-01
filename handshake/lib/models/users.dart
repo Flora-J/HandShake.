@@ -21,7 +21,7 @@ class Users {
       required this.city,
       required this.email,
       required this.password,
-      required this.profilType,
+      this.profilType = 'Accompagné',
       //required this.hobbies});
       });
   factory Users.fromRTBD(data) {
