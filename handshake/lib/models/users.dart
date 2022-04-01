@@ -1,25 +1,27 @@
 class Users {
   String firstName;
   String lastName;
-  String? imageUrl;
+  //String? imageUrl;
   String? address;
   String? postCode;
   String? city;
   String email;
-  String organization;
-  String Id;
+  //String organization;
+  String id;
+  String profilType;
   //Map<int, String> hobbies;
 
   Users(
       {required this.firstName,
       required this.lastName,
-      required this.imageUrl,
-      required this.organization,
+      //required this.imageUrl,
+      //required this.organization,
       required this.address,
       required this.postCode,
       required this.city,
       required this.email,
-      required this.Id
+      required this.id,
+      required this.profilType
       //required this.hobbies});
       });
 
@@ -27,13 +29,14 @@ class Users {
     return Users(
         firstName: data['FirstName'],
         lastName: data['LastName'],
-        imageUrl: data['Photo'],
-        organization: data['Organization'],
+        //imageUrl: data['Photo'],
+        //organization: data['Organization'],
         address: data['Address'],
         postCode: data['CP'],
         city: data['City'],
         email: data['Email'],
-        Id: data['Id']
+        id: data['Id'],
+        profilType: data ['Profil type']
         //hobbies: data['Hobbies']);
     );
   }
