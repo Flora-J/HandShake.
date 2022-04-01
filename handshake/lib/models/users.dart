@@ -1,8 +1,8 @@
 class Users {
   String firstName;
   String lastName;
-  String imageUrl;
-  String address;
+  String? imageUrl;
+  String? address;
   int postCode;
   String city;
   String email;

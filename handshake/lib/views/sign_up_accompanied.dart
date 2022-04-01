@@ -29,7 +29,8 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
     FirebaseAuth auth = FirebaseAuth.instance;
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
-    final newKey = handShakeRef.push().key;
+    final keyUser= auth.currentUser;
+    final uid = keyUser?.uid;
 
 
 
@@ -97,12 +98,27 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                             style: ElevatedButton.styleFrom(
                                 primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
                             onPressed: () async{
+                              final newEntry = <String, dynamic>{
+                                'FirstName': nameController.text,
+                                'LastName': lastnameController.text,
+                                'Email': emailController.text,
+                                'Profil type': "Accompagné"
+                                //'Photo' :
+                              };
+
+
                               if (_formKey.currentState!.validate()) {
                                 try {
                                   UserCredential userCredential = await auth.createUserWithEmailAndPassword(
                                       email: emailController.text,
                                       password: passwordController.text
                                   );
+                                  print(auth.currentUser?.uid);
+                                  String? id = auth.currentUser?.uid;
+                                  await handShakeRef.child('$id').set(newEntry);
+                                  print("entry has been added");
+
+
                                 } on FirebaseAuthException catch (e) {
                                   if (e.code == 'weak-password') {
                                     print('The password provided is too weak.');
@@ -112,21 +128,6 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                                   }
                                 } catch (e) {
                                   print(e);
-                                }
-
-                                final newEntry = <String, dynamic>{
-                                  'FirstName': nameController.text,
-                                  'LastName': lastnameController.text,
-                                  'Email': emailController.text,
-                                  'Profil type': "Accompagné"
-                                  //'Photo' :
-                                };
-                                try {
-                                  // Get information in the data base
-                                  handShakeRef.push().set(newEntry);
-                                  print("entry has been added");
-                                } catch (error) {
-                                  print('Entry has not been added : $error');
                                 }
                                 Navigator.push(
                                     context,

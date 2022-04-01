@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/widgets/background_decoration.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import '../widgets/textFormField_widget.dart';
 import 'hobbies_companions.dart';
 
@@ -19,6 +19,7 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
   FirebaseAuth auth = FirebaseAuth.instance;
 
 
+
   @override
   Widget build(BuildContext context) {
 
@@ -30,6 +31,10 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmationPasswordController = TextEditingController();
+   // final keyUser= auth.currentUser;
+   // final uid = keyUser?.uid;
+
+
 
 
     DatabaseReference ref = FirebaseDatabase.instance.ref();
@@ -107,7 +112,9 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
                                 UserCredential userCredential = await auth.createUserWithEmailAndPassword(
                                     email: emailController.text,
                                     password: passwordController.text
+
                                 );
+
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'weak-password') {
                                   print('The password provided is too weak.');
@@ -130,7 +137,7 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
                               };
                               try {
                                 // Get information in the data base
-                                await handShakeRef.push().set(newEntry);
+                                await handShakeRef.set(newEntry);
                                 print("entry has been added");
                               } catch (error) {
                                 print('Entry has not been added : $error');
