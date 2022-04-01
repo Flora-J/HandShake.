@@ -19,7 +19,7 @@ class _connectionState extends State<Connection> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  String profilType = 'Profil';
+  String profilType = '';
   List<Users> listUsers = [];
 
   FirebaseAuth auth = FirebaseAuth.instance;
