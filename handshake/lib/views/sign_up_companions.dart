@@ -15,10 +15,13 @@ class SignupPageCompanions extends StatefulWidget {
 
 class _SignupPageCompanionsState extends State<SignupPageCompanions>{
 
-  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  void initState(){
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+  }
+    var _formKey;
+
   FirebaseAuth auth = FirebaseAuth.instance;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +36,6 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
     final confirmationPasswordController = TextEditingController();
    // final keyUser= auth.currentUser;
    // final uid = keyUser?.uid;
-
-
-
 
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');

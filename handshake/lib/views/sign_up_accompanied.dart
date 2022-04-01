@@ -15,7 +15,13 @@ class SignupPageAccompanied extends StatefulWidget {
 
 class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
 
-  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  void initState(){
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+  }
+    var _formKey;
+
 
   @override
   Widget build(BuildContext context) {
