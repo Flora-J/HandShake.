@@ -1,14 +1,15 @@
 class Users {
   String firstName;
   String lastName;
-  String imageUrl;
-  String address;
-  int postCode;
-  String city;
+  String? imageUrl;
+  String? address;
+  int? postCode;
+  String? city;
   String email;
-  String password;
-  String organization;
-  Map<int, String> hobbies;
+  String? password;
+  String? organization;
+  String profilType;
+  //Map<int, String> hobbies;
 
   Users(
       {required this.firstName,
@@ -20,9 +21,10 @@ class Users {
       required this.city,
       required this.email,
       required this.password,
-      required this.hobbies});
-
-  factory Users.fromRTBD(Map<String, dynamic> data) {
+      required this.profilType,
+      //required this.hobbies});
+      });
+  factory Users.fromRTBD(data) {
     return Users(
         firstName: data['FirstName'],
         lastName: data['LastName'],
@@ -33,6 +35,7 @@ class Users {
         city: data['City'],
         email: data['Email'],
         password: data['Password'],
-        hobbies: data['Hobbies']);
+        profilType: data['Profil type']);
+        //hobbies: data['Hobbies']);
   }
 }

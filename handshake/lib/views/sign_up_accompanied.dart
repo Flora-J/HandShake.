@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/views/hobbies_accompanied.dart';
-import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 import '../widgets/textFormField_widget.dart';
@@ -35,7 +34,7 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
     final newKey = handShakeRef.push().key;
-    
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -119,6 +118,7 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                                   'FirstName': nameController.text,
                                   'LastName': lastnameController.text,
                                   'Email': emailController.text,
+                                  'Profil type': "Accompagné"
                                   //'Photo' :
                                 };
                                 try {

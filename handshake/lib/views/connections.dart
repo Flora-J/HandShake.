@@ -1,5 +1,8 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/models/users.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
+import 'package:handshake/views/page_profile_companions.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -11,9 +14,44 @@ class Connection extends StatefulWidget {
 }
 
 class _connectionState extends State<Connection> {
+
+  final _database = FirebaseDatabase.instance.ref();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  String profilType = 'Profil';
+  List<Users> listUsers = [];
+
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  void _activateListeners() {
+    _database.child('/handShakeDb/users').onValue.listen((event) {
+      final data =
+          new Map<String, dynamic>.from(event.snapshot.value as dynamic);
+      data.forEach((key, value) {
+        listUsers.add(new Users(
+          firstName: value['FirstName'],
+          lastName: value['LastName'],
+          email: value['Email'],
+          profilType: value['Profil type'],
+          address: value['Address'],
+          city: value['City'],
+          imageUrl: value['Photo'],
+          organization: value['Organization'],
+          password: value['Password'],
+          postCode: value['CP'],
+        ));
+        print(value);
+        print(key);
+      });
+      setState(() {});
+    });
+  }
+
+  void iniState() {
+    super.initState();
+    _activateListeners();
+  }
 
   Widget userInput(TextEditingController userInput, String hintTitle,
       TextInputType keyboardType) {
@@ -106,11 +144,19 @@ class _connectionState extends State<Connection> {
                                 await auth.signInWithEmailAndPassword(
                                     email: emailController.text,
                                     password: passwordController.text);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ProfileAccompanied()));
+                            if (profilType == 'Profil') {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProfileAccompanied()));
+                            } else if (profilType == '') {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProfileCompanion()));
+                            }
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               print('No user found for that email.');

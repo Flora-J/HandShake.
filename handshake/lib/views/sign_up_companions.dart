@@ -127,6 +127,7 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions> {
                                   'City': cityController.text,
                                   'CP': cpController.text,
                                   'Email': emailController.text,
+                                  'Profil type': "Accompagnant"
                                   //'Photo' :
                                 };
                                 try {

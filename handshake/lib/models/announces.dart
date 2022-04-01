@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Announces {
@@ -22,16 +21,6 @@ class Announces {
     );
   }
 
-/*   String missionDescription(){
->>>>>>> link-announces
-    return '''
-    $title \n
-    $activity \n
-    $date \n
-    $hour \n
-    $description
-    ''';
-  }*/
   Widget missionDescription(BuildContext context){
     return Center(
       child: Container(
