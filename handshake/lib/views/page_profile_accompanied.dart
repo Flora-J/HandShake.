@@ -46,14 +46,6 @@ class ProfileAccompanied extends StatelessWidget {
                 SizedBox(
                     height: 8,
                 ),
-                Text(
-                    "Vert",
-                  style: TextStyle(
-                    color: Colors.lightBlue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
                 SizedBox(
                   height: 12,
                 ),

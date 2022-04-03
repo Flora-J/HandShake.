@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:handshake/models/chat_users.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:handshake/widgets/bottomNavigationBar.dart';
+import 'package:handshake/widgets/chatUserList.dart';
 
 
 class Chat extends StatefulWidget {
@@ -23,17 +24,7 @@ class ChatState extends State<Chat> {
       final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
         chatUsers.add(new Chat_users(name: value['FirstName'], photo: value['Photo'], key:key, lastName: value['LastName']));
-
-        //print(chatUsers[0].key);
-        //print(chatUsers[1].key);
-        //print(chatUsers[0].photo);
-
         setState(() {
-          print(key);
-          print(chatUsers[0].name);
-          print(chatUsers[0].lastName);
-          print(chatUsers[0].photo);
-
         });
 
       });
@@ -135,15 +126,15 @@ class ChatState extends State<Chat> {
                   onTap: () {},
                 ),
               ),
-           /*  ListView.builder(
+            ListView.builder(
                 itemCount: chatUsers.length,
                 shrinkWrap: true,
                 padding: const EdgeInsets.only(top: 16, bottom: 350),
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, value) {
-                  return;
+                  return ChatUserList(id: chatUsers[value].key, name: chatUsers[value].name, lastName: chatUsers[value].lastName, photo: chatUsers[value].photo);
                 },
-              )*/
+              )
             ],
           ),
         ),
