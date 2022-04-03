@@ -58,7 +58,7 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
         appBar: AppBar(
           elevation: 30,
           title: const Text(
-            "Formulaire Annonce",
+            "Annonces",
           ),
           centerTitle: true,
           leading: IconButton(
@@ -76,10 +76,12 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
         bottomNavigationBar: generalBottomNavigationBar(context),
         body: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
-          child: Container(
+          child : Column(
+            children:[
+           Container(
           decoration: fondDecoration(),
-        child: Column(
-          children: [
+          child : Column(
+            children: [
           ListView(
             physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -96,7 +98,7 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
 
               ),
         ]),
-        ]))));
+        ]), )])));
   }
 }
 
