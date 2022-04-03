@@ -4,6 +4,8 @@ import 'package:handshake/widgets/button.dart';
 import '../widgets/background_decoration.dart';
 import '../widgets/bottomNavigationBar.dart';
 import '../widgets/logout_button.dart';
+import 'announcements.dart';
+import 'chat_select.dart';
 
 
 class ProfileCompanion extends StatelessWidget {
@@ -67,13 +69,13 @@ class ProfileCompanion extends StatelessWidget {
                 ),
                 Container(
                     width: 160,
-                    child: elevatedButton2(context, "Voir les offres",  ()=>HomePage()),
+                    child: elevatedButton2(context, "Voir les offres",  ()=>AnnoucementDisplay()),
                   ),
                 SizedBox(
                   height: 12,
                 ),
                 Container(
-                    child: elevatedButton2(context, "Modifier mon profil",  ()=>HomePage()),
+                    child: elevatedButton2(context, "Modifier mon profil",  ()=>Chat()),
                     ),
                 SizedBox(
                   height: 12,

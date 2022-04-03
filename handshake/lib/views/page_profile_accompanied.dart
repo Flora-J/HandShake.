@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handshake/views/announcement_form.dart';
+import 'package:handshake/views/chat_select.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/bottomNavigationBar.dart';
 import 'package:handshake/widgets/button.dart';
@@ -95,7 +96,7 @@ class ProfileAccompanied extends StatelessWidget {
                 ),
                 Container(
                     width: 180,
-                    child: elevatedButton2(context, "Chat",  ()=>HomePage()),
+                    child: elevatedButton2(context, "Chat",  ()=>Chat()),
                     ),
                 SizedBox(
                   height: 12,

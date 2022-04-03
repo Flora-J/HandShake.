@@ -34,9 +34,9 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
       data.forEach((key, value) {
         listAnnounces.add(new Announces(key: key, title: value['Titre'], hour: value['Horaire'], description: value['descriptif'], activity: value['activité'], date: value['Date']));
         
-        print(value);
-        print(key);
-
+        //print(value);
+        //print(key);
+        //print(listAnnounces[1].date);
         setState(() {
 
         });

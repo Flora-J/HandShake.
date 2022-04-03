@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
 
-      home: PresentationPage(),
+      home: ProfileAccompanied(),
 
 
     );
