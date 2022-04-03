@@ -25,10 +25,12 @@ class ChatState extends State<Chat> {
 
       final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
+        if (authId != key)
         chatUsers.add(new Chat_users(name: value['FirstName'], photo: value['Photo'], key:key, lastName: value['LastName']));
         setState(() {
         });
         print(authId);
+        print(key);
 
       });
     });
@@ -135,8 +137,13 @@ class ChatState extends State<Chat> {
                 padding: const EdgeInsets.only(top: 16, bottom: 350),
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, value) {
-                  return ChatUserList(id: chatUsers[value].key, name: chatUsers[value].name, lastName: chatUsers[value].lastName, photo: chatUsers[value].photo);
-                },
+                 // if (chatUsers[value].key != authId) {
+                    return ChatUserList(id: chatUsers[value].key,
+                        name: chatUsers[value].name,
+                        lastName: chatUsers[value].lastName,
+                        photo: chatUsers[value].photo);
+                  //}
+                }  ,
               )
             ],
           ),
