@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/models/chat_users.dart';
@@ -13,6 +14,7 @@ class Chat extends StatefulWidget {
 
 class ChatState extends State<Chat> {
   final _database = FirebaseDatabase.instance.ref();
+  final authId = FirebaseAuth.instance.currentUser?.uid;
   List<Chat_users> chatUsers = [];
 
   void _activateListeners() {
@@ -26,6 +28,7 @@ class ChatState extends State<Chat> {
         chatUsers.add(new Chat_users(name: value['FirstName'], photo: value['Photo'], key:key, lastName: value['LastName']));
         setState(() {
         });
+        print(authId);
 
       });
     });

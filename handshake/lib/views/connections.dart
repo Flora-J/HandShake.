@@ -31,8 +31,6 @@ class _connectionState extends State<Connection> {
             email: value['Email'],
             id: key,
             profilType: value['Profil type']));
-        print(value);
-        print(key);
       });
     });
   }
@@ -138,7 +136,7 @@ class _connectionState extends State<Connection> {
                                 await auth.signInWithEmailAndPassword(
                                     email: emailController.text,
                                     password: passwordController.text);
-                            print(auth.currentUser?.uid);
+                            //print(auth.currentUser?.uid);
                             String? IdUser = auth.currentUser?.uid;
                             for(int i = 0; i < users.length; i ++) {
                               if(users[i].id == IdUser) {

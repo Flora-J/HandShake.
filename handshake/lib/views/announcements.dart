@@ -33,12 +33,8 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
       final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
         listAnnounces.add(new Announces(key: key, title: value['Titre'], hour: value['Horaire'], description: value['descriptif'], activity: value['activité'], date: value['Date']));
-        
-        //print(value);
-        //print(key);
-        //print(listAnnounces[1].date);
-        setState(() {
 
+        setState(() {
         });
 
       });
@@ -84,6 +80,7 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
           shrinkWrap: true,
             children: [
               ListView.builder(
+                padding: EdgeInsets.all(10),
                   itemCount: listAnnounces.length,
                   shrinkWrap: true,
                   itemBuilder: (context, value){

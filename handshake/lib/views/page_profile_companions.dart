@@ -68,7 +68,7 @@ class ProfileCompanion extends StatelessWidget {
                   height: 12,
                 ),
                 Container(
-                    child: elevatedButton2(context, "Modifier mon profil",  ()=>Chat()),
+                    child: elevatedButton2(context, "Modifier mon profil",  ()=>HomePage()),
                     ),
                 SizedBox(
                   height: 12,
@@ -81,7 +81,7 @@ class ProfileCompanion extends StatelessWidget {
                 ),
                 Container(
                     width: 160,
-                    child: elevatedButton2(context, "Chat",  ()=>HomePage()),
+                    child: elevatedButton2(context, "Chat",  ()=>Chat()),
                     ),
                 SizedBox(
                   height: 12,
