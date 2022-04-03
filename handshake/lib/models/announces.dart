@@ -25,23 +25,18 @@ class Announces{
     );
   }
 
-/*   String missionDescription(){
-    return '''
-    $title \n
-    $activity \n
-    $date \n
-    $hour \n
-    $description
-    ''';
-  }*/
   Widget missionDescription(BuildContext context){
-    return Center(
+    return
+    Center(
       child: Container(
       width: MediaQuery.of(context).size.width,
+
     child: Card(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
+
           Padding(padding: EdgeInsets.only(top: 20),
           child:
     Text('''

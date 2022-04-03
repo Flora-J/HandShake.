@@ -75,25 +75,28 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
         ),
         bottomNavigationBar: generalBottomNavigationBar(context),
         body: SingleChildScrollView(
-
-
-        child: Container(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: Container(
           decoration: fondDecoration(),
-
-        child: ListView(
+        child: Column(
+          children: [
+          ListView(
+            physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
             children: [
               ListView.builder(
+              padding: EdgeInsets.all(10),
+                //physics: NeverScrollableScrollPhysics(),
                   itemCount: listAnnounces.length,
                   shrinkWrap: true,
-                  itemBuilder: (context, value){
-                    return Announces(key: listAnnounces[value].key, title: listAnnounces[value].title, hour: listAnnounces[value].hour, description: listAnnounces[value].description, activity: listAnnounces[value].activity, date: listAnnounces[value].date )
-                        .missionDescription(context);
+                  itemBuilder: (context, value) =>
+                    Announces(key: listAnnounces[value].key, title: listAnnounces[value].title, hour: listAnnounces[value].hour, description: listAnnounces[value].description, activity: listAnnounces[value].activity, date: listAnnounces[value].date )
+                        .missionDescription(context)
 
 
-              }),
+              ),
         ]),
-        )));
+        ]))));
   }
 }
 
