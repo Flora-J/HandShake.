@@ -4,6 +4,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/models/announces.dart';
+import 'package:handshake/models/trial_announce.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
 import '../widgets/bottomNavigationBar.dart';
@@ -70,27 +71,29 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
           ),
         ),
         bottomNavigationBar: generalBottomNavigationBar(context),
-        body: SingleChildScrollView(
-
-
-        child: Container(
+        body: Container(
           decoration: fondDecoration(),
+     child: Column(
+     children : [Expanded(
 
-        child: ListView(
+     /*   child: Expanded(
+    child: ListView(
           shrinkWrap: true,
-            children: [
-              ListView.builder(
+            children: [*/
+              child : ListView.builder(
                 padding: EdgeInsets.all(10),
                   itemCount: listAnnounces.length,
                   shrinkWrap: true,
                   itemBuilder: (context, value){
-                    return Announces(key: listAnnounces[value].key, title: listAnnounces[value].title, hour: listAnnounces[value].hour, description: listAnnounces[value].description, activity: listAnnounces[value].activity, date: listAnnounces[value].date )
-                        .missionDescription(context);
+                    return TrialAnnounce(title: listAnnounces[value].title, date: listAnnounces[value].date, hour: listAnnounces[value].hour, activity: listAnnounces[value].activity, description: listAnnounces[value].description);
+
+                      //Announces(key: listAnnounces[value].key, title: listAnnounces[value].title, hour: listAnnounces[value].hour, description: listAnnounces[value].description, activity: listAnnounces[value].activity, date: listAnnounces[value].date )
+                        //.missionDescription(context);
 
 
               }),
-        ]),
-        )));
+        ),
+        ])));
   }
 }
 

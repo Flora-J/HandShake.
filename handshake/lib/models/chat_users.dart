@@ -1,6 +1,9 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class Chat_users{
+
+  DatabaseReference _Database = FirebaseDatabase.instance.ref();
 
   String key;
   String name;
@@ -22,10 +25,5 @@ class Chat_users{
         photo: data['Photo']);
 
   }
-
-  /*Widget displayChatUser (){
-    return
-
-  }*/
 
 }

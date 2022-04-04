@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/models/chat_users.dart';
+import 'package:handshake/services/stream_utility.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:handshake/widgets/bottomNavigationBar.dart';
 import 'package:handshake/widgets/chatUserList.dart';
@@ -28,9 +29,13 @@ class ChatState extends State<Chat> {
         if (authId != key)
         chatUsers.add(new Chat_users(name: value['FirstName'], photo: value['Photo'], key:key, lastName: value['LastName']));
         setState(() {
+          //print(StreamUtility().getUsersStream().forEach((element) {
+            //print(element[0].key);
+          //}));
+
         });
-        print(authId);
-        print(key);
+        //print(authId);
+        //print(key);
 
       });
     });
@@ -137,13 +142,13 @@ class ChatState extends State<Chat> {
                 padding: const EdgeInsets.only(top: 16, bottom: 350),
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, value) {
-                 // if (chatUsers[value].key != authId) {
+                    StreamUtility().getUsersStream();
                     return ChatUserList(id: chatUsers[value].key,
                         name: chatUsers[value].name,
                         lastName: chatUsers[value].lastName,
                         photo: chatUsers[value].photo);
-                  //}
-                }  ,
+
+                },
               )
             ],
           ),

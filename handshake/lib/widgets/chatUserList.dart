@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/chat_users.dart';
+import '../views/chat_room.dart';
 
 
 class ChatUserList extends StatefulWidget{
@@ -29,9 +30,8 @@ class _ChatUserListState extends State<ChatUserList>{
 
     return GestureDetector(
       onTap: (){
-       // Navigator.push(context, MaterialPageRoute(builder: (context){
-          //return ChatRoom();
-        //}));
+       Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=>
+          ChatRoom()));
 
       },
       child: Container(
