@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handshake/views/chat_select.dart';
+import 'package:handshake/views/page_profile_accompanied.dart';
 
 class PopupAnnoncements extends StatelessWidget {
   @override
@@ -63,4 +64,30 @@ Widget popupConfirmation(BuildContext context, Text titre, String texte){
     ],
   );
 
+
+
+}
+Widget popupConfirmationForm(BuildContext context, Text titre, String texte) {
+  return AlertDialog(
+    title: titre,
+    content: new Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(texte),
+      ],
+    ),
+    actions: <Widget>[
+      ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (BuildContext) => ProfileAccompanied()));
+        },
+        child: const Text('Retour sur mon profil'),
+      ),
+
+
+    ],
+  );
 }

@@ -6,6 +6,8 @@ import 'package:handshake/widgets/background_decoration.dart';
 import 'package:handshake/widgets/button.dart';
 import 'package:intl/intl.dart';
 
+import '../widgets/popup.dart';
+
 enum SingingCharacter {
   courses,
   aidesMenageres,
@@ -247,9 +249,11 @@ class _FormAnnounce extends State<FormAnnounce> {
                       } catch (error) {
                         print('Entry has not been added : $error');
                       }
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => ProfileAccompanied()
-                          )
-                      );
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => popupConfirmationForm(context, Text('Felicitation !'),"Votre annonce a été posté avec succès"));
+
+                      //Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => ProfileAccompanied()
                     },
                     child: Text(
                       "valider",
