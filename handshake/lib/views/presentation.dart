@@ -1,6 +1,7 @@
+import 'dart:core';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'dart:core';
+import 'package:handshake/extensions.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/button.dart';
 import 'package:handshake/widgets/logo.dart';
@@ -15,7 +16,7 @@ class PresentationPage extends StatefulWidget {
 }
 
 class _PresentationPageState extends State<PresentationPage> {
-  var ImageList = [
+  final ImageList = [
     "Accompagnement personnalisé selon le rythme de vie des personnes atteintent de TSA.",
     "Développez votre réseau",
     "Service gratuit et acccesible en quelques clics"
@@ -37,14 +38,13 @@ class _PresentationPageState extends State<PresentationPage> {
       body: Container(
         decoration: fondDecoration(),
         child: Padding(
-          padding:
-              const EdgeInsets.only(top: 30, left: 24, right: 24, bottom: 30),
+          padding: 30.0.top + 30.0.bottom,
           child: SingleChildScrollView(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Container(
-                padding: EdgeInsets.only(top: 0, bottom: 0),
-                height: 80,
+                //padding: EdgeInsets.only(top: 0, bottom: 0),
+                height: 100,
                 child: logo(size),
               ),
               SizedBox(height: 20),
@@ -62,6 +62,16 @@ class _PresentationPageState extends State<PresentationPage> {
                       'images/no-money.png'
                     ].map((i) {
                       BoxFit.fitHeight;
+
+                      var text = "";
+                      if (i == 'images/solidarite.png') {
+                        text = ImageList[0];
+                      } else if (i == 'images/community.png') {
+                        text = ImageList[1];
+                      } else if (i == 'images/no-money.png') {
+                        text = ImageList[2];
+                      }
+
                       return Builder(builder: (BuildContext context) {
                         return Container(
                           width: MediaQuery.of(context).size.width,
@@ -73,25 +83,12 @@ class _PresentationPageState extends State<PresentationPage> {
                             children: [
                               Image.asset(i),
                               SizedBox(height: 10),
-                              if (i == 'images/solidarite.png')
-                                Text("${ImageList[0]}",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                    textAlign: TextAlign.center),
-                              if (i == 'images/community.png')
-                                Text("${ImageList[1]}",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
-                                    textAlign: TextAlign.center),
-                              if (i == 'images/no-money.png')
-                                Text("${ImageList[2]}",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
-                                    textAlign: TextAlign.center),
+                              Text(text,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                  textAlign: TextAlign.center),
                             ],
                           ),
                         );

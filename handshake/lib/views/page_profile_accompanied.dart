@@ -1,14 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/models/firebase_helper.dart';
+import 'package:handshake/models/users.dart';
 import 'package:handshake/views/announcement_form.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/widgets/bottomNavigationBar.dart';
 import 'package:handshake/widgets/button.dart';
+import 'package:handshake/widgets/custom_image.dart';
 
 import '../widgets/background_decoration.dart';
 import 'announcements.dart';
 
 
-class ProfileAccompanied extends StatelessWidget {
+class ProfileAccompanied extends StatefulWidget {
+
+  @override
+  ProfileAccompaniedState createState() => ProfileAccompaniedState();
+}
+
+class ProfileAccompaniedState extends State<ProfileAccompanied> {
+
+  Users? me;
+
+  User? user = FirebaseHelper().auth.currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +57,8 @@ class ProfileAccompanied extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(
+                CustomImage(me!.imageUrl, me!.initiales, MediaQuery.of(context).size.width),
+                /* CircleAvatar(
                   radius: 56,
                   backgroundColor: Colors.teal,//backgroundImage: NetworkImage(),
                 ),
@@ -52,7 +72,7 @@ class ProfileAccompanied extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
-                ),
+                ), */
                 SizedBox(
                   height: 12,
                 ),

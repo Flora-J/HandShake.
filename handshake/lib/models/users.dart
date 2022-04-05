@@ -1,20 +1,23 @@
-class Users {
-  String firstName;
-  String lastName;
-  //String? imageUrl;
-  String? address;
-  String? postCode;
-  String? city;
-  String email;
-  //String organization;
-  String id;
-  String profilType;
-  //Map<int, String> hobbies;
+import 'package:firebase_database/firebase_database.dart';
 
-  Users(
+class Users {
+ late String firstName;
+ late String lastName;
+ late String? imageUrl;
+ late String? address;
+ late String? postCode;
+ late String? city;
+ late String email;
+  //String organization;
+ late String id;
+ late String profilType;
+ //Map<int, String> hobbies;
+ late String initiales;
+
+   Users(DatabaseEvent event, 
       {required this.firstName,
       required this.lastName,
-      //required this.imageUrl,
+      required this.imageUrl,
       //required this.organization,
       required this.address,
       required this.postCode,
@@ -25,11 +28,11 @@ class Users {
       //required this.hobbies});
       });
 
-  factory Users.fromRTBD(Map<String, dynamic> data) {
+  /* factory Users.fromRTBD(Map<String, dynamic> data) {
     return Users(
         firstName: data['FirstName'],
         lastName: data['LastName'],
-        //imageUrl: data['Photo'],
+        imageUrl: data['Photo'],
         //organization: data['Organization'],
         address: data['Address'],
         postCode: data['CP'],
@@ -39,5 +42,32 @@ class Users {
         profilType: data ['Profil type']
         //hobbies: data['Hobbies']);
     );
+  } */
+
+  User(DatabaseEvent event) {
+    id = event.snapshot.key!;
+    Map? map = event.snapshot.value as Map?;
+    firstName = map!["FirstName"];
+    lastName = map["LastName"];
+    imageUrl = map["Photo"];
+    if (firstName != null && firstName.length > 0) {
+      initiales = firstName[0];
+    }
+    if (lastName != null && lastName.length > 0) {
+      if (initiales != null) {
+        initiales += lastName[0] ;
+      } else {
+        initiales = lastName[0];
+      }
+    }
+  }
+
+  Map toMap() {
+    return {
+      "FirstName": firstName,
+      "LastName": lastName,
+      "Photo": imageUrl,
+      "Id": id
+    };
   }
 }

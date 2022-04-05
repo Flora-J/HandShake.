@@ -20,19 +20,18 @@ class _connectionState extends State<Connection> {
   void _activateListener() {
     _dataBase.child("/handShakeDb/user").onValue.listen((event) {
       final data =
-          new Map<String, dynamic>.from(event.snapshot.value as dynamic);
+          new Map<String, String>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
-        users.add(new Users(
-            firstName: value['FirstName'],
-            lastName: value['LastName'],
-            address: value['Address'],
-            postCode: value['CP'],
-            city: value['City'],
-            email: value['Email'],
+        users.add( new Users(event,
+            firstName: "FirstName",
+            lastName: 'LastName',
+            imageUrl: 'Photo',
+            address: 'Address',
+            postCode: 'CP',
+            city: 'City',
+            email: 'Email',
             id: key,
-            profilType: value['Profil type']));
-        print(value);
-        print(key);
+            profilType: 'Profil type'));
       });
     });
   }
