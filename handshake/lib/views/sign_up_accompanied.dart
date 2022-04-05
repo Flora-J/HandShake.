@@ -119,7 +119,6 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
                                       email: emailController.text,
                                       password: passwordController.text
                                   );
-                                  print(auth.currentUser?.uid);
                                   String? id = auth.currentUser?.uid;
                                   await handShakeRef.child('$id').set(newEntry);
                                   print("entry has been added");

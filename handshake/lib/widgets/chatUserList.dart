@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../models/chat_users.dart';
@@ -22,6 +23,8 @@ class ChatUserList extends StatefulWidget{
 }
 
 class _ChatUserListState extends State<ChatUserList>{
+  final authId = FirebaseAuth.instance.currentUser?.uid;
+
 
 
 
@@ -31,7 +34,7 @@ class _ChatUserListState extends State<ChatUserList>{
     return GestureDetector(
       onTap: (){
        Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=>
-          ChatRoom()));
+          ChatRoom(idCompanion: widget.id,idAccompanied: authId.toString(), nameCompanion: widget.name, lastNameCompanion: widget.lastName ,)));
 
       },
       child: Container(

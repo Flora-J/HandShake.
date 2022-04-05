@@ -27,8 +27,7 @@ class TrialUsers {
       user.profilType = value["ProfilType"];
       list.add( user);
     });
-
-  return list;
+    return list;
 
   }
 

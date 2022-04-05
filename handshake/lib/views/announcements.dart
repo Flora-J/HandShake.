@@ -35,7 +35,7 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
 
       final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
-        if (value['UserId'] == authId)
+        //if (value['UserId'] == authId)
         listAnnounces.add(new TrialAnnounce(userId: value['UserId'], id: key, title: value['Titre'], date: value['Date'], hour: value['Horaire'], activity: value['activité'], description: value['descriptif']));
 
         setState(() {
