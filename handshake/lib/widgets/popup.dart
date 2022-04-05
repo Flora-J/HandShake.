@@ -34,23 +34,32 @@ class PopupAnnoncements extends StatelessWidget {
   }
 }
 
-Widget popupConfirmation(){
+Widget popupConfirmation(BuildContext context, Text titre, String texte){
   return AlertDialog(
-    title: const Text('Titre annonce'),
+    title: titre,
     content: new Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("Un bénévole se fera un plaisir de revenir vers vous !"),
+        Text(texte),
       ],
     ),
     actions: <Widget>[
-      new ElevatedButton(
+      ElevatedButton(
         onPressed: () {
-          //Navigator.of(context).pop();
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (BuildContext) => Chat()));
+        },
+        child: const Text('Envoyer un message'),
+      ),
+      ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).pop();
         },
         child: const Text('Fermer'),
       ),
+
     ],
   );
 

@@ -100,7 +100,7 @@ class _TrialAnnounceState extends State<TrialAnnounce>{
                             onPressed:(){
                               showDialog(
                                   context: context,
-                                  builder: (BuildContext context) => PopupAnnoncements());
+                                  builder: (BuildContext context) => popupConfirmation(context, Text('Souhaitez-vous effectuer cette mission '+widget.activity+' le '+widget.date+' ?'),"Commencez par envoyer un message pour briser la glace"));
                             },
                             child: Text('Accepter'))
 
