@@ -20,18 +20,10 @@ class _connectionState extends State<Connection> {
   void _activateListener() {
     _dataBase.child("/handShakeDb/user").onValue.listen((event) {
       final data =
-          new Map<String, String>.from(event.snapshot.value as dynamic);
+      new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
-        users.add( new Users(event,
-            firstName: "FirstName",
-            lastName: 'LastName',
-            imageUrl: 'Photo',
-            address: 'Address',
-            postCode: 'CP',
-            city: 'City',
-            email: 'Email',
-            id: key,
-            profilType: 'Profil type'));
+        users.add(Users.fromRTBD(value));
+        print(users[value].lastName);
       });
     });
   }
@@ -134,27 +126,27 @@ class _connectionState extends State<Connection> {
                         onPressed: () async {
                           try {
                             UserCredential userCredential =
-                                await auth.signInWithEmailAndPassword(
-                                    email: emailController.text,
-                                    password: passwordController.text);
-                            print(auth.currentUser?.uid);
+                            await auth.signInWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text);
+                            //print(auth.currentUser?.uid);
                             String? IdUser = auth.currentUser?.uid;
                             for(int i = 0; i < users.length; i ++) {
                               if(users[i].id == IdUser) {
                                 if(users[i].profilType.toString() == 'Accompagné') {
                                   print("Accompagné");
-                                Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                    ProfileAccompanied()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ProfileAccompanied()));
                                 } else {
-                                print("Accompagnant");
-                                Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                    ProfileCompanion()));
+                                  print("Accompagnant");
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ProfileCompanion()));
                                 }
                               }
                             }
@@ -208,3 +200,4 @@ class _connectionState extends State<Connection> {
     );
   }
 }
+

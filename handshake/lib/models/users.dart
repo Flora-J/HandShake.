@@ -14,7 +14,7 @@ class Users {
  //Map<int, String> hobbies;
  late String initiales;
 
-   Users(DatabaseEvent event, 
+   Users(
       {required this.firstName,
       required this.lastName,
       required this.imageUrl,
@@ -28,7 +28,7 @@ class Users {
       //required this.hobbies});
       });
 
-  /* factory Users.fromRTBD(Map<String, dynamic> data) {
+  factory Users.fromRTBD(Map<String, dynamic> data) {
     return Users(
         firstName: data['FirstName'],
         lastName: data['LastName'],
@@ -42,9 +42,9 @@ class Users {
         profilType: data ['Profil type']
         //hobbies: data['Hobbies']);
     );
-  } */
+  }
 
-  User(DatabaseEvent event) {
+  MyUser(DatabaseEvent event) {
     id = event.snapshot.key!;
     Map? map = event.snapshot.value as Map?;
     firstName = map!["FirstName"];

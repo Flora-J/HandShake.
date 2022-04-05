@@ -43,7 +43,7 @@ class FirebaseHelper {
   Future<Users?> getUser(String id) async{
 
     DatabaseEvent event = await entry_user.child(id).once();
-    Users user = Users(event, address: '', city: '', email: '', firstName: '', id: '', imageUrl: '', lastName: '', postCode: '', profilType: '');
+    Users user = Users(address: '', city: '', email: '', firstName: '', id: '', imageUrl: '', lastName: '', postCode: '', profilType: '');
     return user; //bug
   }
 }
