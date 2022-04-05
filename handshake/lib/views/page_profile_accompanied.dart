@@ -44,9 +44,6 @@ class ProfileAccompanied extends StatelessWidget {
                   backgroundColor: Colors.teal,//backgroundImage: NetworkImage(),
                 ),
                 SizedBox(
-                    height: 8,
-                ),
-                SizedBox(
                   height: 12,
                 ),
                     //Expanded(//child:

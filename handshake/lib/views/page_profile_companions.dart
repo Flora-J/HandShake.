@@ -35,6 +35,7 @@ class ProfileCompanion extends StatelessWidget {
           padding: EdgeInsets.only(top: 10, bottom: 50),
           decoration: fondDecoration(),
           child: Center(
+
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,10 +44,6 @@ class ProfileCompanion extends StatelessWidget {
                   radius: 56,
                   backgroundColor: Colors.teal,//backgroundImage: NetworkImage(),
                 ),
-                SizedBox(
-                    height: 8,
-                ),
-
                 SizedBox(
                   height: 12,
                 ),

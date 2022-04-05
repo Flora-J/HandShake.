@@ -21,6 +21,9 @@ class FormAnnounce extends StatefulWidget {
 
 //final controller = GroupButtonController();
 class _FormAnnounce extends State<FormAnnounce> {
+  final authId = FirebaseAuth.instance.currentUser?.uid;
+
+
   SingingCharacter? _character = SingingCharacter.courses;
 
   TextEditingController timeinput = TextEditingController();
@@ -230,6 +233,7 @@ class _FormAnnounce extends State<FormAnnounce> {
                     ),
                     onPressed: () async {
                       final newAnnounce = <String, dynamic>{
+                        'UserId': authId,
                         'Titre': title.text,
                         'Date': dateinput.text,
                         'Horaire': timeinput.text,

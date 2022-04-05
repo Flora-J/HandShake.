@@ -1,14 +1,14 @@
 class Users {
-  String firstName;
-  String lastName;
+  String? firstName;
+  String? lastName;
   //String? imageUrl;
   String? address;
   String? postCode;
   String? city;
-  String email;
+  String? email;
   //String organization;
-  String id;
-  String profilType;
+  String? id;
+  String? profilType;
   //Map<int, String> hobbies;
 
   Users(
@@ -39,5 +39,20 @@ class Users {
         profilType: data ['Profil type']
         //hobbies: data['Hobbies']);
     );
+
+
   }
+  Map toMap() {
+    return {
+      "userId": id,
+      "FirstName": firstName,
+      "LastName": lastName,
+      "Address": address,
+      "CP": postCode,
+      "City": city,
+      "Email": email,
+      "ProfilType": profilType
+    };
+  }
+
 }

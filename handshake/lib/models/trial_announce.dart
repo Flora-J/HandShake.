@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:handshake/widgets/popup.dart';
 
 import '../models/chat_users.dart';
 import '../views/chat_room.dart';
 
 
 class TrialAnnounce extends StatefulWidget{
-  //String key;
+  String? userId;
+  String? id;
   String title;
   String date;
   String hour;
@@ -13,13 +15,25 @@ class TrialAnnounce extends StatefulWidget{
   String description;
 
   TrialAnnounce({
-    //required this.key,
+    required this.userId,
+    required this.id,
     required this.title,
     required this.date,
     required this.hour,
     required this.activity,
     required this.description
   });
+  factory TrialAnnounce.fromRTBD(Map<String, dynamic> data){
+    return TrialAnnounce(
+        userId: data['UserId'],
+        id: data['key'],
+        title: data['Titre'],
+        activity: data['activité'],
+        date: data['Date'],
+        hour: data['Horaire'],
+        description: data['descriptif']
+    );
+  }
 
   @override
   _TrialAnnounceState createState() => _TrialAnnounceState ();
@@ -27,16 +41,16 @@ class TrialAnnounce extends StatefulWidget{
 
 class _TrialAnnounceState extends State<TrialAnnounce>{
 
-
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    return SingleChildScrollView(
-      child: GestureDetector(
+    return  GestureDetector(
       onTap: (){
-        //Navigator.push(context, MaterialPageRoute(builder: (BuildContext)=>
-          //  ChatRoom()));
 
       },
 
@@ -51,15 +65,15 @@ class _TrialAnnounceState extends State<TrialAnnounce>{
                           Text(widget.title,
                               style: TextStyle(
                               fontSize: 16,
-                              color: Colors.grey.shade600,
-                              fontWeight: FontWeight.bold
+                              color: Colors.black,
+                                  fontWeight: FontWeight.bold
                           ),
                           ),
                           Text(widget.activity,
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.grey.shade600,
-                                fontWeight: FontWeight.bold
+
                             ),
 
 
@@ -68,17 +82,27 @@ class _TrialAnnounceState extends State<TrialAnnounce>{
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.grey.shade600,
-                                fontWeight: FontWeight.bold)),
+                            )),
                           Text (widget.hour,
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey.shade600,
-                                  fontWeight: FontWeight.bold)),
+                                  )),
                           Text (widget.description,
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey.shade600,
-                                  fontWeight: FontWeight.bold)),
+                                  )),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                            onPressed:(){
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) => PopupAnnoncements());
+                            },
+                            child: Text('Accepter'))
 
                         ],
                       ),
@@ -86,6 +110,6 @@ class _TrialAnnounceState extends State<TrialAnnounce>{
                           )),
 
 
-    ));
+    );
   }
 }

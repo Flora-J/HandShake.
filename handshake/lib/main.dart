@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:handshake/views/announcements.dart';
 import 'package:handshake/views/connections.dart';
 import 'package:handshake/views/home_page.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/views/presentation.dart';
+import 'package:handshake/widgets/popup.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
 
-      home: PresentationPage(),
+      home: ProfileAccompanied(),
 
 
     );

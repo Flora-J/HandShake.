@@ -1,12 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:handshake/models/announces.dart';
 import 'package:handshake/models/trial_announce.dart';
+import 'package:handshake/models/trial_users.dart';
+import 'package:handshake/services/stream_utility.dart';
 import 'package:handshake/widgets/background_decoration.dart';
+import 'package:handshake/widgets/popup.dart';
 
+import '../models/users.dart';
 import '../widgets/bottomNavigationBar.dart';
 
 class AnnoucementDisplay extends StatefulWidget {
@@ -17,13 +20,11 @@ class AnnoucementDisplay extends StatefulWidget {
 
 class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
   final _database = FirebaseDatabase.instance.ref();
+  final authId = FirebaseAuth.instance.currentUser?.uid;
 
-  String titleMission = "titre de la mission";
-  String dateMission = "date de la mission";
-  String heureMission = "heure de la mission";
-  String mission = "mission";
-  String fetch="annonce";
-  List<Announces> listAnnounces =[];
+
+  List<TrialAnnounce> listAnnounces =[];
+
 
   void _activateListeners() {
     _database
@@ -31,11 +32,18 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
         .onValue
         .listen((event) {
 
+
       final data = new Map<String, dynamic>.from(event.snapshot.value as dynamic);
       data.forEach((key, value) {
-        listAnnounces.add(new Announces(key: key, title: value['Titre'], hour: value['Horaire'], description: value['descriptif'], activity: value['activité'], date: value['Date']));
+        if (value['UserId'] == authId)
+        listAnnounces.add(new TrialAnnounce(userId: value['UserId'], id: key, title: value['Titre'], date: value['Date'], hour: value['Horaire'], activity: value['activité'], description: value['descriptif']));
 
         setState(() {
+          //TrialUsers.MyUser(event).forEach((element) {
+           // print(element.userId);
+         // });
+
+
         });
 
       });
@@ -55,7 +63,7 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
         appBar: AppBar(
           elevation: 30,
           title: const Text(
-            "Formulaire Annonce",
+            "Annonces",
           ),
           centerTitle: true,
           leading: IconButton(
@@ -74,18 +82,14 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
         body: Container(
           decoration: fondDecoration(),
      child: Column(
-     children : [Expanded(
-
-     /*   child: Expanded(
-    child: ListView(
-          shrinkWrap: true,
-            children: [*/
+     children : [
+       Expanded(
               child : ListView.builder(
                 padding: EdgeInsets.all(10),
                   itemCount: listAnnounces.length,
                   shrinkWrap: true,
                   itemBuilder: (context, value){
-                    return TrialAnnounce(title: listAnnounces[value].title, date: listAnnounces[value].date, hour: listAnnounces[value].hour, activity: listAnnounces[value].activity, description: listAnnounces[value].description);
+                    return TrialAnnounce(title: listAnnounces[value].title, date: listAnnounces[value].date, hour: listAnnounces[value].hour, activity: listAnnounces[value].activity, description: listAnnounces[value].description, id: listAnnounces[value].id, userId: listAnnounces[value].userId,);
 
                       //Announces(key: listAnnounces[value].key, title: listAnnounces[value].title, hour: listAnnounces[value].hour, description: listAnnounces[value].description, activity: listAnnounces[value].activity, date: listAnnounces[value].date )
                         //.missionDescription(context);
