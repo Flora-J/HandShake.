@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:handshake/models/users.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/views/page_profile_companions.dart';
+import 'package:handshake/views/pre-registration.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'home_page.dart';
 
 class Connection extends StatefulWidget {
   static const routeName = '/connections';
@@ -40,7 +43,7 @@ class _connectionState extends State<Connection> {
     super.initState();
     _activateListener();
   }
-
+  int index=0;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -187,7 +190,11 @@ class _connectionState extends State<Connection> {
                               color: Colors.grey, fontStyle: FontStyle.italic),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (BuildContext) => PreRegistration()));
+                          },
                           child: Text(
                             'S\'enregistrer',
                             style: TextStyle(

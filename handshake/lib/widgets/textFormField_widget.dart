@@ -55,7 +55,7 @@ Widget textFormPassword (TextEditingController userInput, String hintTitle){
   );
 }
 
-Widget textFormdBasicOrg (TextEditingController userInput, String hintTitle){
+Widget textFormBasicOrg (TextEditingController userInput, String hintTitle){
 
   return(Container(
     margin: EdgeInsets.only(bottom: 10),
@@ -64,9 +64,13 @@ Widget textFormdBasicOrg (TextEditingController userInput, String hintTitle){
       padding: const EdgeInsets.only(left: 25.0, right: 25),
       child: TextFormField(
         validator: (userInput) {
-          if (userInput != 'VA')
-            return 'Mauvaise organisation';
-          },
+          if (userInput == null || userInput.isEmpty){
+            return 'Champs obligatoire';
+          }else if(userInput == "VA") {
+            return 'Mauvaise Association';
+          }
+          return null;
+        },
 
         controller: userInput,
         decoration: InputDecoration(

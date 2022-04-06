@@ -6,10 +6,7 @@ import 'package:handshake/views/page_profile_accompanied.dart';
 
 Widget generalBottomNavigationBar(BuildContext context){
   int index=0;
-  List<dynamic> pages = [
-    HomePage(),
 
-  ];
 
   return BottomNavigationBar(
     unselectedItemColor: Colors.blueAccent,

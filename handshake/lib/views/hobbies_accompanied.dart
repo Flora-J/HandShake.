@@ -30,13 +30,12 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading:
-        IconButton( onPressed: (){
-          Navigator.pop(context);
-        },icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.black,)),
+      elevation: 30,
+      title: const Text(
+        "Loisirs",
       ),
+      centerTitle: true,
+    ),
       body: SafeArea(
         child: Container(
           decoration: fondDecoration(),
@@ -62,24 +61,14 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40),
                 child: Container(
-                  padding: EdgeInsets.only(top: 3,left: 3),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      border: Border(
-                          bottom: BorderSide(color: Colors.black),
-                          top: BorderSide(color: Colors.black),
-                          right: BorderSide(color: Colors.black),
-                          left: BorderSide(color: Colors.black)
-                      )
-                  ),
-                  child: MaterialButton(
-                    minWidth: double.infinity,
-                    height:60,
-                    onPressed: ()async{
-                      final newEntry = <String, dynamic>{
-                        'Organisation': organisationController.text,
-                        'Activité 1': dropdownValue,
-                        'Activité 2': otherHobbieController,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
+                    onPressed: () async {
+                      /*final newEntry = <String, dynamic>{
+
+                        'Activité 1': dropdownValue.toString(),
+                        'Activité 2': otherHobbieController.text,
                         //'Photo' :
                       };
                       try {
@@ -88,20 +77,14 @@ class _hobbies_accompagnedState extends State<hobbies_accompagned> {
                         print("entry has been added");
                       } catch (error) {
                         print('Entry has not been added : $error');
-    }
-                      ;
-                      Navigator.pushNamedAndRemoveUntil(context, '/connections', (route) => false);
-
-
-
+                      }
+                      ;*/
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/connections', (route) => false);
                     },
-                    color: Colors.blueAccent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)
+                    child: Text(
+                      "Inscription",
                     ),
-                    child: Text("Inscription",style: TextStyle(
-                      fontWeight: FontWeight.w600,fontSize: 16,
-                    ),),
                   ),
                 ),
               ),

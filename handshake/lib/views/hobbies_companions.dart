@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import '../widgets/textFormField_widget.dart';
 import '../widgets/textfield_widget.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 
@@ -10,21 +11,25 @@ class HobbiesCompanions extends StatefulWidget {
 }
 
 class _HobbiesCompanionsState extends State<HobbiesCompanions> {
+
   String dropdownValue = 'Musique';
   final organisationController = TextEditingController();
   final otherHobbieController = TextEditingController();
 
-  get decoration => null;
+  void initState(){
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+  }
+  var _formKey;
 
   @override
   Widget build(BuildContext context) {
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final handShakeRef = ref.child('/handShakeDb/user');
-    final hobbies = handShakeRef.child('/key/hobbies');
-    List<String> activite = [];
+    //final hobbies = handShakeRef.child('/key/hobbies');
+    //List<String> activite = [];
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 30,
         title: const Text(
@@ -37,6 +42,7 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
           decoration: fondDecoration(),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.only(top: 40),
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.center,
             //crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,12 +56,17 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                 ),
               ),
               SizedBox(height: 20),
-              textFieldBasic(
+              Form(
+                key: _formKey,
+                child: Column(
+                children:[
+
+                textFormBasicOrg(
                   organisationController, "De quelle organisation viens-tu ?"),
-              marginColumn(),
               SizedBox(
                 height: 20,
               ),
+
               _buildRowHobbies(),
               SizedBox(
                 height: 20,
@@ -68,22 +79,14 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40),
                 child: Container(
-                  padding: EdgeInsets.only(top: 3, left: 3),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      border: Border(
-                          bottom: BorderSide(color: Colors.black),
-                          top: BorderSide(color: Colors.black),
-                          right: BorderSide(color: Colors.black),
-                          left: BorderSide(color: Colors.black))),
-                  child: MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
+                  child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
                     onPressed: () async {
-                      final newEntry = <String, dynamic>{
+                      /*final newEntry = <String, dynamic>{
                         'Organisation': organisationController.text,
-                        'Activité 1': dropdownValue,
-                        'Activité 2': otherHobbieController,
+                        'Activité 1': dropdownValue.toString(),
+                        'Activité 2': otherHobbieController.text,
                         //'Photo' :
                       };
                       try {
@@ -93,19 +96,12 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                       } catch (error) {
                         print('Entry has not been added : $error');
                       }
-                      ;
+                      ;*/
                       Navigator.pushNamedAndRemoveUntil(
                           context, '/connections', (route) => false);
                     },
-                    color: Colors.blueAccent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
                     child: Text(
-                      "Suivant",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      ),
+                      "Inscription",
                     ),
                   ),
                 ),
@@ -113,12 +109,11 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
               SizedBox(
                 height: 20,
               ),
-              Text(dropdownValue)
             ],
           ),
         ),
-      ),
-    );
+      ]),
+    )));
   }
 
   SizedBox marginColumn() => const SizedBox(height: 20);
