@@ -87,8 +87,8 @@ class _SignupPageAccompaniedState extends State<SignupPageAccompanied>{
 
                           children: [
                             textFormdBasic(nameController,"nom"),
-                            textFormdBasic(lastnameController,"prénom"),
-                            textFormdBasic(emailController,"e-mail"),
+                            textFormdBasic( lastnameController,"prénom"),
+                            textFormdBasic( emailController,"e-mail"),
                             textFormPassword(passwordController,"mot de passe"),
                             textFormPassword(confirmationPasswordController,"confirmation de votre mot de passe"),
 

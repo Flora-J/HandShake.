@@ -86,11 +86,11 @@ class _SignupPageCompanionsState extends State<SignupPageCompanions>{
                       child: Column(
 
                         children: [
-                          textFormdBasic(nameController,"nom"),
-                          textFormdBasic(lastnameController,"prénom"),
+                          textFormdBasic( nameController,"nom"),
+                          textFormdBasic( lastnameController,"prénom"),
                           textFormdBasic(addressController,"adresse"),
                           textFormdBasic(cityController,"ville"),
-                          textFormdBasic(cpController,"code postal"),
+                          textFormdBasic( cpController,"code postal"),
                           textFormdBasic(emailController,"e-mail"),
                           textFormPassword(passwordController,"mot de passe"),
                           textFormPassword(confirmationPasswordController,"confirmation de votre mot de passe"),

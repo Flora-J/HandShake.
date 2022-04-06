@@ -9,6 +9,9 @@ Widget textFormdBasic (TextEditingController userInput, String hintTitle){
     child: Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25),
       child: TextFormField(
+        //onTap: ()=> FocusScope.of(context).unfocus(),
+
+
         validator: (userInput) {
           if (userInput == null || userInput.isEmpty){
             return 'Champs obligatoire';
@@ -66,7 +69,7 @@ Widget textFormBasicOrg (TextEditingController userInput, String hintTitle){
         validator: (value) {
           if (value == null || value.isEmpty){
             return 'Champs obligatoire';
-          }else if(userInput == "VA") {
+          }else if(value != "VA") {
             return 'Mauvaise Association';
           }
           return null;
