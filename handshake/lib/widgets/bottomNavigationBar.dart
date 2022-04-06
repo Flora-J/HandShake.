@@ -21,10 +21,10 @@ Widget generalBottomNavigationBar(BuildContext context){
 
       BottomNavigationBarItem(
           icon: Icon(Icons.chat),
-          label: 'chat'),
+          label: 'Chat'),
       BottomNavigationBarItem(
           icon: Icon(Icons.monitor),
-          label: 'profil')
+          label: 'Profil')
     ],onTap: (value){
       switch(value){
         case 0:

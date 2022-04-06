@@ -54,3 +54,29 @@ Widget textFormPassword (TextEditingController userInput, String hintTitle){
   )
   );
 }
+
+Widget textFormdBasicOrg (TextEditingController userInput, String hintTitle){
+
+  return(Container(
+    margin: EdgeInsets.only(bottom: 10),
+    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
+    child: Padding(
+      padding: const EdgeInsets.only(left: 25.0, right: 25),
+      child: TextFormField(
+        validator: (userInput) {
+          if (userInput != 'VA')
+            return 'Mauvaise organisation';
+          },
+
+        controller: userInput,
+        decoration: InputDecoration(
+          hintText: hintTitle,
+
+          hintStyle: TextStyle(fontSize: 18, color: Colors.blueAccent, fontStyle: FontStyle.italic),
+        ),
+        //keyboardType: keyboardType,
+      ),
+    ),
+  )
+  );
+}
