@@ -142,7 +142,7 @@ class ChatState extends State<Chat> {
                 padding: const EdgeInsets.only(top: 16, bottom: 350),
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, value) {
-                    StreamUtility().getUsersStream();
+
                     return ChatUserList(id: chatUsers[value].key,
                         name: chatUsers[value].name,
                         lastName: chatUsers[value].lastName,

@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:handshake/models/users.dart';
 
 import '../models/chat_users.dart';
+import '../models/message.dart';
 
 class StreamUtility{
 
@@ -20,6 +21,18 @@ class StreamUtility{
     });
     return results;
 
+  }
+
+  Stream<List<Message>> getMessageStream(){
+    final messageStream = _database.child('/handShakeDb/chat').onValue;
+    final streamToPublish = messageStream.map((event){
+      final messageMap= Map<String, dynamic>.from(event.snapshot.value as dynamic);
+      final messageList = messageMap.entries.map((element){
+        return Message.fromRTBD(Map<String, dynamic>.from(element.value));
+      }).toList();
+      return messageList;
+    });
+    return streamToPublish;
   }
 
 List<Users> GetUser(){
