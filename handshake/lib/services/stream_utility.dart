@@ -57,17 +57,6 @@ List<Users> GetUser(){
     return userList;
   }
 
-
 }
 
-/*
-  Future<Users> getUser(String uid) async{
 
-    DatabaseEvent event = await _database.child('/handShakeDb/user').once();
-    //DataSnapshot snap = snapshot.snapshot;
-    Users user = Users.fromRTBD(event);
-
-    return user; //bug
-  }
-
-}*/

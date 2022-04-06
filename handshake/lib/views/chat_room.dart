@@ -19,6 +19,7 @@ class ChatRoom extends StatefulWidget {
 
 class _ChatRoomState extends State<ChatRoom> {
 
+  String message ="";
   final messageController = TextEditingController();
   final authId = FirebaseAuth.instance.currentUser?.uid;
   DatabaseReference _database = FirebaseDatabase.instance.ref();
@@ -47,6 +48,25 @@ class _ChatRoomState extends State<ChatRoom> {
   void initState() {
     super.initState();
     _activateListeners();
+
+  }
+
+  void sendMessage() async{
+  FocusScope.of(context).unfocus();
+  streamChat ={
+    'id_Sender': authId,
+    'message': messageController.text,
+    'id_Receiver':widget.idCompanion,
+    'time': date.millisecondsSinceEpoch
+  };
+  try {
+    await _database.child('/handShakeDb/chat').push().set(
+        streamChat);
+  }catch(error) {
+    print(error);
+  }
+
+  messageController.clear();
 
   }
 
@@ -173,7 +193,10 @@ Stack(
                 child: Row(
                   children: <Widget>[
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                      message.trim().isEmpty ? null : sendMessage;
+
+                      },
                       child: Container(
                         height: 30,
                         width: 30,

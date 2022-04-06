@@ -63,8 +63,8 @@ Widget textFormBasicOrg (TextEditingController userInput, String hintTitle){
     child: Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25),
       child: TextFormField(
-        validator: (userInput) {
-          if (userInput == null || userInput.isEmpty){
+        validator: (value) {
+          if (value == null || value.isEmpty){
             return 'Champs obligatoire';
           }else if(userInput == "VA") {
             return 'Mauvaise Association';

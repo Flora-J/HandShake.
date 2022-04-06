@@ -16,11 +16,8 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
   final organisationController = TextEditingController();
   final otherHobbieController = TextEditingController();
 
-  void initState(){
-    super.initState();
-    _formKey = GlobalKey<FormState>();
-  }
-  var _formKey;
+  final _formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +79,13 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                   child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                 primary: const Color.fromARGB(255, 14, 118, 223), elevation: 10),
-                    onPressed: () async {
+                    onPressed: () {
+
+                      if (_formKey.currentState!.validate()){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Validé')),
+                        );
+                      }
                       /*final newEntry = <String, dynamic>{
                         'Organisation': organisationController.text,
                         'Activité 1': dropdownValue.toString(),
@@ -96,10 +99,10 @@ class _HobbiesCompanionsState extends State<HobbiesCompanions> {
                       } catch (error) {
                         print('Entry has not been added : $error');
                       }
-                      ;*/
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, '/connections', (route) => false);
-                    },
+                      ;*/ if (_formKey.currentState!.validate()) {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/connections', (route) => false);
+                      } },
                     child: Text(
                       "Inscription",
                     ),
