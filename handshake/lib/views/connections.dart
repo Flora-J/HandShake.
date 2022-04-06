@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/models/firebase_helper.dart';
 import 'package:handshake/models/users.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/views/page_profile_companions.dart';
@@ -25,6 +26,7 @@ class _connectionState extends State<Connection> {
         users.add(new Users(
             firstName: value['FirstName'],
             lastName: value['LastName'],
+            initiales: value['Init'],
             address: value['Address'],
             postCode: value['CP'],
             city: value['City'],

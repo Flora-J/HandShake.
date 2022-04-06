@@ -64,7 +64,7 @@ class _PresentationPageState extends State<PresentationPage> {
                       BoxFit.fitHeight;
                       return Builder(builder: (BuildContext context) {
                         return Container(
-                          width: MediaQuery.of(context).size.width,
+                          width: MediaQuery.of(context).size.width / 1.5,
                           margin: EdgeInsets.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
                             color: Colors.transparent
