@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/widgets/popup.dart';
 
@@ -14,6 +15,7 @@ class TrialAnnounce extends StatefulWidget{
   String activity;
   String description;
 
+
   TrialAnnounce({
     required this.userId,
     required this.id,
@@ -21,7 +23,9 @@ class TrialAnnounce extends StatefulWidget{
     required this.date,
     required this.hour,
     required this.activity,
-    required this.description
+    required this.description,
+
+
   });
   factory TrialAnnounce.fromRTBD(Map<String, dynamic> data){
     return TrialAnnounce(
@@ -40,6 +44,8 @@ class TrialAnnounce extends StatefulWidget{
 }
 
 class _TrialAnnounceState extends State<TrialAnnounce>{
+  final authId = FirebaseAuth.instance.currentUser?.uid;
+
 
   @override
   void initState() {
@@ -61,7 +67,7 @@ class _TrialAnnounceState extends State<TrialAnnounce>{
                             child: Padding(
                             padding: EdgeInsets.all(50),
                             child: Column(
-                      children: [
+                      children:<Widget>[
                           Text(widget.title,
                               style: TextStyle(
                               fontSize: 16,
@@ -96,15 +102,24 @@ class _TrialAnnounceState extends State<TrialAnnounce>{
                         SizedBox(
                           height: 20,
                         ),
-                        ElevatedButton(
-                            onPressed:(){
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) => popupConfirmation(context, Text('Souhaitez-vous effectuer cette mission '+widget.activity+' le '+widget.date+' ?'),"Commencez par envoyer un message pour briser la glace"));
-                            },
-                            child: Text('Accepter'))
+                          ElevatedButton(
 
-                        ],
+                              onPressed: widget.userId != authId ? (){
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          popupConfirmation(context, Text(
+                                              'Souhaitez-vous effectuer cette mission ' +
+                                                  widget.activity + ' le ' +
+                                                  widget.date + ' ?'),
+                                              "Commencez par envoyer un message pour briser la glace"));
+                                }
+                                  : null,
+
+
+                              child: Text('Accepter'))
+
+                      ],
                       ),
                     ),
                           )),
@@ -113,3 +128,7 @@ class _TrialAnnounceState extends State<TrialAnnounce>{
     );
   }
 }
+
+
+
+
