@@ -7,7 +7,7 @@ class CustomImage extends StatelessWidget {
   late String? initiales;
   late double radius;
 
-  CustomImage(this.imageUrl, this.initiales, this.radius);
+  CustomImage(this.imageUrl, this.initiales, this.radius, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,12 @@ class CustomImage extends StatelessWidget {
     } else {
       ImageProvider provider = CachedNetworkImageProvider(imageUrl!);
       if (radius == null) {
-        // Image dans le chat
+        // Images dans chat
         return InkWell(
           child: Image(image: provider, width: 250),
-          onTap: () {},
+          onTap: () {
+            //Montrer l'image en grand
+          },
         );
       } else {
         return InkWell(

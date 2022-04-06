@@ -31,6 +31,7 @@ class _ProfileAccompniedState extends State<ProfileAccompanied> {
   void initState() {
     super.initState();
     _getUser();
+
   }
 
   @override
@@ -64,6 +65,7 @@ class _ProfileAccompniedState extends State<ProfileAccompanied> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomImage(me?.imageUrl, me?.initiales, MediaQuery.of(context).size.width / 5),
+
                 /* CircleAvatar(
                   radius: 56,
                   backgroundColor: Colors.teal,//backgroundImage: NetworkImage(),

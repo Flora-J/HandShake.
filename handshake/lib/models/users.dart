@@ -1,26 +1,27 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class Users {
-  late String firstName;
-  late String lastName;
-  late String? imageUrl;
-  late String? address;
-  late String? postCode;
-  late String? city;
-  late String email;
-  //String organization;
-  late String id;
-  late String profilType;
-  late String initiales;
-  //Map<int, String> hobbies;
 
-  Users(
+ late String firstName;
+ late String lastName;
+ late String? imageUrl;
+ late String? address;
+ late String? postCode;
+ late String? city;
+ late String email;
+  //String organization;
+ late String id;
+ late String profilType;
+ //Map<int, String> hobbies;
+ late String initiales;
+
+   Users(
       {required this.firstName,
       required this.lastName,
+      required String address,
       this.imageUrl,
       required this.initiales,
       //required this.organization,
-      this.address,
       this.postCode,
       this.city,
       required this.email,
@@ -46,12 +47,12 @@ class Users {
     );
   }
 
-  MyUser(DataSnapshot snap) {
-    id = snap.key!;
-    Map? map = snap.value as Map?;
-    firstName = map?["FirstName"];
-    lastName = map?["LastName"];
-    imageUrl = map?["Photo"];
+  MyUser(DatabaseEvent event) {
+    id = event.snapshot.key!;
+    Map? map = event.snapshot.value as Map?;
+    firstName = map!["FirstName"];
+    lastName = map["LastName"];
+    imageUrl = map["Photo"];
     if (firstName != null && firstName.length > 0) {
       initiales = firstName[0];
     }
@@ -66,6 +67,9 @@ class Users {
   }
 
   /* Map toMap() {
+  }
+
+  Map toMap() {
     return {
       "FirstName": firstName,
       "LastName": lastName,
