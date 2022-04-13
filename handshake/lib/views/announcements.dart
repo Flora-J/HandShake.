@@ -39,9 +39,6 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
         listAnnounces.add(new TrialAnnounce(userId: value['UserId'], id: key, title: value['Titre'], date: value['Date'], hour: value['Horaire'], activity: value['activité'], description: value['descriptif']));
 
         setState(() {
-          //TrialUsers.MyUser(event).forEach((element) {
-           // print(element.userId);
-         // });
 
 
         });
@@ -54,6 +51,8 @@ class _AnnoucementDisplayState extends State<AnnoucementDisplay> {
   void initState() {
     super.initState();
     _activateListeners();
+    listAnnounces.clear();
+
 
   }
 
