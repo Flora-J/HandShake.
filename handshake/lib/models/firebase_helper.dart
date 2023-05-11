@@ -1,12 +1,23 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:handshake/models/users.dart';
 
 class FirebaseHelper {
 
-  //Authentification
+  static final entryPoint = FirebaseDatabase.instance.ref();
+  static final entryStorage = FirebaseStorage.instance.ref();
 
   final auth = FirebaseAuth.instance;
+  final entryUser = entryPoint.child("/handShakeDb/user");
+  final entryStock = entryStorage.child("/handShakeDb/user");
+  final handShakeRef = entryPoint.child('/handShakeDb/announces');
+  //final hobbies = entryUser.child('/key/hobbies');
+
+  //FirebaseAuth auth = FirebaseAuth.instance;
+
 
   Future<User?> handleSignIn(String email, String mdp) async {
     final User? user = (await auth.signInWithEmailAndPassword(email: email, password: mdp)).user;
@@ -18,6 +29,7 @@ class FirebaseHelper {
     return true;
   }
 
+
   Future<User?> create(String email, String mdp, String firstName, String lastName) async {
     final create = await auth.createUserWithEmailAndPassword(email: email, password: mdp);
     final User? user = create.user;
@@ -26,24 +38,27 @@ class FirebaseHelper {
       "FirstName": firstName,
       "LastName": lastName,
       "Id": id!
+
     };
     addUser(id, map);
     return user;
   }
 
-  //Database
-
-  static final entryPoint = FirebaseDatabase.instance.ref();
-  final entry_user = entryPoint.child("/handShakeDb/users");
-
-  addUser(String id, Map map) {
-    entry_user.child(id).set(map);
+  void addUser(String id, Map map) {
+    entryUser.child(id).set(map);
   }
+
+
+  Future<String> savePic(File file, Reference reference) async {
+    var task = reference.putFile(file);
+    var snap = await task;
+    return await snap.ref.getDownloadURL();
 
   Future<Users?> getUser(String id) async{
 
-    DatabaseEvent event = await entry_user.child(id).once();
-    Users user = Users(address: '', city: '', email: '', firstName: '', id: '', imageUrl: '', lastName: '', postCode: '', profilType: '');
+    DatabaseEvent event = await entryUser.child(id).once();
+    Users user = Users(address: '', firstName: '', lastName: '': '', email: '', firstName: '', id: '', imageUrl: '', lastName: '', postCode: '', profilType: '');
     return user; //bug
   }
+}
 }

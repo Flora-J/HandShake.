@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class Users {
+
  late String firstName;
  late String lastName;
  late String? imageUrl;
@@ -17,11 +18,12 @@ class Users {
    Users(
       {required this.firstName,
       required this.lastName,
-      required this.imageUrl,
+      required String address,
+      this.imageUrl,
+      required this.initiales,
       //required this.organization,
-      required this.address,
-      required this.postCode,
-      required this.city,
+      this.postCode,
+      this.city,
       required this.email,
       required this.id,
       required this.profilType
@@ -33,6 +35,7 @@ class Users {
         firstName: data['FirstName'],
         lastName: data['LastName'],
         imageUrl: data['Photo'],
+        initiales: data['Init'],
         //organization: data['Organization'],
         address: data['Address'],
         postCode: data['CP'],
@@ -60,6 +63,10 @@ class Users {
         initiales = lastName[0];
       }
     }
+    //return initiales! ;
+  }
+
+  /* Map toMap() {
   }
 
   Map toMap() {
@@ -69,5 +76,9 @@ class Users {
       "Photo": imageUrl,
       "Id": id
     };
+  } */
+
+  String fullName() {
+    return "$firstName $lastName";
   }
 }

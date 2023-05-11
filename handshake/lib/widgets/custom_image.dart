@@ -13,8 +13,8 @@ class CustomImage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (imageUrl == null) {
       return CircleAvatar(
-        radius: radius ?? 0.0,
-        backgroundColor: Colors.blue,
+        radius: radius,
+        backgroundColor: Colors.blueAccent,
         child: Text(
           initiales ?? "",
           style: TextStyle(
@@ -39,9 +39,7 @@ class CustomImage extends StatelessWidget {
             radius: radius,
             backgroundImage: provider,
           ),
-          onTap: () {
-
-          },
+          onTap: () {},
         );
       }
     }

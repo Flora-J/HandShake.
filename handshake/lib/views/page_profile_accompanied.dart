@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:handshake/models/firebase_helper.dart';
 import 'package:handshake/models/users.dart';
@@ -11,27 +12,33 @@ import 'package:handshake/widgets/custom_image.dart';
 import '../widgets/background_decoration.dart';
 import 'announcements.dart';
 
-
 class ProfileAccompanied extends StatefulWidget {
 
   @override
-  ProfileAccompaniedState createState() => ProfileAccompaniedState();
+  State<ProfileAccompanied> createState() => _ProfileAccompniedState();
+
 }
 
-class ProfileAccompaniedState extends State<ProfileAccompanied> {
+class _ProfileAccompniedState extends State<ProfileAccompanied> {
 
   Users? me;
+  String? firstName;
+  String? lastName;
 
   User? user = FirebaseHelper().auth.currentUser;
 
   @override
   void initState() {
     super.initState();
+    _getUser();
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return (me == null)
+    ? const Center(child: Text("Non identifié"))
+    : Scaffold(
         appBar: AppBar(
           elevation: 30,
           title: const Text(
@@ -57,11 +64,12 @@ class ProfileAccompaniedState extends State<ProfileAccompanied> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CustomImage(me!.imageUrl, me!.initiales, MediaQuery.of(context).size.width),
+                CustomImage(me?.imageUrl, me?.initiales, MediaQuery.of(context).size.width / 5),
+
                 /* CircleAvatar(
                   radius: 56,
                   backgroundColor: Colors.teal,//backgroundImage: NetworkImage(),
-                ),
+                ), */
                 SizedBox(
                     height: 8,
                 ),
@@ -72,14 +80,14 @@ class ProfileAccompaniedState extends State<ProfileAccompanied> {
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
-                ), */
+                ),
                 SizedBox(
                   height: 12,
                 ),
                     //Expanded(//child:
                   Column(
                           children: [
-                            Text("Followers",
+                            Text(me!.fullName(),
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 18,
@@ -130,6 +138,14 @@ class ProfileAccompaniedState extends State<ProfileAccompanied> {
         )
     );
   }
+
+  Future<void> _getUser() async{
+    final firebaseUser = await FirebaseHelper().getUser(user!.uid);
+    setState(() {
+      me = firebaseUser;
+    });
+  }
+
 }
 
 

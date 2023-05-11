@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:handshake/models/firebase_helper.dart';
 import 'package:handshake/views/page_profile_accompanied.dart';
 import 'package:handshake/widgets/background_decoration.dart';
 import 'package:handshake/widgets/button.dart';
@@ -33,9 +34,6 @@ class _FormAnnounce extends State<FormAnnounce> {
 
   @override
   Widget build(BuildContext context) {
-
-    DatabaseReference ref = FirebaseDatabase.instance.ref();
-    final handShakeRef = ref.child('/handShakeDb/announces');
 
     return Scaffold(
       appBar: AppBar(
@@ -238,7 +236,7 @@ class _FormAnnounce extends State<FormAnnounce> {
                       };
                       try {
                         // Get information in the data base
-                        await handShakeRef.push().set(newAnnounce);
+                        await FirebaseHelper.entryPoint.push().set(newAnnounce);
                         print("entry has been added");
                       } catch (error) {
                         print('Entry has not been added : $error');
